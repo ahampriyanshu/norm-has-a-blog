@@ -2,7 +2,7 @@ export const siteConfig = {
   title: 'norm-has-a-blog',
   description: 'A minimal, responsive, and feature-rich blog theme',
   author: 'Your Name',
-  url: 'https://yourdomain.com',
+  url: 'https://ahampriyanshu.com',
   lang: 'en',
   timezone: 'America/New_York',
 

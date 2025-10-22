@@ -1,0 +1,41 @@
+import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { mdsvex } from 'mdsvex';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import remarkGfm from 'remark-gfm';
+import remarkToc from 'remark-toc';
+
+/** @type {import('mdsvex').MdsvexOptions} */
+const mdsvexOptions = {
+  extensions: ['.md'],
+  remarkPlugins: [remarkGfm, remarkToc],
+  rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+  layout: {
+    post: './src/lib/layouts/PostLayout.svelte',
+    _: './src/lib/layouts/DefaultLayout.svelte'
+  }
+};
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  extensions: ['.svelte', '.md'],
+  preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
+
+  kit: {
+    adapter: adapter({
+      pages: 'build',
+      assets: 'build',
+      fallback: '404.html',
+      precompress: false,
+      strict: true
+    }),
+    prerender: {
+      handleMissingId: 'warn',
+      entries: ['*']
+    }
+  }
+};
+
+export default config;
+

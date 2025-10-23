@@ -21,26 +21,24 @@
 
   function sharePost(platform: string) {
     const url = encodeURIComponent(getPostUrl());
-    const title = encodeURIComponent(metadata.title);
     const text = encodeURIComponent(metadata.description || metadata.title);
-
     let shareUrl = '';
 
     switch (platform) {
       case 'whatsapp':
-        shareUrl = `https://wa.me/?text=${title}%20${url}`;
+        shareUrl = `https://wa.me/?text=${text}%20${url}`;
         break;
       case 'facebook':
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
         break;
       case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+        shareUrl = `https://x.com/share?url=${url}&text=${text}`;
         break;
       case 'linkedin':
         shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
         break;
       case 'telegram':
-        shareUrl = `https://t.me/share/url?url=${url}&text=${title}`;
+        shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
         break;
     }
 

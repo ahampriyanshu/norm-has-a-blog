@@ -50,6 +50,8 @@
 
   // Find which h2 section a heading belongs to
   function findParentH2(headingId: string): string {
+    if (groupedHeadings.length === 0) return '';
+    
     for (const group of groupedHeadings) {
       if (group.h2.id === headingId) {
         return headingId;
@@ -61,9 +63,14 @@
     return '';
   }
 
-  // Update active h2 based on active heading
-  $: if (activeId) {
-    activeH2Id = findParentH2(activeId);
+  // Update active h2 whenever activeId changes
+  function updateActiveH2(headingId: string) {
+    if (!headingId || groupedHeadings.length === 0) return;
+    
+    const parentH2 = findParentH2(headingId);
+    if (parentH2 && parentH2 !== activeH2Id) {
+      activeH2Id = parentH2;
+    }
   }
 
   onMount(() => {
@@ -93,6 +100,9 @@
         return;
       }
 
+      // Group headings by h2 sections
+      groupedHeadings = groupHeadingsByH2(headings);
+
       // Set up Intersection Observer for scroll tracking
       const observerOptions = {
         rootMargin: '-100px 0px -66% 0px',
@@ -113,6 +123,7 @@
           for (const heading of headings) {
             if (visibleHeadings.has(heading.id)) {
               activeId = heading.id;
+              updateActiveH2(heading.id);
               break;
             }
           }
@@ -128,26 +139,37 @@
 
       // Handle scroll events for better accuracy
       const handleScroll = () => {
-        if (headings.length === 0) return;
+        if (headings.length === 0 || groupedHeadings.length === 0) return;
         
         const scrollPosition = window.scrollY + 150;
+        let foundHeading = false;
 
+        // Find the current heading based on scroll position
         for (let i = headings.length - 1; i >= 0; i--) {
           const heading = headings[i];
           if (heading.element && heading.element.offsetTop <= scrollPosition) {
-            activeId = heading.id;
+            if (activeId !== heading.id) {
+              activeId = heading.id;
+              updateActiveH2(heading.id);
+            }
+            foundHeading = true;
             return;
           }
         }
 
         // If we're at the very top, highlight the first heading
-        if (headings.length > 0) {
+        if (!foundHeading && headings.length > 0) {
           activeId = headings[0].id;
+          updateActiveH2(headings[0].id);
         }
       };
 
       window.addEventListener('scroll', handleScroll, { passive: true });
-      handleScroll(); // Set initial state
+      
+      // Set initial state with a small delay to ensure everything is ready
+      setTimeout(() => {
+        handleScroll();
+      }, 50);
 
       scrollCleanup = () => {
         window.removeEventListener('scroll', handleScroll);
@@ -175,6 +197,7 @@
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
       activeId = id;
+      updateActiveH2(id);
     }
   }
 
@@ -183,21 +206,38 @@
   }
 </script>
 
-{#if headings.length > 0}
+{#if groupedHeadings.length > 0}
   <div class="toc-wrapper">
     <h3 class="panel-heading">Contents</h3>
     <nav id="toc" class="toc">
       <ul class="toc-list">
-        {#each headings as heading (heading.id)}
-          <li class="toc-item {getIndentClass(heading.level)}" class:active={activeId === heading.id}>
+        {#each groupedHeadings as group (group.h2.id)}
+          <li class="toc-item toc-h2" class:active={activeId === group.h2.id}>
             <a
-              href="#{heading.id}"
+              href="#{group.h2.id}"
               class="toc-link"
-              class:active={activeId === heading.id}
-              on:click={(e) => scrollToHeading(heading.id, e)}
+              class:active={activeId === group.h2.id}
+              on:click={(e) => scrollToHeading(group.h2.id, e)}
             >
-              {heading.text}
+              {group.h2.text}
             </a>
+            
+            {#if group.children.length > 0}
+              <ul class="toc-sublist" class:expanded={group.h2.id === activeH2Id}>
+                {#each group.children as child (child.id)}
+                  <li class="toc-item {getIndentClass(child.level)}" class:active={activeId === child.id}>
+                    <a
+                      href="#{child.id}"
+                      class="toc-link"
+                      class:active={activeId === child.id}
+                      on:click={(e) => scrollToHeading(child.id, e)}
+                    >
+                      {child.text}
+                    </a>
+                  </li>
+                {/each}
+              </ul>
+            {/if}
           </li>
         {/each}
       </ul>

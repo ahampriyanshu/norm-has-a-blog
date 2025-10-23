@@ -15,8 +15,7 @@ $radius-lg: 10px;
 }
 
 :root {
-  // Light theme (default)
-  --main-bg: #efefef;
+  --main-bg: white;
   --mask-bg: #c1c3c5;
   --main-border-color: #f3f3f3;
   --text-color: #34343c;
@@ -998,6 +997,36 @@ a {
       &::before {
         opacity: 1;
         transform: scaleY(1);
+      }
+    }
+  }
+
+  // Collapsible subsections
+  .toc-sublist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+
+    &.expanded {
+      max-height: 1000px; // Large enough to fit most sublists
+      opacity: 1;
+      margin-top: 0.25rem;
+    }
+
+    .toc-item {
+      &.toc-h3 {
+        padding-left: 1rem;
+        margin-top: 0.25rem;
+      }
+
+      &.toc-h4 {
+        padding-left: 2rem;
+        margin-top: 0.25rem;
+        font-size: 0.8125rem;
       }
     }
   }

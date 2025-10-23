@@ -16,7 +16,7 @@ $radius-lg: 10px;
 
 :root {
   // Light theme (default)
-  --main-bg: white;
+  --main-bg: #efefef;
   --mask-bg: #c1c3c5;
   --main-border-color: #f3f3f3;
   --text-color: #34343c;
@@ -546,7 +546,7 @@ a {
     position: sticky;
     top: 2rem;
     max-height: calc(100vh - 4rem);
-    overflow-y: auto;
+    overflow-y: hidden;
 
     /* Custom scrollbar */
     &::-webkit-scrollbar {

@@ -3,11 +3,14 @@
   import { formatDate } from '$lib/utils/posts';
   import RelatedPosts from '$lib/components/RelatedPosts.svelte';
   import Icon from '$lib/components/Icon.svelte';
+  import Toast from '$lib/components/Toast.svelte';
   import { browser } from '$app/environment';
 
   export let data: PageData;
 
   const { metadata, content } = data;
+  let showToast = false;
+  let toastMessage = '';
 
   function getPostUrl(): string {
     if (browser) {
@@ -49,9 +52,14 @@
   function copyLink() {
     if (browser) {
       navigator.clipboard.writeText(getPostUrl()).then(() => {
-        alert('Link copied to clipboard!');
+        toastMessage = 'Link copied to clipboard!';
+        showToast = true;
       });
     }
+  }
+
+  function handleToastClose() {
+    showToast = false;
   }
 </script>
 
@@ -123,4 +131,8 @@
     tags={metadata.tags || []}
   />
 </article>
+
+{#if showToast}
+  <Toast message={toastMessage} onClose={handleToastClose} />
+{/if}
 

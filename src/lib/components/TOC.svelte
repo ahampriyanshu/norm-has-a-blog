@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy, tick } from 'svelte';
 
   interface Heading {
     id: string;
@@ -8,77 +8,156 @@
     element: HTMLElement;
   }
 
+  interface HeadingGroup {
+    h2: Heading;
+    children: Heading[];
+  }
+
   let headings: Heading[] = [];
+  let groupedHeadings: HeadingGroup[] = [];
   let activeId: string = '';
+  let activeH2Id: string = '';
   let observer: IntersectionObserver | null = null;
   let visibleHeadings = new Set<string>();
 
-  onMount(() => {
-    // Get all headings from the content
-    const articleHeadings = document.querySelectorAll('.content h2, .content h3, .content h4');
-    headings = Array.from(articleHeadings).map((heading) => ({
-      id: heading.id,
-      text: heading.textContent || '',
-      level: parseInt(heading.tagName.substring(1)),
-      element: heading as HTMLElement
-    }));
+  let scrollCleanup: (() => void) | null = null;
 
-    // Set up Intersection Observer for scroll tracking
-    const observerOptions = {
-      rootMargin: '-100px 0px -66% 0px',
-      threshold: 0
-    };
+  // Group headings by their parent h2
+  function groupHeadingsByH2(allHeadings: Heading[]): HeadingGroup[] {
+    const groups: HeadingGroup[] = [];
+    let currentGroup: HeadingGroup | null = null;
 
-    observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          visibleHeadings.add(entry.target.id);
-        } else {
-          visibleHeadings.delete(entry.target.id);
+    allHeadings.forEach(heading => {
+      if (heading.level === 2) {
+        if (currentGroup) {
+          groups.push(currentGroup);
         }
-      });
-
-      // Find the first visible heading in the document order
-      if (visibleHeadings.size > 0) {
-        for (const heading of headings) {
-          if (visibleHeadings.has(heading.id)) {
-            activeId = heading.id;
-            break;
-          }
-        }
-      }
-    }, observerOptions);
-
-    // Observe all headings
-    headings.forEach((heading) => {
-      if (heading.element) {
-        observer?.observe(heading.element);
+        currentGroup = {
+          h2: heading,
+          children: []
+        };
+      } else if (currentGroup && (heading.level === 3 || heading.level === 4)) {
+        currentGroup.children.push(heading);
       }
     });
 
-    // Handle scroll events for better accuracy
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 150;
+    if (currentGroup) {
+      groups.push(currentGroup);
+    }
 
-      for (let i = headings.length - 1; i >= 0; i--) {
-        const heading = headings[i];
-        if (heading.element && heading.element.offsetTop <= scrollPosition) {
-          activeId = heading.id;
-          return;
+    return groups;
+  }
+
+  // Find which h2 section a heading belongs to
+  function findParentH2(headingId: string): string {
+    for (const group of groupedHeadings) {
+      if (group.h2.id === headingId) {
+        return headingId;
+      }
+      if (group.children.some(child => child.id === headingId)) {
+        return group.h2.id;
+      }
+    }
+    return '';
+  }
+
+  // Update active h2 based on active heading
+  $: if (activeId) {
+    activeH2Id = findParentH2(activeId);
+  }
+
+  onMount(() => {
+    const initializeTOC = async () => {
+      // Wait for the DOM to be fully updated
+      await tick();
+      
+      // Add a delay to ensure markdown content is rendered
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
+      // Get all headings from the content
+      const articleHeadings = document.querySelectorAll('.content h2, .content h3, .content h4');
+      
+      // Filter out headings without IDs (shouldn't happen with rehypeSlug, but just in case)
+      const validHeadings = Array.from(articleHeadings).filter(heading => heading.id);
+      
+      headings = validHeadings.map((heading) => ({
+        id: heading.id,
+        text: heading.textContent || '',
+        level: parseInt(heading.tagName.substring(1)),
+        element: heading as HTMLElement
+      }));
+
+      // Only set up observers if we found headings
+      if (headings.length === 0) {
+        console.warn('No headings found for TOC');
+        return;
+      }
+
+      // Set up Intersection Observer for scroll tracking
+      const observerOptions = {
+        rootMargin: '-100px 0px -66% 0px',
+        threshold: 0
+      };
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleHeadings.add(entry.target.id);
+          } else {
+            visibleHeadings.delete(entry.target.id);
+          }
+        });
+
+        // Find the first visible heading in the document order
+        if (visibleHeadings.size > 0) {
+          for (const heading of headings) {
+            if (visibleHeadings.has(heading.id)) {
+              activeId = heading.id;
+              break;
+            }
+          }
         }
-      }
+      }, observerOptions);
 
-      // If we're at the very top, highlight the first heading
-      if (headings.length > 0) {
-        activeId = headings[0].id;
-      }
+      // Observe all headings
+      headings.forEach((heading) => {
+        if (heading.element) {
+          observer?.observe(heading.element);
+        }
+      });
+
+      // Handle scroll events for better accuracy
+      const handleScroll = () => {
+        if (headings.length === 0) return;
+        
+        const scrollPosition = window.scrollY + 150;
+
+        for (let i = headings.length - 1; i >= 0; i--) {
+          const heading = headings[i];
+          if (heading.element && heading.element.offsetTop <= scrollPosition) {
+            activeId = heading.id;
+            return;
+          }
+        }
+
+        // If we're at the very top, highlight the first heading
+        if (headings.length > 0) {
+          activeId = headings[0].id;
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll(); // Set initial state
+
+      scrollCleanup = () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Set initial state
+    initializeTOC();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      scrollCleanup?.();
     };
   });
 

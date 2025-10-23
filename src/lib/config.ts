@@ -5,7 +5,7 @@ export const siteConfig = {
   url: 'https://ahampriyanshu.com',
   lang: 'en',
   timezone: 'Asia/Kolkata',
-  theme: 'light' as 'light' | 'dark', // 'light' for jerry theme, 'dark' for ricky theme
+  theme: 'light',
   analytics: {
     google: {
       id: ''

@@ -1,0 +1,34 @@
+// Ricky Theme - Dark Mode
+:root {
+  color-scheme: dark;
+
+  --main-bg: rgb(27 27 30);
+  --mask-bg: rgb(68 69 70);
+  --main-border-color: rgb(44 45 45);
+  --text-color: rgb(175 176 177);
+  --text-muted: #868686;
+  --heading-color: #cccccc;
+  --link-color: rgb(138 180 248);
+  --border-color: rgb(66 66 66);
+
+  --sidebar-bg: #1e1e1e;
+  --sidebar-border-color: #292929;
+  --sidebar-active-color: rgb(255 255 255 / 95%);
+  --sidebar-hover-bg: #262626;
+
+  --topbar-bg: rgb(27 27 30 / 64%);
+  --topbar-text-color: var(--text-color);
+
+  --card-bg: #1e1e1e;
+  --card-hover-bg: #464d51;
+  --card-shadow: rgb(21 21 21 / 72%) 0 6px 18px 0,
+    rgb(137 135 135 / 24%) 0 0 0 1px;
+
+  --tag-bg: #292828;
+  --tag-hover-bg: rgb(43 56 62);
+
+  --code-bg: rgb(255 255 255 / 5%);
+  --badge-bg: #2e2f31;
+  --badge-color: #b0b0b0;
+}
+

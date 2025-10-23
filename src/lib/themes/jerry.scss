@@ -1,0 +1,33 @@
+// Jerry Theme - Light Mode
+:root {
+  // Light theme (default)
+  --main-bg: white;
+  --mask-bg: #c1c3c5;
+  --main-border-color: #f3f3f3;
+  --text-color: #34343c;
+  --text-muted: #757575;
+  --heading-color: #2a2a2a;
+  --link-color: #0056b2;
+  --border-color: #eeeeee;
+
+  --sidebar-bg: #f6f8fa;
+  --sidebar-border-color: #efefef;
+  --sidebar-active-color: #1d1d1d;
+  --sidebar-hover-bg: rgb(223 233 241 / 64%);
+
+  --topbar-bg: rgb(255 255 255 / 70%);
+  --topbar-text-color: rgb(78 78 78);
+
+  --card-bg: white;
+  --card-hover-bg: #e2e2e2;
+  --card-shadow: rgb(104 104 104 / 5%) 0 2px 6px 0,
+    rgb(211 209 209 / 15%) 0 0 0 1px;
+
+  --tag-bg: #f8f9fa;
+  --tag-hover-bg: rgb(222 226 230);
+
+  --code-bg: rgb(25 25 28 / 5%);
+  --badge-bg: #e9ecef;
+  --badge-color: #495057;
+}
+

@@ -5,16 +5,12 @@ export const siteConfig = {
   url: 'https://ahampriyanshu.com',
   lang: 'en',
   timezone: 'Asia/Kolkata',
-  theme: {
-    mode: 'dual', // 'light', 'dark', or 'dual'
-  },
-
+  theme: 'light' as 'light' | 'dark', // 'light' for jerry theme, 'dark' for ricky theme
   analytics: {
     google: {
       id: ''
     }
   },
-
   paginate: 10,
 };
 

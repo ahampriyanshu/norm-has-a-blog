@@ -370,39 +370,6 @@ a {
   position: fixed;
 }
 
-// Panel wrapper styling
-#panel-wrapper {
-  display: none;
-
-  @media (min-width: 1200px) {
-    display: block !important;
-  }
-
-  .access {
-    position: sticky;
-    top: 4rem;
-    max-height: calc(100vh - 5rem);
-    overflow-y: auto;
-
-    /* Custom scrollbar */
-    &::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--text-muted);
-      border-radius: 2px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background: var(--text-color);
-    }
-  }
-}
 
 .w-100 {
   width: 100%;
@@ -569,9 +536,35 @@ a {
     padding-left: 3rem;
   }
 
-  .panel-sticky {
+  // Recent Posts - scrolls normally
+  .panel-recent {
+    margin-bottom: 2rem;
+  }
+
+  // TOC - becomes sticky when scrolling
+  .panel-toc-sticky {
     position: sticky;
     top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+
+    /* Custom scrollbar */
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--text-muted);
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--text-color);
+    }
   }
 }
 
@@ -920,7 +913,6 @@ a {
   font-weight: 600;
   margin: 0 0 1rem 0;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border-color);
   color: var(--heading-color);
 }
 
@@ -1033,7 +1025,6 @@ a {
     font-weight: 600;
     margin: 0 0 1rem 0;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-color);
     color: var(--heading-color);
   }
 
@@ -1438,6 +1429,101 @@ a {
 }
 
 // Post Page Styles
+// Post Header Section (outside main content, full width)
+.post-header-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+
+  .post-title-main {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color);
+    line-height: 1.2;
+  }
+
+  .post-meta-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+
+    time {
+      font-weight: 500;
+    }
+
+    .meta-separator {
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .post-title-main {
+      font-size: 1.75rem;
+    }
+
+    .post-meta-inline {
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+// Post Article Content
+.post-article {
+  .content {
+    margin-bottom: 3rem;
+    line-height: 1.8;
+
+    // Ensure first heading is h2, not h1
+    :global(h1) {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    :global(h2) {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .post-tail-wrapper {
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+    margin-top: 3rem;
+  }
+
+  .post-tags a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .post-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: var(--tag-bg);
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: var(--tag-hover-bg);
+    }
+  }
+}
+
+// Legacy article styles (for backwards compatibility)
 article {
   .px-1 {
     padding-left: 0.25rem;

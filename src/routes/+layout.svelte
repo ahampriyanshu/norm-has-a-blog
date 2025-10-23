@@ -43,8 +43,13 @@
       <div class="content-wrapper" class:has-sidebar={isPostPage}>
         {#if isPostPage}
           <aside aria-label="Panel" class="sidebar-panel">
-            <div class="panel-sticky">
+            <!-- Recent Posts - scrolls away -->
+            <div class="panel-recent">
               <RecentlyUpdated />
+            </div>
+            
+            <!-- TOC - becomes sticky -->
+            <div class="panel-toc-sticky">
               <TOC />
             </div>
           </aside>

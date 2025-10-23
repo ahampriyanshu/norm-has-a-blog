@@ -3,7 +3,6 @@ export interface Post {
   description: string;
   date: string;
   updated?: string;
-  author?: string;
   tags?: string[];
   pin?: boolean;
   math?: boolean;

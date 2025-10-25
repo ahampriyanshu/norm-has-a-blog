@@ -123,12 +123,12 @@
       </div>
     {/if}
   </div>
-
-  <RelatedPosts
-    currentSlug={metadata.slug}
-    tags={metadata.tags || []}
-  />
 </article>
+
+<RelatedPosts
+currentSlug={metadata.slug}
+tags={metadata.tags || []}
+/>
 
 {#if showToast}
   <Toast message={toastMessage} onClose={handleToastClose} />

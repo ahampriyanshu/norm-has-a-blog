@@ -528,7 +528,7 @@ a {
   .sidebar-panel {
     display: block;
     padding-right: 3rem;
-    border-right: 1px solid var(--border-color);
+
   }
 
   .content-wrapper.has-sidebar .main-content {
@@ -576,15 +576,13 @@ a {
 // Header/Topbar Styles
 .site-header {
   padding: 2rem 0 1.5rem 0;
-  border-bottom: 1px solid var(--border-color);
   margin-bottom: 2rem;
 }
 
 .header-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  justify-content: center;
 }
 
 .site-title {
@@ -603,6 +601,7 @@ a {
   display: flex;
   gap: 2rem;
   align-items: center;
+  justify-content: center;
   flex: 1;
 }
 
@@ -1049,6 +1048,7 @@ a {
 
 // Recently Updated / Recent Posts Styles
 .recently-updated {
+  padding-top: 2rem;
   .panel-heading {
     font-size: 1rem;
     font-weight: 600;
@@ -1620,9 +1620,7 @@ a {
   }
 
   .post-tail-wrapper {
-    border-top: 1px solid var(--border-color);
-    padding-top: 2rem;
-    margin-top: 3rem;
+    padding-top: 1rem;
   }
 
   .post-tags a {
@@ -1692,8 +1690,7 @@ article {
   }
 
   .post-tail-wrapper {
-    border-top: 1px solid var(--border-color);
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
 
   .post-meta a,

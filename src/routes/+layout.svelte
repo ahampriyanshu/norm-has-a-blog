@@ -38,7 +38,7 @@
 <div class="app-container">
   <div class="main-wrapper">
     <div class="content-area">
-      <Topbar {theme} {toggleTheme} />
+    
 
       <div class="content-wrapper" class:has-sidebar={isPostPage}>
         {#if isPostPage}
@@ -56,6 +56,7 @@
         {/if}
 
         <main aria-label="Main Content" class="main-content" class:full-width={!isPostPage}>
+          <Topbar {theme} {toggleTheme} />
           <slot />
         </main>
       </div>

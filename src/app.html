@@ -6,11 +6,10 @@
       (function () {
         try {
           const storedTheme = localStorage.getItem('theme');
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+          const theme = storedTheme || 'dark';
           document.documentElement.setAttribute('data-mode', theme);
         } catch (error) {
-          document.documentElement.setAttribute('data-mode', 'light');
+          document.documentElement.setAttribute('data-mode', 'dark');
         }
       })();
     </script>

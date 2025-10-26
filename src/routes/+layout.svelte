@@ -9,12 +9,11 @@
   import '$lib/styles/louie.scss';
   import { onMount } from 'svelte';
 
-  let theme = 'light';
+  let theme = 'dark';
 
   onMount(() => {
-    // Check for saved theme preference or default to 'light' mode
-    const savedTheme = localStorage.getItem('theme') ||
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    // Check for saved theme preference or default to 'dark' mode
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     theme = savedTheme;
     document.documentElement.setAttribute('data-mode', theme);
   });
@@ -67,4 +66,3 @@
 
   <BackToTop />
 </div>
-

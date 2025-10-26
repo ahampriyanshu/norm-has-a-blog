@@ -5,7 +5,7 @@
   import type { PostMetadata } from '$lib/utils/posts';
   import Icon from '$lib/components/Icon.svelte';
 
-  export let theme: string = 'light';
+  export let theme: string = 'dark';
   export let toggleTheme: () => void;
 
   let searchVisible = false;
@@ -16,6 +16,7 @@
   let isMac = false;
   let themeToggleIcon: 'sun' | 'moon' = 'moon';
   $: themeToggleIcon = theme === 'dark' ? 'sun' : 'moon';
+  $: popularPosts = allPosts.slice(0, 6);
 
   const navItems = [
     { name: 'Home', url: '/' },
@@ -106,7 +107,7 @@
           class="nav-link"
           class:active={currentPath === item.url || (item.url !== '/' && currentPath.startsWith(item.url))}
         >
-          {item.name.toUpperCase()}
+          {item.name}
         </a>
       {/each}
     </nav>
@@ -190,14 +191,20 @@
             </div>
           {:else}
             <div class="no-results">
-              
               <p>No posts found for "{searchQuery}"</p>
             </div>
           {/if}
         {:else}
-          <div class="search-prompt">
-            <Icon name="search" size={48} />
-            <p>Type to search posts...</p>
+          <div class="popular-section">
+            <h3 class="popular-heading">Popular Posts</h3>
+            <div class="popular-list">
+              {#each popularPosts as post}
+                <a href="/posts/{post.slug}" class="popular-item" on:click={toggleSearch}>
+                  <Icon name="trending" size={16} className="trending-icon" />
+                  <span>{post.title}</span>
+                </a>
+              {/each}
+            </div>
           </div>
         {/if}
       </div>

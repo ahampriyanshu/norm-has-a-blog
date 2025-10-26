@@ -4,9 +4,11 @@ export const siteConfig = {
   author: 'Priyanshu Tiwari',
   url: 'https://ahampriyanshu.com',
   aboutUrl: 'https://ahampriyanshu.com',
+  githubUsername: 'ahampriyanshu',
+  githubRepo: 'norm-has-a-blog',
   lang: 'en',
   timezone: 'Asia/Kolkata',
-  theme: 'light',
+  theme: 'dark',
   analytics: {
     google: {
       id: ''
@@ -16,4 +18,3 @@ export const siteConfig = {
 };
 
 export type SiteConfig = typeof siteConfig;
-

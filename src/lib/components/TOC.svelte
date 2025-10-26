@@ -208,7 +208,7 @@
 
 {#if groupedHeadings.length > 0}
   <div class="toc-wrapper">
-    <h3 class="panel-heading">Contents</h3>
+    <h3 class="panel-heading">On this page</h3>
     <nav id="toc" class="toc">
       <ul class="toc-list">
         {#each groupedHeadings as group (group.h2.id)}

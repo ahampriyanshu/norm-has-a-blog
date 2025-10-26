@@ -5,12 +5,17 @@
   import Icon from '$lib/components/Icon.svelte';
   import Toast from '$lib/components/Toast.svelte';
   import { browser } from '$app/environment';
+  import { onMount } from 'svelte';
 
   export let data: PageData;
 
   const { metadata, content } = data;
+  const { previousPost, nextPost, siteConfig } = data;
+  
   let showToast = false;
   let toastMessage = '';
+  let dropdownOpen = false;
+  let dropdownButton: HTMLDivElement;
 
   function getPostUrl(): string {
     if (browser) {
@@ -59,6 +64,55 @@
   function handleToastClose() {
     showToast = false;
   }
+
+  function toggleDropdown() {
+    dropdownOpen = !dropdownOpen;
+  }
+
+  function copyPostContent() {
+    if (browser) {
+      const articleElement = document.querySelector('.post-article .content');
+      if (articleElement) {
+        const text = articleElement.textContent || '';
+        navigator.clipboard.writeText(text).then(() => {
+          toastMessage = 'Post content copied to clipboard!';
+          showToast = true;
+        });
+      }
+    }
+  }
+
+  function copyUrl() {
+    copyLink();
+    dropdownOpen = false;
+  }
+
+  function getMarkdownUrl(): string {
+    return `https://github.com/${siteConfig.githubUsername}/${siteConfig.githubRepo}/blob/main/src/posts/${metadata.slug}.md`;
+  }
+
+  function viewAsMarkdown() {
+    if (browser) {
+      window.open(getMarkdownUrl(), '_blank');
+    }
+    dropdownOpen = false;
+  }
+
+  // Close dropdown when clicking outside
+  onMount(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownOpen && dropdownButton && !dropdownButton.contains(event.target as Node)) {
+        dropdownOpen = false;
+      }
+    }
+
+    if (browser) {
+      document.addEventListener('click', handleClickOutside);
+      return () => {
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }
+  });
 </script>
 
 <svelte:head>
@@ -70,7 +124,56 @@
 
 <!-- Post Title Section - Outside main content area -->
 <div class="post-header-section">
-  <h1 class="post-title-main">{metadata.title}</h1>
+  <div class="post-title-wrapper">
+    <h1 class="post-title-main">{metadata.title}</h1>
+    
+    <!-- Action Widget -->
+    <div class="post-actions-widget">
+      <!-- Copy and Dropdown Buttons -->
+      <div class="copy-dropdown-wrapper" bind:this={dropdownButton}>
+        <button class="action-btn copy-btn" on:click={copyPostContent} aria-label="Copy post content">
+          <Icon name="copy" size={16} />
+          <span>Copy Page</span>
+        </button>
+        <button class="action-btn copy-dropdown-arrow" on:click|stopPropagation={toggleDropdown} aria-label="More options">
+          <Icon name="chevron-down" size={16} />
+        </button>
+        {#if dropdownOpen}
+          <div class="dropdown-menu">
+            <button class="dropdown-item" on:click={copyUrl}>
+              <Icon name="link" size={14} />
+              <span>Copy URL</span>
+            </button>
+            <button class="dropdown-item" on:click={viewAsMarkdown}>
+              <Icon name="code" size={14} />
+              <span>View as Markdown</span>
+            </button>
+          </div>
+        {/if}
+      </div>
+
+      <!-- Navigation Buttons -->
+      {#if previousPost}
+        <a href="/posts/{previousPost.slug}" class="action-btn nav-btn" aria-label="Previous post" title="{previousPost.title}">
+          <Icon name="chevron-left" size={20} />
+        </a>
+      {:else}
+        <button class="action-btn nav-btn" disabled aria-label="No previous post">
+          <Icon name="chevron-left" size={20} />
+        </button>
+      {/if}
+      
+      {#if nextPost}
+        <a href="/posts/{nextPost.slug}" class="action-btn nav-btn" aria-label="Next post" title="{nextPost.title}">
+          <Icon name="chevron-right" size={20} />
+        </a>
+      {:else}
+        <button class="action-btn nav-btn" disabled aria-label="No next post">
+          <Icon name="chevron-right" size={20} />
+        </button>
+      {/if}
+    </div>
+  </div>
   
   <div class="post-meta-inline text-muted">
     <span class="meta-item">
@@ -98,9 +201,6 @@
     </button>
     <button class="share-btn share-telegram" on:click={() => sharePost('telegram')} aria-label="Share on Telegram">
       <Icon name="telegram" size={20} />
-    </button>
-    <button class="share-btn share-copy" on:click={copyLink} aria-label="Copy link">
-      <Icon name="copy" />
     </button>
   </div>
 </div>

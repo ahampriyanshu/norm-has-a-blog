@@ -85,10 +85,10 @@
 
   <div class="post-share-buttons">
     <button class="share-btn share-whatsapp" on:click={() => sharePost('whatsapp')} aria-label="Share on WhatsApp">
-      <Icon name="whatsapp" />
+      <Icon name="whatsapp" size={18} />
     </button>
     <button class="share-btn share-facebook" on:click={() => sharePost('facebook')} aria-label="Share on Facebook">
-      <Icon name="facebook" />
+      <Icon name="facebook" size={20} />
     </button>
     <button class="share-btn share-twitter" on:click={() => sharePost('twitter')} aria-label="Share on X (Twitter)">
       <Icon name="twitter" />
@@ -97,7 +97,7 @@
       <Icon name="linkedin" />
     </button>
     <button class="share-btn share-telegram" on:click={() => sharePost('telegram')} aria-label="Share on Telegram">
-      <Icon name="telegram" />
+      <Icon name="telegram" size={20} />
     </button>
     <button class="share-btn share-copy" on:click={copyLink} aria-label="Copy link">
       <Icon name="copy" />

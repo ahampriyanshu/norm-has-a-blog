@@ -1,17 +1,14 @@
 ---
 title: Markdown Syntax Guide
 description: A comprehensive guide to Markdown syntax and formatting
-date: '2024-01-10'
+date: '2023-12-10'
 updated: '2024-01-12'
 tags:
   - markdown
   - writing
   - guide
+  - syntax
 ---
-
-# Markdown Syntax Guide
-
-This post demonstrates various Markdown syntax elements to help you write beautiful blog posts.
 
 ## Headings
 
@@ -187,4 +184,3 @@ You can also use raw HTML in Markdown:
 ## Conclusion
 
 This covers most of the Markdown syntax you'll need for blogging. Experiment with these elements to create engaging and well-formatted content!
-

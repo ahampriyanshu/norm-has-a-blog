@@ -43,6 +43,12 @@ $radius-lg: 10px;
   --code-bg: rgb(25 25 28 / 5%);
   --badge-bg: #e9ecef;
   --badge-color: #495057;
+
+  --search-trigger-bg: #2d2e30;
+  --search-trigger-border: rgba(255, 255, 255, 0.1);
+  --search-trigger-text-color: #9AA0A6;
+  --search-trigger-hover-bg: #3c4043;
+  --search-trigger-hover-border: rgba(255, 255, 255, 0.15);
 }
 
 :root[data-mode='dark'] {
@@ -76,6 +82,12 @@ $radius-lg: 10px;
   --code-bg: rgb(255 255 255 / 5%);
   --badge-bg: #2e2f31;
   --badge-color: #b0b0b0;
+
+  --search-trigger-bg: #2d2e30;
+  --search-trigger-border: #5f6368;
+  --search-trigger-text-color: #9AA0A6;
+  --search-trigger-hover-bg: #3c4043;
+  --search-trigger-hover-border: #80868b;
 }
 
 body {
@@ -633,8 +645,39 @@ a {
   }
 }
 
-.search-btn {
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: 1rem;
+}
+
+.search-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  background: var(--search-trigger-bg);
+  border: 1px solid var(--search-trigger-border);
+  border-radius: 999px;
   cursor: pointer;
+  transition: all 0.2s ease;
+
+  .search-trigger-icon {
+    color: var(--search-trigger-text-color);
+  }
+
+  .search-trigger-text {
+    font-size: 0.8125rem;
+    color: var(--search-trigger-text-color);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+
+  &:hover {
+    background: var(--search-trigger-hover-bg);
+    border-color: var(--search-trigger-hover-border);
+  }
 }
 
 .theme-toggle {
@@ -1759,8 +1802,22 @@ article {
     font-size: 0.7rem;
   }
 
-  .theme-toggle {
+  .header-actions {
+    margin-left: 0;
+    margin-top: 0.5rem;
     align-self: flex-end;
+  }
+
+  .search-trigger {
+    padding: 0.375rem 0.75rem;
+
+    .search-trigger-text {
+      font-size: 0.75rem;
+    }
+  }
+
+  .theme-toggle {
+    padding: 0.375rem;
   }
 
   .search-overlay {

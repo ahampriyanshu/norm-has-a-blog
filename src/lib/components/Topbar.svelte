@@ -8,22 +8,26 @@
   export let theme: string = 'light';
   export let toggleTheme: () => void;
 
-  // Suppress unused warning - theme is passed for reactivity
-  $: void theme;
-
   let searchVisible = false;
   let searchQuery = '';
   let allPosts: PostMetadata[] = [];
   let searchResults: PostMetadata[] = [];
   let searchInputElement: HTMLInputElement;
+  let isMac = false;
+  let themeToggleIcon: 'sun' | 'moon' = 'moon';
+  $: themeToggleIcon = theme === 'dark' ? 'sun' : 'moon';
 
   const navItems = [
     { name: 'Home', url: '/' },
+    { name: 'About', url: siteConfig.aboutUrl },
     { name: 'Tags', url: '/tags' },
     { name: 'Archives', url: '/archives' }
   ];
 
   onMount(async () => {
+    // Detect Mac for keyboard shortcut display
+    isMac = /Mac|iPhone|iPod|iPad/i.test(navigator.userAgent);
+
     // Load all posts for search
     try {
       const response = await fetch('/api/posts.json');
@@ -33,6 +37,20 @@
     } catch (error) {
       console.error('Failed to load posts for search:', error);
     }
+
+    // Add keyboard shortcut listener
+    const handleKeyboard = (e: KeyboardEvent) => {
+      // Cmd+K on Mac or Ctrl+K on Windows/Linux
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        toggleSearch();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyboard);
+    return () => {
+      window.removeEventListener('keydown', handleKeyboard);
+    };
   });
 
   function toggleSearch() {
@@ -91,19 +109,28 @@
           {item.name.toUpperCase()}
         </a>
       {/each}
-      <button class="nav-link search-btn" on:click={toggleSearch}>
-        SEARCH
-      </button>
     </nav>
 
-    <button
-      type="button"
-      class="theme-toggle"
-      aria-label="Switch Mode"
-      on:click={toggleTheme}
-    >
-      <Icon name="sun-moon" size={20} />
-    </button>
+    <div class="header-actions">
+      <button
+        type="button"
+        class="search-trigger"
+        aria-label="Search"
+        on:click={toggleSearch}
+      >
+        <Icon name="search" size={16} className="search-trigger-icon" />
+        <span class="search-trigger-text">{isMac ? '⌘K' : 'Ctrl+K'}</span>
+      </button>
+
+      <button
+        type="button"
+        class="theme-toggle"
+        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        on:click={toggleTheme}
+      >
+        <Icon name={themeToggleIcon} size={20} />
+      </button>
+    </div>
   </div>
 </header>
 
@@ -163,7 +190,7 @@
             </div>
           {:else}
             <div class="no-results">
-              <Icon name="search" size={48} />
+              
               <p>No posts found for "{searchQuery}"</p>
             </div>
           {/if}
@@ -177,4 +204,3 @@
     </div>
   </div>
 {/if}
-

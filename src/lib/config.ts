@@ -3,6 +3,7 @@ export const siteConfig = {
   description: 'A minimal, responsive, and feature-rich blog theme',
   author: 'Priyanshu Tiwari',
   url: 'https://ahampriyanshu.com',
+  aboutUrl: 'https://ahampriyanshu.com',
   lang: 'en',
   timezone: 'Asia/Kolkata',
   theme: 'light',

@@ -96,15 +96,7 @@ print(fibonacci(10))
 ## Blockquotes
 
 > This is a blockquote.
-> It can span multiple lines.
->
-> And include multiple paragraphs.
 
-Nested blockquotes:
-
-> Level 1 quote
->> Level 2 quote
->>> Level 3 quote
 
 ## Tables
 
@@ -127,14 +119,6 @@ Aligned tables:
 Use three or more hyphens, asterisks, or underscores:
 
 ---
-
-***
-
-___
-
-## Images
-
-![Placeholder Image](https://via.placeholder.com/600x400)
 
 ## Footnotes
 

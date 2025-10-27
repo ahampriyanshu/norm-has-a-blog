@@ -49,6 +49,10 @@ $radius-lg: 10px;
   --search-trigger-text-color: #9AA0A6;
   --search-trigger-hover-bg: #3c4043;
   --search-trigger-hover-border: rgba(255, 255, 255, 0.15);
+
+  --blockquote-bg: #e3f2fd;
+  --blockquote-border: #2196f3;
+  --blockquote-text: #1565c0;
 }
 
 :root[data-mode='dark'] {
@@ -88,6 +92,10 @@ $radius-lg: 10px;
   --search-trigger-text-color: #9AA0A6;
   --search-trigger-hover-bg: #3c4043;
   --search-trigger-hover-border: #80868b;
+
+  --blockquote-bg: #213740;
+  --blockquote-border: #00adb5;
+  --blockquote-text: #eaeaea;
 
   // Override action button styles for dark mode
   .post-header-section .action-btn {
@@ -469,31 +477,31 @@ a {
 }
 
 .prose {
-  :global(h2) {
+  h2 {
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
 
-  :global(h3) {
+  h3 {
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
   }
 
-  :global(p) {
+  p {
     margin-bottom: 1rem;
   }
 
-  :global(ul),
-  :global(ol) {
+  ul,
+  ol {
     margin-bottom: 1rem;
     padding-left: 2rem;
   }
 
-  :global(li) {
+  li {
     margin-bottom: 0.5rem;
   }
 
-  :global(code) {
+  code {
     background: var(--code-bg);
     padding: 0.2rem 0.4rem;
     border-radius: 0.25rem;
@@ -501,7 +509,7 @@ a {
     font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
   }
 
-  :global(pre) {
+  pre {
     padding: 1rem;
     border-radius: $radius-sm;
     overflow-x: auto;
@@ -517,12 +525,12 @@ a {
   }
 
   // Shiki code blocks styling
-  :global(pre.shiki),
-  :global(pre.shiki code) {
+  pre.shiki,
+  pre.shiki code {
     background: none !important;
   }
 
-  :global(pre.shiki) {
+  pre.shiki {
     background-color: #1e1e1e !important; // VS Code dark background
     padding: 1rem;
     border-radius: $radius-sm;
@@ -531,22 +539,43 @@ a {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
-  :global(blockquote) {
-    border-left: 4px solid var(--border-color);
-    padding-left: 1rem;
-    margin-left: 0;
-    color: var(--text-muted);
+  blockquote {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+    background: var(--blockquote-bg);
+    border-left: 8px solid var(--blockquote-border);
+    color: var(--blockquote-text);
     font-style: italic;
+    line-height: 1.7;
+
+    p {
+      margin: 0;
+      
+      &:not(:last-child) {
+        margin-bottom: 0.75rem;
+      }
+    }
+
+    code {
+      background: var(--blockquote-code-bg);
+      color: var(--blockquote-text);
+      font-style: normal;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--blockquote-text);
+    }
   }
 
-  :global(img) {
+  img {
     max-width: 100%;
     height: auto;
     border-radius: $radius-sm;
     margin: 1rem 0;
   }
 
-  :global(table) {
+  table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 1rem;

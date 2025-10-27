@@ -137,6 +137,29 @@
     <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
     <polyline points="16 7 22 7 22 13"></polyline>
   </svg>
+{:else if name === 'git-commit'}
+  <svg class="icon {className}" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"></circle>
+    <line x1="3" y1="12" x2="9" y2="12"></line>
+    <line x1="15" y1="12" x2="21" y2="12"></line>
+  </svg>
+{:else if name === 'alert'}
+  <svg class="icon {className}" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <line x1="12" y1="8" x2="12" y2="12"></line>
+    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+  </svg>
+{:else if name === 'git-pull-request'}
+  <svg class="icon {className}" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="18" cy="18" r="3"></circle>
+    <circle cx="6" cy="6" r="3"></circle>
+    <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+    <line x1="6" y1="9" x2="6" y2="21"></line>
+  </svg>
+{:else if name === 'pencil'}
+  <svg class="icon {className}" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+  </svg>
 {/if}
 
 <style>

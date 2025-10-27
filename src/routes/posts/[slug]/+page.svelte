@@ -110,6 +110,22 @@
     </span>
   </div>
 
+  {#if metadata.commitInfo}
+    <div class="post-update-info text-muted">
+      <span>
+        Updated on {formatDate(metadata.commitInfo.date)} 
+        <a 
+          href={metadata.commitInfo.url} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="commit-link"
+        >
+          {metadata.commitInfo.message}
+        </a>
+      </span>
+    </div>
+  {/if}
+
   <!-- Action Widget -->
   <div class="post-actions-widget">
     <!-- Copy and Dropdown Buttons -->
@@ -162,6 +178,37 @@
 <article class="post-article">
   <div class="content prose">
     <svelte:component this={content} />
+  </div>
+
+  <!-- Post Action Links -->
+  <div class="post-action-links">
+    <a 
+      href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/edit/main/src/posts/{metadata.slug}.md"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="action-link"
+    >
+      <Icon name="pencil" size={16} />
+      <span>Edit this page</span>
+    </a>
+    <a 
+      href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/issues/new"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="action-link"
+    >
+      <Icon name="alert" size={16} />
+      <span>Report Issue</span>
+    </a>
+    <a 
+      href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/compare"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="action-link"
+    >
+      <Icon name="git-pull-request" size={16} />
+      <span>Suggest New Page</span>
+    </a>
   </div>
 
   <div class="post-tail-wrapper text-muted">

@@ -13,22 +13,13 @@
   let allPosts: PostMetadata[] = [];
   let searchResults: PostMetadata[] = [];
   let searchInputElement: HTMLInputElement;
-  let isMac = false;
   let themeToggleIcon: 'sun' | 'moon' = 'moon';
   $: themeToggleIcon = theme === 'dark' ? 'sun' : 'moon';
   $: popularPosts = allPosts.slice(0, 6);
 
-  const navItems = [
-    { name: 'Home', url: '/' },
-    { name: 'About', url: siteConfig.aboutUrl },
-    { name: 'Tags', url: '/tags' },
-    { name: 'Archives', url: '/archives' }
-  ];
+  const navItems = siteConfig.navItems;
 
   onMount(async () => {
-    // Detect Mac for keyboard shortcut display
-    isMac = /Mac|iPhone|iPod|iPad/i.test(navigator.userAgent);
-
     // Load all posts for search
     try {
       const response = await fetch('/api/posts.json');
@@ -117,10 +108,10 @@
         type="button"
         class="search-trigger"
         aria-label="Search"
+        title="Search (Ctrl/Cmd + K)"
         on:click={toggleSearch}
       >
         <Icon name="search" size={16} className="search-trigger-icon" />
-        <span class="search-trigger-text">{isMac ? '⌘K' : 'Ctrl+K'}</span>
       </button>
 
       <button

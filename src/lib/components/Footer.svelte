@@ -109,12 +109,12 @@
       © {currentYear}
       <a href={siteConfig.aboutUrl} target="_blank" rel="noopener">
         <strong>{siteConfig.author}</strong>
-      </a>
+      </a>  
     </p>
     <p class="footer-credits">
       Made with
-      <a href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}" target="_blank" rel="noopener">
-        <strong>{siteConfig.title}</strong>
+      <a href="https://github.com/ahampriyanshu/norm-has-a-blog" target="_blank" rel="noopener">
+        <strong>norm-has-a-blog</strong>
       </a>
     </p>
   </div>

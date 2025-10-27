@@ -12,8 +12,16 @@ export interface Post {
   content?: string;
 }
 
+export interface CommitInfo {
+  hash: string;
+  message: string;
+  date: string;
+  url: string;
+}
+
 export interface PostMetadata extends Post {
   readingTime: string;
+  commitInfo?: CommitInfo;
 }
 
 /**
@@ -139,5 +147,50 @@ export async function getArchives(): Promise<Map<string, Map<string, PostMetadat
   });
 
   return archives;
+}
+
+/**
+ * Get the latest git commit information for a specific file from GitHub API
+ */
+export async function getLatestCommit(filePath: string, githubUsername: string, githubRepo: string): Promise<CommitInfo | null> {
+  try {
+    // Only run in Node.js environment (during build)
+    if (typeof window !== 'undefined') {
+      return null;
+    }
+
+    const apiUrl = `https://api.github.com/repos/${githubUsername}/${githubRepo}/commits?path=${filePath}&page=1&per_page=1`;
+    
+    const response = await fetch(apiUrl, {
+      headers: {
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': `${githubUsername}-${githubRepo}`
+      }
+    });
+
+    if (!response.ok) {
+      console.warn(`GitHub API request failed for ${filePath}: ${response.status} ${response.statusText}`);
+      return null;
+    }
+
+    const commits = await response.json();
+    
+    if (!commits || commits.length === 0) {
+      console.warn(`No commits found for ${filePath}`);
+      return null;
+    }
+
+    const latestCommit = commits[0];
+    
+    return {
+      hash: latestCommit.sha.substring(0, 7), // Short hash
+      message: latestCommit.commit.message.split('\n')[0], // First line only
+      date: latestCommit.commit.author.date,
+      url: latestCommit.html_url
+    };
+  } catch (error) {
+    console.warn(`Failed to get commit info for ${filePath}:`, error);
+    return null;
+  }
 }
 

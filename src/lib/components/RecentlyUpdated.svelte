@@ -1,14 +1,8 @@
 <script lang="ts">
-  import { getPosts } from '$lib/utils/posts';
-  import { onMount } from 'svelte';
+  import { base } from '$app/paths';
   import type { PostMetadata } from '$lib/utils/posts';
 
-  let recentPosts: PostMetadata[] = [];
-
-  onMount(async () => {
-    const allPosts = await getPosts();
-    recentPosts = allPosts.slice(0, 3);
-  });
+  export let recentPosts: PostMetadata[] = [];
 </script>
 
 {#if recentPosts.length > 0}
@@ -17,7 +11,7 @@
     <ul class="post-list">
       {#each recentPosts as post}
         <li>
-          <a href="/posts/{post.slug}" class="post-link">
+          <a href="{base}/posts/{post.slug}" class="post-link">
             {post.title}
           </a>
         </li>
@@ -25,4 +19,3 @@
     </ul>
   </div>
 {/if}
-

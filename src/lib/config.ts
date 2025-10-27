@@ -1,12 +1,9 @@
-const aboutUrl = 'https://ahampriyanshu.com';
-
 export const siteConfig = {
   title: 'norm-has-a-blog',
   description: 'A minimal, responsive, and feature-rich blog theme',
   author: 'Priyanshu Tiwari',
   designation: 'Senior Software Engineer',
   url: 'https://ahampriyanshu.com',
-  aboutUrl,
   githubUsername: 'ahampriyanshu',
   githubRepo: 'norm-has-a-blog',
   lang: 'en',
@@ -26,7 +23,7 @@ export const siteConfig = {
   },
   navItems: [
     { name: 'Home', url: '/' },
-    { name: 'About', url: aboutUrl },
+    { name: 'About', url: 'https://resume.ahampriyanshu.com' },
     { name: 'Tags', url: '/tags' },
     { name: 'Archives', url: '/archives' }
   ],
@@ -38,16 +35,16 @@ export const siteConfig = {
       { name: 'View All Projects', url: 'https://github.com/ahampriyanshu' }
     ],
     blogs: [
-      { name: 'Tech Blog', url: 'https://github.com/ahampriyanshu' },
-      { name: 'Life & Philosophy', url: 'https://github.com/ahampriyanshu' },
-      { name: 'Tutorials', url: 'https://github.com/ahampriyanshu' },
+      { name: 'Stocks', url: 'https://github.com/ahampriyanshu' },
+      { name: 'Mutual Funds', url: 'https://github.com/ahampriyanshu' },
+      { name: 'Insurance', url: 'https://github.com/ahampriyanshu' },
       { name: 'All Posts', url: 'https://github.com/ahampriyanshu' }
     ],
     personal: [
-      { name: 'Spotify Playlists', url: 'https://open.spotify.com/user/yourprofile' },
-      { name: 'YouTube Channel', url: 'https://youtube.com/@yourchannel' },
+      { name: 'Playlist 1', url: 'https://open.spotify.com/user/yourprofile' },
+      { name: 'Playlist 2', url: 'https://youtube.com/@yourchannel' },
       { name: 'Goodreads Library', url: 'https://goodreads.com/yourprofile' },
-      { name: 'Photography', url: 'https://ahampriyanshu.com' }
+      { name: 'SuperTrip', url: 'https://ahampriyanshu.com' }
     ]
   }
 };

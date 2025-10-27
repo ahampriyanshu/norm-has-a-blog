@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from '$app/paths';
   import type { PageData } from './$types';
 
   export let data: PageData;
@@ -14,7 +15,7 @@
   <div class="tag-cloud">
     {#each Array.from(data.tags) as [tag, count]}
       <a
-        href="/tags/{tag.toLowerCase()}"
+        href="{base}/tags/{tag.toLowerCase()}"
         class="tag-item"
         style="font-size: {Math.min(1 + count * 0.2, 2)}rem"
       >

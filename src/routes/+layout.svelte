@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { LayoutData } from './$types';
   import { page } from '$app/stores';
   import { siteConfig } from '$lib/config';
   import Topbar from '$lib/components/Topbar.svelte';
@@ -9,7 +10,9 @@
   import '$lib/styles/louie.scss';
   import { onMount } from 'svelte';
 
+  export let data: LayoutData;
   let theme = 'dark';
+  let recentPosts = data.recentPosts ?? [];
 
   onMount(() => {
     // Check for saved theme preference or default to 'dark' mode
@@ -27,6 +30,7 @@
   // Check if we're on a post page
   $: isPostPage = $page.url.pathname.startsWith('/posts/');
   $: postTitle = $page.data?.metadata?.title || '';
+  $: recentPosts = data.recentPosts ?? [];
 </script>
 
 <svelte:head>
@@ -45,7 +49,7 @@
           <aside aria-label="Panel" class="sidebar-panel">
             <!-- Recent Posts - scrolls away -->
             <div class="panel-recent">
-              <RecentlyUpdated />
+              <RecentlyUpdated {recentPosts} />
             </div>
             
             <!-- TOC - becomes sticky -->

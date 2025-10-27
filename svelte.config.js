@@ -6,6 +6,10 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import remarkGfm from 'remark-gfm';
 import remarkToc from 'remark-toc';
 
+// Base path for GitHub Pages subdirectory deployment
+// This should match siteConfig.basePath in src/lib/config.ts
+const basePath = '/norm-has-a-blog';
+
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
   extensions: ['.md'],
@@ -30,6 +34,9 @@ const config = {
       precompress: false,
       strict: true
     }),
+    paths: {
+      base: process.env.NODE_ENV === 'production' ? basePath : ''
+    },
     prerender: {
       handleMissingId: 'warn',
       entries: ['*']

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import { base } from '$app/paths';
   import { siteConfig } from '$lib/config';
   import { onMount } from 'svelte';
   import type { PostMetadata } from '$lib/utils/posts';
@@ -18,17 +19,26 @@
   $: popularPosts = allPosts.slice(0, 6);
 
   const navItems = siteConfig.navItems;
-
-  onMount(async () => {
-    // Load all posts for search
-    try {
-      const response = await fetch('/api/posts.json');
-      if (response.ok) {
-        allPosts = await response.json();
-      }
-    } catch (error) {
-      console.error('Failed to load posts for search:', error);
+  
+  function getNavUrl(url: string): string {
+    if (url.startsWith('http')) {
+      return url;
     }
+    return url === '/' ? (base || '/') : `${base}${url}`;
+  }
+
+  onMount(() => {
+    // Load all posts for search
+    (async () => {
+      try {
+        const response = await fetch(`${base}/api/posts.json`);
+        if (response.ok) {
+          allPosts = await response.json();
+        }
+      } catch (error) {
+        console.error('Failed to load posts for search:', error);
+      }
+    })();
 
     // Add keyboard shortcut listener
     const handleKeyboard = (e: KeyboardEvent) => {
@@ -94,9 +104,9 @@
     <nav class="main-nav">
       {#each navItems as item}
         <a
-          href={item.url}
+          href={getNavUrl(item.url)}
           class="nav-link"
-          class:active={currentPath === item.url || (item.url !== '/' && currentPath.startsWith(item.url))}
+          class:active={currentPath === getNavUrl(item.url) || (item.url !== '/' && currentPath.startsWith(getNavUrl(item.url)))}
         >
           {item.name}
         </a>
@@ -162,7 +172,7 @@
             </div>
             <div class="results-list">
               {#each searchResults as post}
-                <a href="/posts/{post.slug}" class="result-item" on:click={toggleSearch}>
+                <a href="{base}/posts/{post.slug}" class="result-item" on:click={toggleSearch}>
                   <div class="result-content">
                     <h3 class="result-title">{post.title}</h3>
                     {#if post.description}

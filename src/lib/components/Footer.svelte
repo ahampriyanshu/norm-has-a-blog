@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from '$app/paths';
   import { siteConfig } from '$lib/config';
   import Icon from '$lib/components/Icon.svelte';
 
@@ -15,9 +16,9 @@
     {#if isPostPage && postTitle}
       <nav class="footer-breadcrumb" aria-label="Breadcrumb">
         <ol class="breadcrumb-list">
-          <li><a href="/">Home</a></li>
+          <li><a href="{base || '/'}">Home</a></li>
           <li><span class="separator">></span></li>
-          <li><a href="/archives">Posts</a></li>
+          <li><a href="{base}/archives">Posts</a></li>
           <li><span class="separator">></span></li>
           <li class="current">{postTitle}</li>
         </ol>
@@ -29,7 +30,7 @@
       <!-- Left Section: Profile & Contact -->
       <div class="footer-left">
         <div class="profile-image">
-          <img src="/logo.png" alt={siteConfig.author} />
+          <img src="{base}/logo.png" alt={siteConfig.author} />
         </div>
         
         <div class="profile-info">

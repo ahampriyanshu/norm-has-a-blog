@@ -5,6 +5,7 @@
   import Icon from '$lib/components/Icon.svelte';
   import Toast from '$lib/components/Toast.svelte';
   import { browser } from '$app/environment';
+  import { base } from '$app/paths';
   import { onMount } from 'svelte';
 
   export let data: PageData;
@@ -157,7 +158,7 @@
 
     <!-- Navigation Buttons -->
     {#if previousPost}
-      <a href="/posts/{previousPost.slug}" class="action-btn nav-btn" aria-label="Previous post" title="{previousPost.title}">
+      <a href="{base}/posts/{previousPost.slug}" class="action-btn nav-btn" aria-label="Previous post" title="{previousPost.title}">
         <Icon name="chevron-left" size={20} />
       </a>
     {:else}
@@ -167,7 +168,7 @@
     {/if}
     
     {#if nextPost}
-      <a href="/posts/{nextPost.slug}" class="action-btn nav-btn" aria-label="Next post" title="{nextPost.title}">
+      <a href="{base}/posts/{nextPost.slug}" class="action-btn nav-btn" aria-label="Next post" title="{nextPost.title}">
         <Icon name="chevron-right" size={20} />
       </a>
     {:else}
@@ -222,7 +223,7 @@
       <div class="post-tags">
         <Icon name="tags" size={14} className="me-1" />
         {#each metadata.tags as tag}
-          <a href="/tags/{tag.toLowerCase()}" class="post-tag no-text-decoration">
+          <a href="{base}/tags/{tag.toLowerCase()}" class="post-tag no-text-decoration">
             {tag}
           </a>
         {/each}

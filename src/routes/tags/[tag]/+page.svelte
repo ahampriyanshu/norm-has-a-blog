@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from '$app/paths';
   import type { PageData } from './$types';
   import { formatDate } from '$lib/utils/posts';
   import Icon from '$lib/components/Icon.svelte';
@@ -17,7 +18,7 @@
   <div class="post-list">
     {#each data.posts as post}
       <article class="card-wrapper card">
-        <a href="/posts/{post.slug}" class="post-preview">
+        <a href="{base}/posts/{post.slug}" class="post-preview">
           {#if post.image}
             <div class="post-image">
               <img src={post.image} alt={post.title} loading="lazy">

@@ -65,6 +65,7 @@ Use `inline code` for short code snippets.
 
 ```javascript
 // JavaScript example
+
 const greeting = (name) => {
   return `Hello, ${name}!`;
 };

@@ -26,6 +26,7 @@
 
   // Check if we're on a post page
   $: isPostPage = $page.url.pathname.startsWith('/posts/');
+  $: postTitle = $page.data?.metadata?.title || '';
 </script>
 
 <svelte:head>
@@ -60,7 +61,7 @@
         </main>
       </div>
 
-      <Footer />
+      <Footer {isPostPage} {postTitle} />
     </div>
   </div>
 

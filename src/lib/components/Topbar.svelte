@@ -195,15 +195,29 @@
             </div>
           {/if}
         {:else}
-          <div class="popular-section">
-            <h3 class="popular-heading">Popular Posts</h3>
-            <div class="popular-list">
-              {#each popularPosts as post}
-                <a href="/posts/{post.slug}" class="popular-item" on:click={toggleSearch}>
-                  <Icon name="trending" size={16} className="trending-icon" />
-                  <span>{post.title}</span>
-                </a>
-              {/each}
+          <div class="search-empty-state">
+            <p class="empty-message">Type something to search..</p>
+          </div>
+          <div class="search-shortcuts">
+            <div class="shortcut-item">
+              <svg class="shortcut-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 19 6 12 18 12 12 19"></polygon>
+              </svg>
+              <svg class="shortcut-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 5 6 12 18 12 12 5"></polygon>
+              </svg>
+              <span>to navigate</span>
+            </div>
+            <div class="shortcut-item">
+              <svg class="shortcut-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>to select</span>
+            </div>
+            <div class="shortcut-item esc-shortcut">
+              <button class="esc-btn">ESC</button>
+              <span>to close</span>
             </div>
           </div>
         {/if}

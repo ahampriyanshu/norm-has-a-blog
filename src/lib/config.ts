@@ -2,7 +2,7 @@ export const siteConfig = {
   title: 'norm-has-a-blog',
   description: 'A minimal, responsive, and feature-rich blog theme',
   author: 'Priyanshu Tiwari',
-  tagline: 'Building the future, one line of code at a time',
+  designation: 'Senior Software Engineer',
   url: 'https://ahampriyanshu.com',
   aboutUrl: 'https://ahampriyanshu.com',
   githubUsername: 'ahampriyanshu',

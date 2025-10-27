@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { PageData } from './$types';
   import { formatDate } from '$lib/utils/posts';
-  import RelatedPosts from '$lib/components/RelatedPosts.svelte';
   import Icon from '$lib/components/Icon.svelte';
   import Toast from '$lib/components/Toast.svelte';
   import { browser } from '$app/environment';
@@ -178,11 +177,6 @@
     {/if}
   </div>
 </article>
-
-<RelatedPosts
-currentSlug={metadata.slug}
-tags={metadata.tags || []}
-/>
 
 {#if showToast}
   <Toast message={toastMessage} onClose={handleToastClose} />

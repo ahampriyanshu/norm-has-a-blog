@@ -26,91 +26,78 @@
 
     <!-- Footer Main Content -->
     <div class="footer-main">
-      <!-- Company Info -->
-      <div class="footer-section footer-brand">
-        <div class="brand-logo">
-          <Icon name="home" size={32} />
+      <!-- Left Section: Profile & Contact -->
+      <div class="footer-left">
+        <div class="profile-image">
+          <img src="/logo.png" alt={siteConfig.author} />
         </div>
-        <h3 class="brand-name">{siteConfig.title}</h3>
-        <p class="brand-tagline">{siteConfig.tagline}</p>
+        
+        <div class="profile-info">
+          <h3 class="profile-name">{siteConfig.author}</h3>
+          <p class="profile-title">{siteConfig.designation}</p>
+          
+          <div class="social-icons">
+            <a href={siteConfig.contact.email} class="social-icon" aria-label="Email">
+              <Icon name="mail" size={20} />
+            </a>
+            <a href={siteConfig.contact.telegram} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Telegram">
+              <Icon name="telegram" size={20} />
+            </a>
+            <a href={siteConfig.contact.github} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+              <Icon name="github" size={20} />
+            </a>
+            <a href={siteConfig.contact.linkedin} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+              <Icon name="linkedin" size={20} />
+            </a>
+          </div>
+        </div>
       </div>
 
-      <!-- Contact Us -->
-      <div class="footer-section">
-        <h4 class="footer-heading">Contact Us</h4>
-        <ul class="footer-links">
-          <li>
-            <a href={siteConfig.contact.email} class="footer-link">
-              <Icon name="link" size={14} />
-              <span>Email</span>
-            </a>
-          </li>
-          <li>
-            <a href={siteConfig.contact.telegram} target="_blank" rel="noopener noreferrer" class="footer-link">
-              <Icon name="telegram" size={14} />
-              <span>Telegram</span>
-            </a>
-          </li>
-          <li>
-            <a href={siteConfig.contact.github} target="_blank" rel="noopener noreferrer" class="footer-link">
-              <Icon name="link" size={14} />
-              <span>GitHub</span>
-            </a>
-          </li>
-          <li>
-            <a href={siteConfig.contact.linkedin} target="_blank" rel="noopener noreferrer" class="footer-link">
-              <Icon name="linkedin" size={14} />
-              <span>LinkedIn</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+      <!-- Right Section: Link Columns -->
+      <div class="footer-right">
+        <!-- Projects Links -->
+        <div class="footer-section">
+          <ul class="footer-links">
+            {#each siteConfig.footerLinks.projects as link}
+              <li>
+                <a href={link.url} class="footer-link">
+                  {link.name}
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </div>
 
-      <!-- Projects Links -->
-      <div class="footer-section">
-        <h4 class="footer-heading">Projects</h4>
-        <ul class="footer-links">
-          {#each siteConfig.footerLinks.projects as link}
-            <li>
-              <a href={link.url} class="footer-link">
-                {link.name}
-              </a>
-            </li>
-          {/each}
-        </ul>
-      </div>
+        <!-- Blog Links -->
+        <div class="footer-section">
+          <ul class="footer-links">
+            {#each siteConfig.footerLinks.blogs as link}
+              <li>
+                <a href={link.url} class="footer-link">
+                  {link.name}
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </div>
 
-      <!-- Blog Links -->
-      <div class="footer-section">
-        <h4 class="footer-heading">Blogs</h4>
-        <ul class="footer-links">
-          {#each siteConfig.footerLinks.blogs as link}
-            <li>
-              <a href={link.url} class="footer-link">
-                {link.name}
-              </a>
-            </li>
-          {/each}
-        </ul>
-      </div>
-
-      <!-- Personal Collection -->
-      <div class="footer-section">
-        <h4 class="footer-heading">Personal</h4>
-        <ul class="footer-links">
-          {#each siteConfig.footerLinks.personal as link}
-            <li>
-              <a 
-                href={link.url} 
-                class="footer-link"
-                target={link.url.startsWith('http') ? '_blank' : undefined}
-                rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-              >
-                {link.name}
-              </a>
-            </li>
-          {/each}
-        </ul>
+        <!-- Personal Collection -->
+        <div class="footer-section">
+          <ul class="footer-links">
+            {#each siteConfig.footerLinks.personal as link}
+              <li>
+                <a 
+                  href={link.url} 
+                  class="footer-link"
+                  target={link.url.startsWith('http') ? '_blank' : undefined}
+                  rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                >
+                  {link.name}
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -122,11 +109,10 @@
       © {currentYear}
       <a href={siteConfig.aboutUrl} target="_blank" rel="noopener">
         <strong>{siteConfig.author}</strong>
-      </a>.
-      Some rights reserved.
+      </a>
     </p>
     <p class="footer-credits">
-      Made with ❤️ and
+      Made with
       <a href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}" target="_blank" rel="noopener">
         <strong>{siteConfig.title}</strong>
       </a>

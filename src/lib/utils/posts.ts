@@ -150,7 +150,7 @@ export async function getArchives(): Promise<Map<string, Map<string, PostMetadat
 }
 
 /**
- * Get the latest git commit information for a specific file from GitHub API
+ * Get the latest git commit information for a specific file using local git commands
  */
 export async function getLatestCommit(filePath: string, githubUsername: string, githubRepo: string): Promise<CommitInfo | null> {
   try {
@@ -159,37 +159,28 @@ export async function getLatestCommit(filePath: string, githubUsername: string, 
       return null;
     }
 
-    const apiUrl = `https://api.github.com/repos/${githubUsername}/${githubRepo}/commits?path=${filePath}&page=1&per_page=1`;
+    const { execSync } = await import('child_process');
     
-    const response = await fetch(apiUrl, {
-      headers: {
-        'Accept': 'application/vnd.github.v3+json',
-        'User-Agent': `${githubUsername}-${githubRepo}`
-      }
-    });
+    // Get the latest commit hash, message, and timestamp for the file
+    const gitLog = execSync(
+      `git log -1 --pretty=format:"%H|%s|%aI" -- "${filePath}"`,
+      { encoding: 'utf-8', cwd: process.cwd() }
+    ).trim();
 
-    if (!response.ok) {
-      console.warn(`GitHub API request failed for ${filePath}: ${response.status} ${response.statusText}`);
+    if (!gitLog) {
       return null;
     }
 
-    const commits = await response.json();
-    
-    if (!commits || commits.length === 0) {
-      console.warn(`No commits found for ${filePath}`);
-      return null;
-    }
-
-    const latestCommit = commits[0];
+    const [hash, message, date] = gitLog.split('|');
     
     return {
-      hash: latestCommit.sha.substring(0, 7), // Short hash
-      message: latestCommit.commit.message.split('\n')[0], // First line only
-      date: latestCommit.commit.author.date,
-      url: latestCommit.html_url
+      hash: hash.substring(0, 7), // Short hash
+      message,
+      date,
+      url: `https://github.com/${githubUsername}/${githubRepo}/commit/${hash}`
     };
   } catch (error) {
-    console.warn(`Failed to get commit info for ${filePath}:`, error);
+    console.warn(`Failed to get git commit info for ${filePath}:`, error);
     return null;
   }
 }

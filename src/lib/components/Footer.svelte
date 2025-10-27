@@ -16,7 +16,7 @@
     {#if isPostPage && postTitle}
       <nav class="footer-breadcrumb" aria-label="Breadcrumb">
         <ol class="breadcrumb-list">
-          <li><a href="{base || '/'}">Home</a></li>
+          <li><a href={base || '/'}>Home</a></li>
           <li><span class="separator">></span></li>
           <li><a href="{base}/archives">Posts</a></li>
           <li><span class="separator">></span></li>
@@ -32,22 +32,40 @@
         <div class="profile-image">
           <img src="{base}/logo.png" alt={siteConfig.author} />
         </div>
-        
+
         <div class="profile-info">
           <h3 class="profile-name">{siteConfig.author}</h3>
           <p class="profile-title">{siteConfig.designation}</p>
-          
+
           <div class="social-icons">
             <a href={siteConfig.contact.email} class="social-icon" aria-label="Email">
               <Icon name="mail" size={20} />
             </a>
-            <a href={siteConfig.contact.telegram} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Telegram">
+            <a
+              href={siteConfig.contact.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+              aria-label="Telegram"
+            >
               <Icon name="telegram" size={20} />
             </a>
-            <a href={siteConfig.contact.github} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+            <a
+              href={siteConfig.contact.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+              aria-label="GitHub"
+            >
               <Icon name="github" size={20} />
             </a>
-            <a href={siteConfig.contact.linkedin} target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+            <a
+              href={siteConfig.contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+              aria-label="LinkedIn"
+            >
               <Icon name="linkedin" size={20} />
             </a>
           </div>
@@ -87,8 +105,8 @@
           <ul class="footer-links">
             {#each siteConfig.footerLinks.personal as link}
               <li>
-                <a 
-                  href={link.url} 
+                <a
+                  href={link.url}
                   class="footer-link"
                   target={link.url.startsWith('http') ? '_blank' : undefined}
                   rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
@@ -108,9 +126,9 @@
   <div class="footer-content">
     <p class="footer-note">
       © {currentYear}
-      <a href={siteConfig.aboutUrl} target="_blank" rel="noopener">
+      <a href={siteConfig.baseURL} target="_blank" rel="noopener">
         <strong>{siteConfig.author}</strong>
-      </a>  
+      </a>
     </p>
     <p class="footer-credits">
       Made with

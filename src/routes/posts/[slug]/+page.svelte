@@ -12,10 +12,15 @@
 
   const { metadata } = data;
   const { previousPost, nextPost, siteConfig } = data;
-  const postModules = import.meta.glob('../../../posts/**/*.md', { eager: true }) as Record<string, { default: ComponentType }>;
-  const contentEntry = Object.entries(postModules).find(([path]) => path.endsWith(`/${metadata.slug}.md`));
+  const postModules = import.meta.glob('../../../posts/**/*.md', { eager: true }) as Record<
+    string,
+    { default: ComponentType }
+  >;
+  const contentEntry = Object.entries(postModules).find(([path]) =>
+    path.endsWith(`/${metadata.slug}.md`)
+  );
   const Content = contentEntry?.[1]?.default;
-  
+
   let showToast = false;
   let toastMessage = '';
   let dropdownOpen = false;
@@ -103,7 +108,7 @@
   <div class="post-title-wrapper">
     <h1 class="post-title-main">{metadata.title}</h1>
   </div>
-  
+
   <div class="post-meta-inline text-muted">
     <span class="meta-item">
       <Icon name="calendar" size={16} />
@@ -118,10 +123,10 @@
   {#if metadata.commitInfo}
     <div class="post-update-info text-muted">
       <span>
-        Updated on {formatDate(metadata.commitInfo.date)} 
-        <a 
-          href={metadata.commitInfo.url} 
-          target="_blank" 
+        Updated on {formatDate(metadata.commitInfo.date)} via
+        <a
+          href={metadata.commitInfo.url}
+          target="_blank"
           rel="noopener noreferrer"
           class="commit-link"
         >
@@ -139,11 +144,21 @@
         <Icon name="copy" size={16} />
         <span>Copy Page</span>
       </button>
-      <button class="action-btn copy-dropdown-arrow" on:click={toggleDropdown} aria-label="More options">
+      <button
+        class="action-btn copy-dropdown-arrow"
+        on:click={toggleDropdown}
+        aria-label="More options"
+      >
         <Icon name="chevron-down" size={16} />
       </button>
       {#if dropdownOpen}
-        <div class="dropdown-menu" on:click|stopPropagation>
+        <div
+          class="dropdown-menu"
+          role="menu"
+          tabindex="-1"
+          on:click|stopPropagation
+          on:keydown|stopPropagation
+        >
           <button class="dropdown-item" on:click={copyUrl}>
             <Icon name="link" size={14} />
             <span>Copy URL</span>
@@ -158,7 +173,12 @@
 
     <!-- Navigation Buttons -->
     {#if previousPost}
-      <a href="{base}/posts/{previousPost.slug}" class="action-btn nav-btn" aria-label="Previous post" title="{previousPost.title}">
+      <a
+        href="{base}/posts/{previousPost.slug}"
+        class="action-btn nav-btn"
+        aria-label="Previous post"
+        title={previousPost.title}
+      >
         <Icon name="chevron-left" size={20} />
       </a>
     {:else}
@@ -166,9 +186,14 @@
         <Icon name="chevron-left" size={20} />
       </button>
     {/if}
-    
+
     {#if nextPost}
-      <a href="{base}/posts/{nextPost.slug}" class="action-btn nav-btn" aria-label="Next post" title="{nextPost.title}">
+      <a
+        href="{base}/posts/{nextPost.slug}"
+        class="action-btn nav-btn"
+        aria-label="Next post"
+        title={nextPost.title}
+      >
         <Icon name="chevron-right" size={20} />
       </a>
     {:else}
@@ -189,7 +214,7 @@
 
   <!-- Post Action Links -->
   <div class="post-action-links">
-    <a 
+    <a
       href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/edit/main/src/posts/{metadata.slug}.md"
       target="_blank"
       rel="noopener noreferrer"
@@ -198,7 +223,7 @@
       <Icon name="pencil" size={16} />
       <span>Edit this page</span>
     </a>
-    <a 
+    <a
       href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/issues/new"
       target="_blank"
       rel="noopener noreferrer"
@@ -207,7 +232,7 @@
       <Icon name="alert" size={16} />
       <span>Report Issue</span>
     </a>
-    <a 
+    <a
       href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/compare"
       target="_blank"
       rel="noopener noreferrer"

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { ComponentType } from 'svelte';
   import type { PageData } from './$types';
   import { formatDate } from '$lib/utils/posts';
   import Icon from '$lib/components/Icon.svelte';
@@ -8,8 +9,11 @@
 
   export let data: PageData;
 
-  const { metadata, content } = data;
+  const { metadata } = data;
   const { previousPost, nextPost, siteConfig } = data;
+  const postModules = import.meta.glob('../../../posts/**/*.md', { eager: true }) as Record<string, { default: ComponentType }>;
+  const contentEntry = Object.entries(postModules).find(([path]) => path.endsWith(`/${metadata.slug}.md`));
+  const Content = contentEntry?.[1]?.default;
   
   let showToast = false;
   let toastMessage = '';
@@ -177,7 +181,9 @@
 <!-- Main Article Content -->
 <article class="post-article">
   <div class="content prose">
-    <svelte:component this={content} />
+    {#if Content}
+      <svelte:component this={Content} />
+    {/if}
   </div>
 
   <!-- Post Action Links -->
@@ -228,4 +234,3 @@
 {#if showToast}
   <Toast message={toastMessage} onClose={handleToastClose} />
 {/if}
-

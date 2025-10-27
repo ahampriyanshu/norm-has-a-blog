@@ -3,7 +3,8 @@ export const siteConfig = {
   description: 'A minimal, responsive, and feature-rich blog theme',
   author: 'Priyanshu Tiwari',
   designation: 'Senior Software Engineer',
-  url: 'https://ahampriyanshu.com',
+  baseURL: 'https://ahampriyanshu.com',
+  subPath: '/norm-has-a-blog',
   githubUsername: 'ahampriyanshu',
   githubRepo: 'norm-has-a-blog',
   lang: 'en',
@@ -11,21 +12,21 @@ export const siteConfig = {
   theme: 'dark',
   analytics: {
     google: {
-      id: ''
+      id: 'G-VSNH6EH1RX'
     }
   },
   paginate: 10,
   contact: {
-    email: 'mailto:contact@example.com',
-    telegram: 'https://t.me/yourusername',
+    email: 'mailto:vayampriyanshu@gmail.com',
+    telegram: 'https://t.me/ahampriyanshu',
     github: 'https://github.com/ahampriyanshu',
-    linkedin: 'https://linkedin.com/in/yourprofile'
+    linkedin: 'https://linkedin.com/in/ahampriyanshu'
   },
   navItems: [
     { name: 'Home', url: '/' },
-    { name: 'About', url: 'https://resume.ahampriyanshu.com' },
     { name: 'Tags', url: '/tags' },
-    { name: 'Archives', url: '/archives' }
+    { name: 'Archives', url: '/archives' },
+    { name: 'About', url: 'https://portfolio.ahampriyanshu.com' },
   ],
   footerLinks: {
     projects: [
@@ -50,3 +51,7 @@ export const siteConfig = {
 };
 
 export type SiteConfig = typeof siteConfig;
+
+export function getSiteUrl(): string {
+  return siteConfig.baseURL + siteConfig.subPath;
+}

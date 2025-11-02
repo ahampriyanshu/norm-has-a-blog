@@ -128,12 +128,13 @@
         </a>
       </p>
       <p class="footer-credits-license">
-        Copyright © {startYear} - {currentYear} Distributed under
+        Copyright © {startYear} - {currentYear}. Distributed under
         <a
           href="https://github.com/ahampriyanshu/norm-has-a-blog/blob/main/LICENSE"
           target="_blank"
           rel="noopener">MIT</a
         >
+        license.
       </p>
     </div>
     <div class="footer-actions">

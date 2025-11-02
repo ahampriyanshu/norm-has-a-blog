@@ -20,25 +20,35 @@ pin: true
 ##### H5 Heading
 ###### H6 Heading
 
-### Text-level semantics
+## Text Formatting
 
-HTML defines a long list of available inline tags, a complete list of which can be found on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
+**Bold text**
 
-**To bold text**, use `<strong>`.
-*To italicize text*, use `<em>`.
-Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use `<abbr>`, with an optional `title` attribute for the full phrase.
-Citations, like <cite>&mdash; Mark otto</cite>, should use `<cite>`.
-<del>Deleted</del> text should use `<del>` and <ins>inserted</ins> text should use `<ins>`.
-Superscript <sup>text</sup> uses `<sup>` and subscript <sub>text</sub> uses `<sub>`.
-<kbd>keyboard input</kbd> use `<kbd>`.
-<mark>marked</mark> text should use `<mark>`.
-<q>short inline quotations</q> should use `<q>`.
-<s>strikethrough</s> text should use `<s>`.
-<small>small text</small> should use `<small>`.
-<span>span</span> text should use `<span>`.
-<sub>subscript</sub> text should use `<sub>`.
-<sup>superscript</sup> text should use `<sup>`.
-<time>datetime</time> text should use `<time>`.
+*Italic text*
+
+***Bold and italic text***
+
+<del>Deleted text</del>
+
+<ins>Inserted text</ins>
+
+<mark>Highlighted text</mark>
+
+<s>Strikethrough text</s>
+
+Abbreviations like <abbr title="HyperText Markup Language">HTML</abbr>
+
+Citations like <cite>&mdash; Mark Otto</cite>
+
+<q>Short inline quotations</q>
+
+<small>Small text</small>
+
+<kbd>Ctrl</kbd>+<kbd>C</kbd> keyboard input
+
+Superscript: x<sup>2</sup>
+
+Subscript: H<sub>2</sub>O
 
 ## Links
 
@@ -106,6 +116,13 @@ These are the instructions to find the meaning of life.
 ```
 
 
+## Horizontal Rule
+
+Use three or more hyphens, asterisks, or underscores:
+
+---
+
+
 ## Blockquotes
 
 > This is a blockquote.
@@ -127,12 +144,6 @@ Aligned tables:
 | Left | Center | Right |
 | Text | Text | Text |
 
-## Horizontal Rule
-
-Use three or more hyphens, asterisks, or underscores:
-
----
-
 ## Images
 
 You can add images using standard Markdown syntax:
@@ -141,7 +152,7 @@ You can add images using standard Markdown syntax:
 
 ## Math Equations
 
-Mathematical expressions are fully supported using MathJax. Use single dollar signs `$...$` for inline math and double dollar signs `$$...$$` for multi line math.
+Mathematical expressions are fully supported using MathJax.
 
 ### Inline Math
 
@@ -149,37 +160,31 @@ You can write inline equations like $E = mc^2$ or the quadratic formula $x = \fr
 
 ### Multi Line Math
 
-For larger equations, use display mode:
+For larger equations, use multi line math.
 
 $$
 \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
 $$
 
-### Summation and Limits
+Summation and Limits
 
 $$
 \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
 $$
 
-$$
-\lim_{x \to 0} \frac{\sin x}{x} = 1
-$$
-
-The Schrödinger equation:
-
-$$
-i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat{H}\Psi(\mathbf{r},t)
-$$
-
-Maxwell's equations in differential form:
+Differential equations:
 
 $$
 \begin{aligned}
-\nabla \cdot \mathbf{E} &= \frac{\rho}{\epsilon_0} \\
-\nabla \cdot \mathbf{B} &= 0 \\
 \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
 \nabla \times \mathbf{B} &= \mu_0\mathbf{J} + \mu_0\epsilon_0\frac{\partial \mathbf{E}}{\partial t}
 \end{aligned}
+$$
+
+Greek alphabets:
+
+$$
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat{H}\Psi(\mathbf{r},t)
 $$
 
 Matrix notation:
@@ -199,7 +204,6 @@ ax + by \\
 cx + dy
 \end{bmatrix}
 $$
-
 
 ## HTML
 

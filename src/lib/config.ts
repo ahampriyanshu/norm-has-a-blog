@@ -11,9 +11,8 @@ export const siteConfig = {
   timezone: 'Asia/Kolkata',
   theme: 'dark',
   analytics: {
-    google: {
-      id: 'G-VSNH6EH1RX'
-    }
+    ga_id: 'G-VSNH6EH1RX',
+    gtag_id: 'GTM-M4FTVQ3'
   },
   paginate: 10,
   contact: {
@@ -26,11 +25,14 @@ export const siteConfig = {
     { name: 'Home', url: '/' },
     { name: 'Tags', url: '/tags' },
     { name: 'Archives', url: '/archives' },
-    { name: 'About', url: 'https://portfolio.ahampriyanshu.com' },
+    { name: 'About', url: 'https://portfolio.ahampriyanshu.com' }
   ],
   footerLinks: {
     projects: [
-      { name: 'Indian Elections EDA', url: 'https://www.kaggle.com/datasets/ahampriyanshu/lok-sabha' },
+      {
+        name: 'Indian Elections EDA',
+        url: 'https://www.kaggle.com/datasets/ahampriyanshu/lok-sabha'
+      },
       { name: 'iGnez', url: 'https://ahampriyanshu.com/ignez/' },
       { name: 'Algo 101', url: 'https://github.com/ahampriyanshu/algo-ds-101/' },
       { name: 'View All Projects', url: 'https://github.com/ahampriyanshu' }

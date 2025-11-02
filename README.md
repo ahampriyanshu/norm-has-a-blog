@@ -1,11 +1,20 @@
+<p align="center"><img height="128" src="https://user-images.githubusercontent.com/54521023/134810563-8e34fea4-4250-4e8b-9ddb-5f163bd68e85.jpg"></p>
+<p align="center"><em>RIP Norm ❤️</em></p>
+
 # Norm has a blog
 
-A modern, fast, and feature-rich blog built with SvelteKit.
+A modern, fast, and zero config blog built with SvelteKit.
 
-[![CI](https://img.shields.io/github/actions/workflow/status/ahampriyanshu/norm-has-a-blog/ci.yml?logo=github)][ci]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/ahampriyanshu/norm-has-a-blog?color=goldenrod)][license]&nbsp;
-[![Website status](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://ahampriyanshu.com/norm-has-a-blog)
-[![Release](https://img.shields.io/github/v/release/ahampriyanshu/norm-has-a-blog?logo=github)][release]&nbsp;
+[![CI](https://img.shields.io/github/actions/workflow/status/ahampriyanshu/norm-has-a-blog/deploy.yml?logo=github)][https://github.com/ahampriyanshu/norm-has-a-blog/actions/workflows/deploy.yml]&nbsp;
+[![GitHub license](https://img.shields.io/github/license/ahampriyanshu/norm-has-a-blog?color=green)][https://github.com/ahampriyanshu/norm-has-a-blog/blob/main/LICENSE]&nbsp;
+[![Website status](https://img.shields.io/website-up-down-green-red/http/ahampriyanshu.com/norm-has-a-blog)](https://ahampriyanshu.com/norm-has-a-blog)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D22-brightgreen?logo=node.js)](https://nodejs.org/)&nbsp;
+[![Last Commit](https://img.shields.io/github/last-commit/ahampriyanshu/norm-has-a-blog?logo=github)](https://github.com/ahampriyanshu/norm-has-a-blog/commits)&nbsp;
+[![Issues](https://img.shields.io/github/issues/ahampriyanshu/norm-has-a-blog?logo=github)](https://github.com/ahampriyanshu/norm-has-a-blog/issues)&nbsp;
+[![Pull Requests](https://img.shields.io/github/issues-pr/ahampriyanshu/norm-has-a-blog?logo=github)](https://github.com/ahampriyanshu/norm-has-a-blog/pulls)&nbsp;
+[![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?logo=prettier)](https://github.com/prettier/prettier)&nbsp;
+[![Linted: ESLint](https://img.shields.io/badge/linted-ESLint-4B32C3?logo=eslint)](https://eslint.org/)&nbsp;
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ahampriyanshu/norm-has-a-blog/pulls)&nbsp;
 
 ## Features
 
@@ -24,12 +33,18 @@ A modern, fast, and feature-rich blog built with SvelteKit.
 
 ### Prerequisites
 
-- Node.js 22
+- node.js 22
 - npm
+- git
 
-### Installation
 
-1. Clone this repository
+### Setup
+
+1. Clone/fork this repository.
+```bash
+git clone https://github.com/ahampriyanshu/norm-has-a-blog.git my-new-blog
+cd my-new-blog
+```
 
 2. Install dependencies:
 
@@ -57,15 +72,6 @@ Preview the production build:
 npm run preview
 ```
 
-## Writing Posts
-
-### Creating a New Post
-
-1. Create a new `.md` file in the `src/posts` directory
-2. Add frontmatter with metadata
-3. Write your content in Markdown
-
-
 ## Configuration
 
 Edit `src/lib/config.ts` to customize your blog:
@@ -92,6 +98,13 @@ export const siteConfig = {
   paginate: 10,
 };
 ```
+
+## Writing Posts
+
+1. Create a new `.md` file in the `src/posts` directory
+2. Add frontmatter with metadata
+3. Write your content in Markdown
+
 
 ## Deployment
 

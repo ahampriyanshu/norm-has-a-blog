@@ -77,25 +77,7 @@ console.log(greeting('World'));
 
 Or without a filename:
 
-```javascript
-// JavaScript example without filename
-function add(a, b) {
-  return a + b;
-}
-```
-
-```python:fibonacci.py
-# Python example with filename
-def fibonacci(n):
-    if n <= 1:
-        return n
-    return fibonacci(n-1) + fibonacci(n-2)
-
-print(fibonacci(10))
-```
-
-```css:styles.css
-/* CSS example with filename */
+```css
 .button {
   background-color: #0066cc;
   color: white;
@@ -103,6 +85,13 @@ print(fibonacci(10))
   border-radius: 5px;
 }
 ```
+
+or just the code snippet:
+
+```
+These are the instructions to find the meaning of life.
+```
+
 
 ## Blockquotes
 

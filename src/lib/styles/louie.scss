@@ -490,62 +490,6 @@ a {
 }
 
 // Code block styles (global, outside prose)
-:global(.code-block-standalone) {
-  position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 6px;
-  margin-bottom: 1rem;
-  overflow: hidden;
-  display: block;
-
-  pre.shiki {
-    margin: 0 !important;
-    border-radius: 0 !important;
-    border: none !important;
-    display: block;
-  }
-
-  .copy-code-btn-standalone {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #d4d4d4;
-    padding: 0.25rem 0.625rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
-    display: flex;
-    align-items: center;
-    gap: 0.375rem;
-    opacity: 0;
-    z-index: 10;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.25);
-    }
-
-    &:active {
-      transform: scale(0.95);
-    }
-
-    &.copied {
-      opacity: 1;
-      background: rgba(34, 197, 94, 0.2);
-      border-color: rgba(34, 197, 94, 0.4);
-      color: #4ade80;
-    }
-  }
-
-  &:hover .copy-code-btn-standalone {
-    opacity: 1;
-  }
-}
-
 :global(.code-block-wrapper) {
   position: relative;
   margin-bottom: 1.5rem;
@@ -563,6 +507,32 @@ a {
     font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
     font-size: 0.8125rem;
     color: #d4d4d4;
+
+    .filename-left {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+
+    .file-ext-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.125rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+      text-transform: uppercase;
+      min-width: 28px;
+    }
+
+    .code-filename-text {
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
   }
 }
 
@@ -707,11 +677,21 @@ a {
       .filename-left {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.625rem;
 
-        .code-icon {
-          font-size: 0.95rem;
+        .file-ext-badge {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.125rem 0.5rem;
+          border-radius: 4px;
+          font-size: 0.625rem;
+          font-weight: 700;
+          letter-spacing: 0.05em;
           line-height: 1;
+          font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+          text-transform: uppercase;
+          min-width: 28px;
         }
 
         .code-filename-text {
@@ -759,88 +739,19 @@ a {
     }
   }
 
-  // Shiki code blocks styling (without filename)
+  // Shiki code blocks styling
   pre.shiki,
   pre.shiki code {
     background: none !important;
   }
 
   pre.shiki {
-    position: relative;
     background-color: #1e1e1e !important;
     padding: 1rem;
-    border-radius: $radius-sm;
+    border-radius: 0;
     overflow-x: auto;
-    margin-bottom: 1rem;
+    margin: 0;
     border: none;
-
-    &:hover .copy-code-btn-standalone {
-      opacity: 1;
-    }
-  }
-
-  // Standalone code block container (added via JS for non-filename blocks)
-  :global(.code-block-standalone) {
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: $radius-sm;
-    margin-bottom: 1rem;
-    overflow: hidden;
-
-    pre.shiki {
-      margin-bottom: 0 !important;
-      border-radius: 0 !important;
-    }
-  }
-
-  .code-block-standalone {
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: $radius-sm;
-    margin-bottom: 1rem;
-    overflow: hidden;
-
-    pre.shiki {
-      margin-bottom: 0 !important;
-      border-radius: 0 !important;
-    }
-  }
-
-  // Copy button for standalone code blocks (no filename)
-  .copy-code-btn-standalone {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #d4d4d4;
-    padding: 0.25rem 0.625rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
-    display: flex;
-    align-items: center;
-    gap: 0.375rem;
-    opacity: 0;
-    z-index: 10;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.25);
-    }
-
-    &:active {
-      transform: scale(0.95);
-    }
-
-    &.copied {
-      opacity: 1;
-      background: rgba(34, 197, 94, 0.2);
-      border-color: rgba(34, 197, 94, 0.4);
-      color: #4ade80;
-    }
   }
 
   blockquote {

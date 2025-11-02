@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 import remarkToc from 'remark-toc';
 import remarkMath from 'remark-math';
 import { rehypeEscapeMath } from './src/lib/utils/rehype-escape-math.js';
+import { rehypeEscapeSvelte } from './src/lib/utils/rehype-escape-svelte.js';
 import { createCodeHighlighter } from './src/lib/utils/code-highlighter.js';
 import { visit } from 'unist-util-visit';
 
@@ -30,7 +31,13 @@ const rehypeFixImagePaths = () => (tree) => {
 const mdsvexOptions = {
   extensions: ['.md'],
   remarkPlugins: [remarkGfm, remarkToc, remarkMath],
-  rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeEscapeMath, rehypeFixImagePaths],
+  rehypePlugins: [
+    rehypeSlug,
+    rehypeAutolinkHeadings,
+    rehypeEscapeMath,
+    rehypeEscapeSvelte,
+    rehypeFixImagePaths
+  ],
   layout: {
     post: './src/lib/layouts/PostLayout.svelte',
     _: './src/lib/layouts/DefaultLayout.svelte'
@@ -57,6 +64,14 @@ const config = {
     },
     prerender: {
       handleMissingId: 'warn',
+      handleHttpError: ({ path, referrer, message }) => {
+        // Ignore 404 errors for missing images during prerender
+        if (path.startsWith('/images/') || path.includes('/images/')) {
+          console.warn(`Warning: Missing image ${path} referenced from ${referrer}`);
+          return;
+        }
+        throw new Error(message);
+      },
       entries: ['*']
     }
   }

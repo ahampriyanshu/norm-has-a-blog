@@ -31,6 +31,7 @@
   $: isPostPage = $page.url.pathname.startsWith('/posts/');
   $: postTitle = $page.data?.metadata?.title || '';
   $: recentPosts = data.recentPosts ?? [];
+  $: headings = $page.data?.headings ?? [];
 </script>
 
 <svelte:head>
@@ -43,7 +44,7 @@
   <div class="main-wrapper">
     <div class="content-area">
       <Topbar {theme} {toggleTheme} />
-      
+
       <div class="content-wrapper" class:has-sidebar={isPostPage}>
         {#if isPostPage}
           <aside aria-label="Panel" class="sidebar-panel">
@@ -51,10 +52,10 @@
             <div class="panel-recent">
               <RecentlyUpdated {recentPosts} />
             </div>
-            
+
             <!-- TOC - becomes sticky -->
             <div class="panel-toc-sticky">
-              <TOC />
+              <TOC {headings} />
             </div>
           </aside>
         {/if}

@@ -34,8 +34,7 @@ $radius-lg: 10px;
 
   --card-bg: white;
   --card-hover-bg: #e2e2e2;
-  --card-shadow: rgb(104 104 104 / 5%) 0 2px 6px 0,
-    rgb(211 209 209 / 15%) 0 0 0 1px;
+  --card-shadow: rgb(104 104 104 / 5%) 0 2px 6px 0, rgb(211 209 209 / 15%) 0 0 0 1px;
 
   --tag-bg: #f8f9fa;
   --tag-hover-bg: rgb(222 226 230);
@@ -46,7 +45,7 @@ $radius-lg: 10px;
 
   --search-trigger-bg: #2d2e30;
   --search-trigger-border: rgba(255, 255, 255, 0.1);
-  --search-trigger-text-color: #9AA0A6;
+  --search-trigger-text-color: #9aa0a6;
   --search-trigger-hover-bg: #3c4043;
   --search-trigger-hover-border: rgba(255, 255, 255, 0.15);
 
@@ -66,7 +65,7 @@ $radius-lg: 10px;
   --heading-color: #cccccc;
   --link-color: rgb(138 180 248);
   --border-color: rgb(66 66 66);
-
+  // #ff5e00
   --sidebar-bg: #1e1e1e;
   --sidebar-border-color: #292929;
   --sidebar-active-color: rgb(255 255 255 / 95%);
@@ -77,8 +76,7 @@ $radius-lg: 10px;
 
   --card-bg: #212121;
   --card-hover-bg: #464d51;
-  --card-shadow: rgb(21 21 21 / 72%) 0 6px 18px 0,
-    rgb(137 135 135 / 24%) 0 0 0 1px;
+  --card-shadow: rgb(21 21 21 / 72%) 0 6px 18px 0, rgb(137 135 135 / 24%) 0 0 0 1px;
 
   --tag-bg: #292828;
   --tag-hover-bg: rgb(43 56 62);
@@ -89,7 +87,7 @@ $radius-lg: 10px;
 
   --search-trigger-bg: #2d2e30;
   --search-trigger-border: #5f6368;
-  --search-trigger-text-color: #9AA0A6;
+  --search-trigger-text-color: #9aa0a6;
   --search-trigger-hover-bg: #3c4043;
   --search-trigger-hover-border: #80868b;
 
@@ -160,12 +158,22 @@ $radius-lg: 10px;
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Cantarell', sans-serif;
+  font-family:
+    'Ubuntu',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Cantarell',
+    sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: var(--text-color);
   background-color: var(--main-bg);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 h1,
@@ -174,7 +182,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family:
+    'Ubuntu',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    sans-serif;
   color: var(--heading-color);
   font-weight: 700;
 }
@@ -448,7 +462,6 @@ a {
   position: fixed;
 }
 
-
 .w-100 {
   width: 100%;
 }
@@ -550,7 +563,7 @@ a {
 
     p {
       margin: 0;
-      
+
       &:not(:last-child) {
         margin-bottom: 0.75rem;
       }
@@ -654,7 +667,6 @@ a {
   .sidebar-panel {
     display: block;
     padding-right: 3rem;
-
   }
 
   .content-wrapper.has-sidebar .main-content {
@@ -1195,7 +1207,7 @@ a {
 
 .profile-image {
   flex-shrink: 0;
-  
+
   img {
     width: 120px;
     height: 120px;
@@ -1489,7 +1501,10 @@ a {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.3s ease,
+      margin-top 0.3s ease;
 
     &.expanded {
       max-height: 1000px; // Large enough to fit most sublists
@@ -1529,7 +1544,6 @@ a {
 
 // Recently Updated / Recent Posts Styles
 .recently-updated {
-
   .panel-heading {
     font-size: 1rem;
     font-weight: 600;
@@ -1800,7 +1814,7 @@ a {
     border-radius: $radius-sm;
     overflow-x: auto;
     margin-bottom: 1rem;
-    
+
     code {
       background: none;
       padding: 0;
@@ -2119,7 +2133,6 @@ a {
       flex-wrap: wrap;
     }
   }
-
 }
 
 // Post Article Content

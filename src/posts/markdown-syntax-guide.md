@@ -2,7 +2,6 @@
 title: Markdown Syntax Guide
 description: A comprehensive guide to Markdown syntax and formatting
 date: '2023-12-10'
-updated: '2024-01-12'
 tags:
   - markdown
   - writing
@@ -119,16 +118,15 @@ Use three or more hyphens, asterisks, or underscores:
 
 ---
 
-## Abbreviations
+## Images
 
-The HTML specification is maintained by the W3C.
+You can add images using standard Markdown syntax:
 
-*[HTML]: Hyper Text Markup Language
-*[W3C]: World Wide Web Consortium
+```md
+![Alt text](/images/hero.jpeg)
+```
 
-## Emojis
-
-You can use emojis! 😄 🎉 🚀 ✨ 💡
+![Alt text](/images/hero.jpeg)
 
 ## Math Equations
 

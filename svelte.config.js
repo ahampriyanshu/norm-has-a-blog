@@ -27,23 +27,26 @@ const mdsvexOptions = {
     highlighter: async (code, lang = 'text') => {
       if (!highlighter) {
         highlighter = await createHighlighter({
-          themes: ['dark-plus'],
+          themes: ['gruvbox-dark-hard'],
           langs: Object.keys(bundledLanguages)
         });
       }
-      
+
       // Default to plaintext if language is not recognized
       let validLang = lang;
       const loadedLanguages = highlighter.getLoadedLanguages();
       if (!loadedLanguages.includes(lang)) {
         validLang = 'text';
       }
-      
+
       const html = highlighter.codeToHtml(code, {
         lang: validLang,
-        theme: 'dark-plus'
+        themes: {
+          light: 'gruvbox-dark-hard',
+          dark: 'gruvbox-dark-hard'
+        }
       });
-      
+
       // Use escapeSvelte to properly handle Svelte syntax in the output
       return `{@html \`${escapeSvelte(html)}\` }`;
     }
@@ -74,4 +77,3 @@ const config = {
 };
 
 export default config;
-

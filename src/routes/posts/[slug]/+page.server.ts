@@ -2,6 +2,8 @@ import { getPost, getPosts, getLatestCommit } from '$lib/utils/posts';
 import { siteConfig } from '$lib/config';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 interface Heading {
   id: string;
@@ -9,15 +11,30 @@ interface Heading {
   level: number;
 }
 
-function extractHeadingsFromHtml(html: string): Heading[] {
+// Convert heading text to slug ID (matching rehype-slug behavior)
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/[\s_]+/g, '-') // Replace spaces and underscores with hyphens
+    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+}
+
+function extractHeadingsFromMarkdown(markdown: string): Heading[] {
   const headings: Heading[] = [];
-  const headingRegex = /<h([234])[^>]*id="([^"]*)"[^>]*>(.*?)<\/h\1>/gi;
+
+  // Remove frontmatter
+  const contentWithoutFrontmatter = markdown.replace(/^---[\s\S]*?---\n/, '');
+
+  // Match markdown headings (##, ###, ####)
+  const headingRegex = /^(#{2,4})\s+(.+)$/gm;
   let match;
 
-  while ((match = headingRegex.exec(html)) !== null) {
-    const level = parseInt(match[1]);
-    const id = match[2];
-    const text = match[3].replace(/<[^>]*>/g, '').trim();
+  while ((match = headingRegex.exec(contentWithoutFrontmatter)) !== null) {
+    const level = match[1].length; // Number of # symbols
+    const text = match[2].trim();
+    const id = slugify(text);
 
     headings.push({ id, text, level });
   }
@@ -45,14 +62,14 @@ export const load: PageServerLoad = async ({ params }) => {
   const previousPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
   const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
 
+  // Extract headings from markdown file
   let headings: Heading[] = [];
   try {
-    const rendered = post.content.render?.();
-    if (rendered?.html) {
-      headings = extractHeadingsFromHtml(rendered.html);
-    }
-  } catch (error) {
-    console.warn('Failed to extract headings:', error);
+    const markdownPath = join(process.cwd(), filePath);
+    const markdownContent = readFileSync(markdownPath, 'utf-8');
+    headings = extractHeadingsFromMarkdown(markdownContent);
+  } catch (err) {
+    console.warn('Failed to extract headings:', err);
   }
 
   return {

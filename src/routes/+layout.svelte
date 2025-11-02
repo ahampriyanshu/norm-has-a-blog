@@ -28,7 +28,7 @@
   }
 
   // Check if we're on a post page
-  $: isPostPage = $page.url.pathname.startsWith('/posts/');
+  $: isPostPage = $page.url.pathname.includes('/posts/');
   $: postTitle = $page.data?.metadata?.title || '';
   $: recentPosts = data.recentPosts ?? [];
   $: headings = $page.data?.headings ?? [];

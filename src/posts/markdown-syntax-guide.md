@@ -120,21 +120,6 @@ Use three or more hyphens, asterisks, or underscores:
 
 ---
 
-## Footnotes
-
-Here's a sentence with a footnote[^1].
-
-[^1]: This is the footnote content.
-
-## Definition Lists
-
-Term 1
-: Definition 1
-
-Term 2
-: Definition 2a
-: Definition 2b
-
 ## Abbreviations
 
 The HTML specification is maintained by the W3C.
@@ -162,7 +147,7 @@ You can escape special characters with a backslash: \* \_ \[ \]
 
 You can also use raw HTML in Markdown:
 
-<div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+<div style="border: 1px solid #f0f0f0; padding: 10px; border-radius: 12px; text-align: center;">
   This is a custom HTML div with inline styles.
 </div>
 

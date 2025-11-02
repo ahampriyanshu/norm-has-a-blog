@@ -840,34 +840,32 @@ a {
     border-collapse: collapse;
     margin: 2rem 0;
     font-size: 0.9rem;
+    border: 1px solid var(--border-color);
 
     th,
     td {
       padding: 0.875rem 1rem;
       text-align: left;
+      border: 1px solid var(--border-color);
     }
 
     thead {
-      border-bottom: 2px solid var(--border-color);
+      background-color: var(--card-bg);
     }
 
     th {
       font-weight: 600;
       color: var(--heading-color);
-      padding-bottom: 0.75rem;
+      background-color: var(--card-hover-bg);
     }
 
     td {
       color: var(--text-color);
-      border-bottom: 1px solid var(--border-color);
+      background-color: transparent;
 
       code {
         font-size: 0.85em;
       }
-    }
-
-    tbody tr:last-child td {
-      border-bottom: none;
     }
 
     th[align='center'],

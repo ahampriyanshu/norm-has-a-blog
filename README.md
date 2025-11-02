@@ -105,68 +105,16 @@ export const siteConfig = {
 2. Add frontmatter with metadata
 3. Write your content in Markdown
 
-
 ## Deployment
 
-This blog can be deployed to any static hosting service:
+This blog can be deployed to any static hosting service. But it's recommended to use [GitHub Pages](https://pages.github.com/) for free hosting. In order to deploy to GitHub Pages:
 
-### Vercel
+1. Push the changes to a public github repository.
+2. Enable GitHub Pages in repository settings.
+3. Deploy the site to GitHub Pages.
+4. The site will be available at `https://<username>.github.io/<repository-name>`.
 
-```bash
-npm i -g vercel
-vercel
-```
-
-### Netlify
-
-1. Connect your repository to Netlify
-2. Build command: `npm run build`
-3. Publish directory: `build`
-
-### GitHub Pages
-
-1. Install the GitHub Pages adapter:
-```bash
-npm i -D @sveltejs/adapter-static
-```
-
-2. Push your code to GitHub
-
-3. Enable GitHub Pages in repository settings
-
-### Cloudflare Pages
-
-1. Connect your repository
-2. Build command: `npm run build`
-3. Build output directory: `build`
-
-## Project Structure
-
-```
-sveltekit-blog/
-├── src/
-│   ├── lib/
-│   │   ├── components/     # Svelte components
-│   │   ├── layouts/        # mdsvex layouts
-│   │   ├── styles/         # SCSS styles
-│   │   ├── utils/          # Utility functions
-│   │   └── config.ts       # Site configuration
-│   ├── posts/              # Your blog posts (.md files)
-│   ├── routes/             # SvelteKit routes
-│   │   ├── +layout.svelte  # Main layout
-│   │   ├── +page.svelte    # Home page
-│   │   ├── posts/          # Post pages
-│   │   ├── tags/           # Tags pages
-│   │   ├── archives/       # Archives page
-│   │   └── api/            # API endpoints
-│   ├── app.html            # HTML template
-│   └── app.d.ts            # TypeScript declarations
-├── static/                 # Static assets
-├── svelte.config.js        # Svelte configuration
-├── vite.config.ts          # Vite configuration
-├── package.json            # Dependencies
-└── README.md              # This file
-```
+Note: If required, you can add CNAME record to use custom domain.
 
 ## Customization
 

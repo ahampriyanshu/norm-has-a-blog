@@ -146,9 +146,6 @@ $$
 \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
 $$
 
-### Complex Examples
-
-
 ### Summation and Limits
 
 $$

@@ -1,6 +1,6 @@
 {
   "name": "norm-has-a-blog",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "A minimal, responsive, and feature-rich blog built with SvelteKit",
   "license": "MIT",
   "type": "module",
@@ -47,6 +47,7 @@
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.0",
     "remark-math": "^3.0.1",
-    "remark-toc": "^9.0.0"
+    "remark-toc": "^9.0.0",
+    "unist-util-visit": "^5.0.0"
   }
 }

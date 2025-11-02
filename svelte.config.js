@@ -5,16 +5,60 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import remarkGfm from 'remark-gfm';
 import remarkToc from 'remark-toc';
+import remarkMath from 'remark-math';
 import { bundledLanguages, createHighlighter } from 'shiki';
+import { visit } from 'unist-util-visit';
 
 const basePath = '/norm-has-a-blog';
 
 let highlighter;
 
+// Custom rehype plugin to render math content for MathJax
+function rehypeEscapeMath() {
+  return (tree) => {
+    visit(tree, 'element', (node) => {
+      // Process inline math - wrap with $ delimiters
+      if (node.tagName === 'span' && node.properties?.className?.includes('math-inline')) {
+        if (node.children && node.children[0] && node.children[0].value) {
+          const mathContent = node.children[0].value;
+          // Wrap with dollar signs for MathJax, escape for template literal
+          const escaped = mathContent
+            .replace(/\\/g, '\\\\') // Escape backslashes
+            .replace(/`/g, '\\`') // Escape backticks
+            .replace(/\$/g, '\\$'); // Escape dollar signs in content
+          node.children = [
+            {
+              type: 'raw',
+              value: `{@html \`$${escaped}$\`}`
+            }
+          ];
+        }
+      }
+      // Process display math - wrap with $$ delimiters
+      if (node.tagName === 'div' && node.properties?.className?.includes('math-display')) {
+        if (node.children && node.children[0] && node.children[0].value) {
+          const mathContent = node.children[0].value;
+          // Wrap with double dollar signs for MathJax
+          const escaped = mathContent
+            .replace(/\\/g, '\\\\') // Escape backslashes
+            .replace(/`/g, '\\`') // Escape backticks
+            .replace(/\$/g, '\\$'); // Escape dollar signs in content
+          node.children = [
+            {
+              type: 'raw',
+              value: `{@html \`$$${escaped}$$\`}`
+            }
+          ];
+        }
+      }
+    });
+  };
+}
+
 const mdsvexOptions = {
   extensions: ['.md'],
-  remarkPlugins: [remarkGfm, remarkToc],
-  rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+  remarkPlugins: [remarkGfm, remarkToc, remarkMath],
+  rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeEscapeMath],
   layout: {
     post: './src/lib/layouts/PostLayout.svelte',
     _: './src/lib/layouts/DefaultLayout.svelte'

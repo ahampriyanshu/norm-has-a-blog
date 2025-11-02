@@ -8,6 +8,7 @@ tags:
   - writing
   - guide
   - syntax
+math: true
 ---
 
 ## Headings
@@ -129,17 +130,72 @@ The HTML specification is maintained by the W3C.
 
 You can use emojis! 😄 🎉 🚀 ✨ 💡
 
-## Math (if supported)
+## Math Equations
 
-Math expressions can be added with proper configuration.
+Mathematical expressions are fully supported using MathJax. Use single dollar signs `$...$` for inline math and double dollar signs `$$...$$` for display math.
 
-Inline: E = mc²
+### Inline Math
 
-Block formulas can be rendered with KaTeX or MathJax when configured.
+You can write inline equations like $E = mc^2$ or the quadratic formula $x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$ directly in your text.
 
-## Escaping Characters
+### Display Math
 
-You can escape special characters with a backslash: \* \_ \[ \]
+For larger equations, use display mode:
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+### Complex Examples
+
+The Schrödinger equation:
+
+$$
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat{H}\Psi(\mathbf{r},t)
+$$
+
+Maxwell's equations in differential form:
+
+$$
+\begin{aligned}
+\nabla \cdot \mathbf{E} &= \frac{\rho}{\epsilon_0} \\
+\nabla \cdot \mathbf{B} &= 0 \\
+\nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+\nabla \times \mathbf{B} &= \mu_0\mathbf{J} + \mu_0\epsilon_0\frac{\partial \mathbf{E}}{\partial t}
+\end{aligned}
+$$
+
+Matrix notation:
+
+$$
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+=
+\begin{bmatrix}
+ax + by \\
+cx + dy
+\end{bmatrix}
+$$
+
+### Greek Letters and Symbols
+
+You can use Greek letters like $\alpha$, $\beta$, $\gamma$, $\Delta$, $\Omega$ and symbols like $\infty$, $\partial$, $\nabla$, $\sum$, $\prod$, $\int$.
+
+### Summation and Limits
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+$$
+
+$$
+\lim_{x \to 0} \frac{\sin x}{x} = 1
+$$
 
 ## HTML
 
@@ -148,7 +204,3 @@ You can also use raw HTML in Markdown:
 <div style="border: 1px solid #f0f0f0; padding: 10px; border-radius: 12px; text-align: center;">
   This is a custom HTML div with inline styles.
 </div>
-
-## Conclusion
-
-This covers most of the Markdown syntax you'll need for blogging. Experiment with these elements to create engaging and well-formatted content!

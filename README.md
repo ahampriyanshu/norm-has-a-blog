@@ -10,8 +10,6 @@ A simple, static, and zero config blog built with SvelteKit.
 [![Website status](https://img.shields.io/website-up-down-green-red/http/ahampriyanshu.com/norm-has-a-blog)](https://ahampriyanshu.com/norm-has-a-blog)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D22-brightgreen?logo=node.js)](https://nodejs.org/)&nbsp;
 [![Last Commit](https://img.shields.io/github/last-commit/ahampriyanshu/norm-has-a-blog?logo=github)](https://github.com/ahampriyanshu/norm-has-a-blog/commits)&nbsp;
-[![Issues](https://img.shields.io/github/issues/ahampriyanshu/norm-has-a-blog?logo=github)](https://github.com/ahampriyanshu/norm-has-a-blog/issues)&nbsp;
-[![Pull Requests](https://img.shields.io/github/issues-pr/ahampriyanshu/norm-has-a-blog?logo=github)](https://github.com/ahampriyanshu/norm-has-a-blog/pulls)&nbsp;
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?logo=prettier)](https://github.com/prettier/prettier)&nbsp;
 [![Linted: ESLint](https://img.shields.io/badge/linted-ESLint-4B32C3?logo=eslint)](https://eslint.org/)&nbsp;
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ahampriyanshu/norm-has-a-blog/pulls)&nbsp;

@@ -584,6 +584,41 @@ a {
     margin-bottom: 1rem;
   }
 
+  kbd {
+    background-color: var(--code-bg);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  }
+
+  del {
+    text-decoration: line-through;
+    color: #e74c3c;
+    opacity: 0.8;
+  }
+
+  ins {
+    text-decoration: underline;
+    text-decoration-color: #27ae60;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+    background-color: rgba(39, 174, 96, 0.1);
+    padding: 0 0.25rem;
+    border-radius: 0.125rem;
+  }
+
+  :root[data-mode='dark'] & {
+    del {
+      color: #ff6b6b;
+    }
+
+    ins {
+      text-decoration-color: #51cf66;
+      background-color: rgba(81, 207, 102, 0.15);
+    }
+  }
+
   ul,
   ol {
     margin-bottom: 1rem;

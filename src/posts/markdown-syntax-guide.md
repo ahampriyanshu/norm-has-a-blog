@@ -13,7 +13,6 @@ pin: true
 
 ## Headings
 
-# H1 Heading
 ## H2 Heading
 ### H3 Heading
 #### H4 Heading
@@ -22,33 +21,29 @@ pin: true
 
 ## Text Formatting
 
-**Bold text**
+**Important:** Make sure to backup your data before proceeding
 
-*Italic text*
+According to the documentation, this feature is *not recommended* for production use
 
-***Bold and italic text***
+***Warning:*** This action cannot be undone
 
-<del>Deleted text</del>
+This price was <del>$100</del> now $80
 
-<ins>Inserted text</ins>
+This is an <ins>important addition</ins> to the document
 
-<mark>Highlighted text</mark>
+This text is <mark>highlighted for attention</mark>
 
-<s>Strikethrough text</s>
+This information is <s>no longer valid</s>
 
 Abbreviations like <abbr title="HyperText Markup Language">HTML</abbr>
 
 Citations like <cite>&mdash; Mark Otto</cite>
 
-<q>Short inline quotations</q>
+<kbd>Ctrl + C</kbd> keyboard input
 
-<small>Small text</small>
+a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>
 
-<kbd>Ctrl</kbd>+<kbd>C</kbd> keyboard input
-
-Superscript: x<sup>2</sup>
-
-Subscript: H<sub>2</sub>O
+H<sub>2</sub>O is a molecule composed of two hydrogen atoms and one oxygen atom
 
 ## Links
 

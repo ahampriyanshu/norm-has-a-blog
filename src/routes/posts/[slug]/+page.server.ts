@@ -22,13 +22,14 @@ function slugify(text: string): string {
 
 function extractHeadingsFromMarkdown(markdown: string): Heading[] {
   const headings: Heading[] = [];
-
-  const contentWithoutFrontmatter = markdown.replace(/^---[\s\S]*?---\n/, '');
+  let content = markdown.replace(/^---[\s\S]*?---\n/, '');
+  content = content.replace(/```[\s\S]*?```/g, '');
+  content = content.replace(/`[^`]+`/g, '');
 
   const headingRegex = /^(#{2,4})\s+(.+)$/gm;
   let match;
 
-  while ((match = headingRegex.exec(contentWithoutFrontmatter)) !== null) {
+  while ((match = headingRegex.exec(content)) !== null) {
     const level = match[1].length;
     const text = match[2].trim();
     const id = slugify(text);

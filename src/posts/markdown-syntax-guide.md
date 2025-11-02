@@ -11,14 +11,6 @@ math: true
 pin: true
 ---
 
-## Headings
-
-## H2 Heading
-### H3 Heading
-#### H4 Heading
-##### H5 Heading
-###### H6 Heading
-
 ## Text Formatting
 
 **Important:** Make sure to backup your data before proceeding
@@ -43,7 +35,7 @@ Citations like <cite>&mdash; Mark Otto</cite>
 
 a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>
 
-H<sub>2</sub>O is a molecule composed of two hydrogen atoms and one oxygen atom
+H<sub>2</sub> + SO<sub>4</sub> &rarr; H<sub>2</sub>SO<sub>4</sub>
 
 ## Links
 
@@ -65,8 +57,8 @@ H<sub>2</sub>O is a molecule composed of two hydrogen atoms and one oxygen atom
 
 1. First item
 2. Second item
-   1. Nested item 2.1
-   2. Nested item 2.2
+   1. Nested item 2A
+      1. Nested item 2A.a
 3. Third item
 
 ### Task Lists

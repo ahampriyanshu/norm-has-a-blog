@@ -19,4 +19,3 @@ Sitemap: ${url}/sitemap.xml
     }
   });
 };
-

@@ -333,18 +333,29 @@
     </a>
   </div>
 
-  <div class="post-tail-wrapper text-muted">
-    {#if metadata.tags && metadata.tags.length > 0}
+  <nav class="post-navigation" aria-label="Post navigation">
+    <a href="{base}/posts/{previousPost.slug}" class="nav-item nav-previous">
+      <span class="nav-label">PREVIOUS</span>
+      <span class="nav-title">{previousPost.title}</span>
+    </a>
+    <a href="{base}/posts/{nextPost.slug}" class="nav-item nav-next">
+      <span class="nav-label">NEXT</span>
+      <span class="nav-title">{nextPost.title}</span>
+    </a>
+  </nav>
+
+  {#if metadata.tags && metadata.tags.length > 0}
+    <div class="post-tail-wrapper">
+      <h3 class="tags-heading">Read more on similar topics</h3>
       <div class="post-tags">
-        <Icon name="tags" size={14} className="me-1" />
         {#each metadata.tags as tag}
           <a href="{base}/tags/{tag.toLowerCase()}" class="post-tag no-text-decoration">
             {tag}
           </a>
         {/each}
       </div>
-    {/if}
-  </div>
+    </div>
+  {/if}
 </article>
 
 {#if showToast}

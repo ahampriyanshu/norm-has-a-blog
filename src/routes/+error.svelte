@@ -18,9 +18,6 @@
         An error occurred while processing your request.
       {/if}
     </p>
-    <a href="{base || '/'}" class="btn btn-primary">
-      Go Home
-    </a>
+    <a href={base || '/'} class="btn btn-primary"> Go Home </a>
   </div>
 </div>
-

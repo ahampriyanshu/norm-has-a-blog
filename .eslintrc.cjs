@@ -32,4 +32,3 @@ module.exports = {
     'svelte/no-at-html-tags': 'warn'
   }
 };
-

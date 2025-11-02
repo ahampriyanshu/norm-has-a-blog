@@ -3,13 +3,12 @@ import { siteConfig } from '$lib/config';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async () => {
-    const archives = await getArchives();
+  const archives = await getArchives();
 
-    return {
-        archives,
-        siteConfig
-    };
+  return {
+    archives,
+    siteConfig
+  };
 };
 
 export const prerender = true;
-

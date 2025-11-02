@@ -11,4 +11,3 @@ export const load: PageLoad = async () => {
 };
 
 export const prerender = true;
-

@@ -278,7 +278,7 @@ $$
 $$
 ```
 
-For more details, see the [Markdown Syntax Guide](/posts/markdown-syntax-guide).
+For more details, see the [Markdown Syntax Guide](./markdown-syntax-guide).
 
 ### Pinning Posts
 
@@ -326,9 +326,9 @@ Place images in `static/images/` and reference them in your markdown:
 Link to other posts using relative URLs:
 
 ```markdown
-Check out the [Getting Started](/posts/getting-started) guide.
+Check out the [Getting Started](./getting-started) guide.
 
-See the [Markdown Syntax Guide](/posts/markdown-syntax-guide) for more.
+See the [Markdown Syntax Guide](./markdown-syntax-guide) for more.
 ```
 
 ### External Links
@@ -596,8 +596,8 @@ Final thoughts.
 Now that you know how to create posts:
 
 1. **Write your first post** - Start with an introduction or share something you've learned
-2. **Explore markdown features** - Check the [Markdown Syntax Guide](/posts/markdown-syntax-guide)
-3. **Review the blog setup** - See the [Getting Started](/posts/getting-started) guide
+2. **Explore markdown features** - Check the [Markdown Syntax Guide](./markdown-syntax-guide)
+3. **Review the blog setup** - See the [Getting Started](./getting-started) guide
 4. **Share your work** - Publish and promote your content
 
 Happy writing! ✍️

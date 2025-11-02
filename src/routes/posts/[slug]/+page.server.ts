@@ -57,8 +57,12 @@ export const load: PageServerLoad = async ({ params }) => {
   const allPosts = await getPosts();
   const currentIndex = allPosts.findIndex((p) => p.slug === params.slug);
 
-  const previousPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
-  const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+  // Circular navigation: wrap around to the beginning/end
+  const previousIndex = currentIndex > 0 ? currentIndex - 1 : allPosts.length - 1;
+  const nextIndex = currentIndex < allPosts.length - 1 ? currentIndex + 1 : 0;
+
+  const previousPost = allPosts[previousIndex];
+  const nextPost = allPosts[nextIndex];
 
   let headings: Heading[] = [];
   try {
@@ -74,8 +78,8 @@ export const load: PageServerLoad = async ({ params }) => {
       ...post.metadata,
       commitInfo
     },
-    previousPost: previousPost ? { slug: previousPost.slug, title: previousPost.title } : null,
-    nextPost: nextPost ? { slug: nextPost.slug, title: nextPost.title } : null,
+    previousPost: { slug: previousPost.slug, title: previousPost.title },
+    nextPost: { slug: nextPost.slug, title: nextPost.title },
     headings,
     siteConfig
   };

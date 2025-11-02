@@ -1,13 +1,10 @@
 ---
-title: Markdown Syntax Guide
-description: A comprehensive guide to Markdown syntax and formatting
-date: '2023-12-10'
+title: Writing New Post
+description: How to write a new post
+date: '2025-11-02'
 tags:
-  - markdown
   - writing
   - guide
-  - syntax
-math: true
 pin: true
 ---
 

@@ -18,13 +18,6 @@ A modern, fast, and zero config blog built with SvelteKit.
 
 ## Getting Started
 
-### Prerequisites
-
-- node.js 22
-- npm
-- git
-
-
 ### Setup
 
 1. Clone/fork this repository.

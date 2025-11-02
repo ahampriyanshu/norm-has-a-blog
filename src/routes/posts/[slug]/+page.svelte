@@ -86,6 +86,15 @@
       }
     }
 
+    // Fix image paths to include base path
+    const images = document.querySelectorAll('.post-article img');
+    images.forEach((img) => {
+      const src = img.getAttribute('src');
+      if (src && src.startsWith('/') && !src.startsWith('//') && !src.startsWith(base)) {
+        img.setAttribute('src', `${base}${src}`);
+      }
+    });
+
     if (browser) {
       document.addEventListener('click', handleClickOutside);
       return () => {

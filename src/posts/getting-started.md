@@ -19,13 +19,13 @@ This blog comes packed with powerful features out of the box:
 - **Modern Stack**: Built with SvelteKit 2.0 and Vite for blazing-fast performance
 - **Markdown Support**: Write posts in Markdown with [MDSveX](https://mdsvex.pngwn.io/). GFM is also supported.
 - **Syntax Highlighting**: Beautiful code blocks powered by [Shiki](https://shiki.matsu.io/).
-- **Math Equations**: Full support for LaTeX/KaTeX mathematical expressions.
+- **Math Equations**: Full support for LaTeX/KaTeX mathematical expressions powered by [MathJax](https://www.mathjax.org/).
 - **Responsive Design**: Looks great on all devices.
 - **Dark/Light Theme**: Built-in theme support.
 - **SEO Friendly**: RSS/Atom feeds, sitemap, OG tags and canonical URLs.
 - **Tags & Archives**: Organize posts with tags and view archives.
 - **Search & Filter**: Easy content discovery.
-- **Static Site Generation**: Deploy anywhere with zero runtime dependencies(and zero costs).
+- **Static Site Generation**: Deploy anywhere with zero runtime dependencies(and zero cost).
 
 ## Prerequisites
 
@@ -177,7 +177,7 @@ tags:
 This is my first blog post. I'm excited to start writing!
 ```
 
-For a detailed guide on writing posts, see the [Adding New Post](/posts/adding-new-post) guide.
+For a detailed guide on writing posts, see the [Adding New Post](./adding-new-post) guide.
 
 ## Building for Production
 
@@ -265,15 +265,6 @@ title: Advanced Mathematics
 math: true
 ---
 
-Inline equation: $E = mc^2$
-
-Display equation:
-
-$$
-\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
-$$
-```
-
 ### Pin a Post to the Top
 
 Add `pin: true` to the frontmatter to pin important posts:
@@ -316,7 +307,7 @@ npm install
 Ensure images are in the `static/images/` directory and referenced with `/images/` in markdown:
 
 ```markdown
-![My Image](/images/my-image.jpg)
+![My Image](/images/my-image.png)
 ```
 
 ## Next Steps
@@ -324,8 +315,8 @@ Ensure images are in the `static/images/` directory and referenced with `/images
 Now that you have your blog set up, here's what to do next:
 
 1. **Customize Your Configuration** - Update `src/lib/config.ts` with your information
-2. **Write Your First Post** - See the [Adding New Post](/posts/adding-new-post) guide
-3. **Explore Markdown Features** - Check out the [Markdown Syntax Guide](/posts/markdown-syntax-guide)
+2. **Write Your First Post** - See the [Adding New Post](./adding-new-post) guide
+3. **Explore Markdown Features** - Check out the [Markdown Syntax Guide](./markdown-syntax-guide)
 4. **Customize the Design** - Modify styles in `src/lib/styles/`
 5. **Deploy Your Blog** - Choose a hosting platform and go live!
 

@@ -263,36 +263,6 @@
         </div>
       {/if}
     </div>
-
-    {#if previousPost}
-      <a
-        href="{base}/posts/{previousPost.slug}"
-        class="action-btn nav-btn"
-        aria-label="Previous post"
-        title={previousPost.title}
-      >
-        <Icon name="chevron-left" size={20} />
-      </a>
-    {:else}
-      <button class="action-btn nav-btn" disabled aria-label="No previous post">
-        <Icon name="chevron-left" size={20} />
-      </button>
-    {/if}
-
-    {#if nextPost}
-      <a
-        href="{base}/posts/{nextPost.slug}"
-        class="action-btn nav-btn"
-        aria-label="Next post"
-        title={nextPost.title}
-      >
-        <Icon name="chevron-right" size={20} />
-      </a>
-    {:else}
-      <button class="action-btn nav-btn" disabled aria-label="No next post">
-        <Icon name="chevron-right" size={20} />
-      </button>
-    {/if}
   </div>
 </div>
 

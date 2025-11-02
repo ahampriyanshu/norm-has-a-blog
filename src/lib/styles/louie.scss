@@ -2610,19 +2610,6 @@ a {
     }
   }
 
-  .post-tail-wrapper {
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-    margin-top: 2rem;
-  }
-
-  .tags-heading {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--heading-color);
-  }
-
   .post-tags {
     display: flex;
     flex-wrap: wrap;
@@ -2693,15 +2680,13 @@ article {
   }
 
   .post-tail-wrapper {
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
     margin-top: 2rem;
   }
 
   .tags-heading {
     font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: var(--heading-color);
   }
 

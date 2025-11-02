@@ -4,7 +4,6 @@
   import { siteConfig } from '$lib/config';
   import Topbar from '$lib/components/Topbar.svelte';
   import Footer from '$lib/components/Footer.svelte';
-  import BackToTop from '$lib/components/BackToTop.svelte';
   import TOC from '$lib/components/TOC.svelte';
   import RecentlyUpdated from '$lib/components/RecentlyUpdated.svelte';
   import '$lib/styles/louie.scss';
@@ -106,6 +105,4 @@
       <Footer {isPostPage} {postTitle} />
     </div>
   </div>
-
-  <BackToTop />
 </div>

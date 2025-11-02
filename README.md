@@ -3,7 +3,7 @@
 
 # Norm has a blog
 
-A modern, fast, and zero config blog built with SvelteKit.
+A simple, static, and zero config blog built with SvelteKit.
 
 [![CI](https://img.shields.io/github/actions/workflow/status/ahampriyanshu/norm-has-a-blog/deploy.yml?logo=github)](https://github.com/ahampriyanshu/norm-has-a-blog/actions/workflows/deploy.yml)&nbsp;
 [![GitHub license](https://img.shields.io/github/license/ahampriyanshu/norm-has-a-blog?color=green)](https://github.com/ahampriyanshu/norm-has-a-blog/blob/main/LICENSE)&nbsp;

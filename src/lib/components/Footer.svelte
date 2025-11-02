@@ -40,7 +40,7 @@
 
           <div class="social-icons">
             <a href={siteConfig.contact.email} class="social-icon" aria-label="Email">
-              <Icon name="mail" size={20} />
+              <Icon name="mail" size={18} />
             </a>
             <a
               href={siteConfig.contact.telegram}
@@ -49,7 +49,7 @@
               class="social-icon"
               aria-label="Telegram"
             >
-              <Icon name="telegram" size={20} />
+              <Icon name="telegram" size={18} />
             </a>
             <a
               href={siteConfig.contact.github}
@@ -58,7 +58,7 @@
               class="social-icon"
               aria-label="GitHub"
             >
-              <Icon name="github" size={20} />
+              <Icon name="github" size={18} />
             </a>
             <a
               href={siteConfig.contact.linkedin}
@@ -67,7 +67,7 @@
               class="social-icon"
               aria-label="LinkedIn"
             >
-              <Icon name="linkedin" size={20} />
+              <Icon name="linkedin" size={18} />
             </a>
           </div>
         </div>

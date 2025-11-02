@@ -16,7 +16,9 @@ A simple, static, and zero config blog built with SvelteKit.
 
 ## Getting Started
 
-### Setup
+> 📚 **For a comprehensive guide**, check out the [Getting Started Guide](https://ahampriyanshu.com/norm-has-a-blog/posts/getting-started) with detailed setup, configuration, and deployment instructions.
+
+### Quick Setup
 
 1. Clone/fork this repository.
 ```bash
@@ -30,13 +32,15 @@ cd my-new-blog
 npm install
 ```
 
-Start the development server:
+3. Start the development server:
 
 ```bash
 npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Build Commands
 
 Build the static site:
 

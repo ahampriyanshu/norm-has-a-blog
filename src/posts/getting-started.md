@@ -1,208 +1,332 @@
 ---
-title: Markdown Syntax Guide
-description: A comprehensive guide to Markdown syntax and formatting
-date: '2023-12-10'
+title: Getting Started
+description: Learn how to install, configure, and deploy your SvelteKit blog in minutes. Complete setup guide with customization tips and deployment options.
+date: '2025-11-02'
 tags:
-  - markdown
-  - writing
   - guide
-  - syntax
+  - setup
+  - getting-started
+  - tutorial
+pin: true
 ---
 
-## Headings
+**norm-has-a-blog** is a simple, static, and zero config blog built with SvelteKit. It's designed for developers who want to save and share the stuff they're discovering. (but can be used by anyone for anything.)
 
-# H1 Heading
-## H2 Heading
-### H3 Heading
-#### H4 Heading
-##### H5 Heading
-###### H6 Heading
+## Features
 
-### Text-level semantics
+This blog comes packed with powerful features out of the box:
 
-HTML defines a long list of available inline tags, a complete list of which can be found on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
+- **Modern Stack**: Built with SvelteKit 2.0 and Vite for blazing-fast performance
+- **Markdown Support**: Write posts in Markdown with [MDSveX](https://mdsvex.pngwn.io/). GFM is also supported.
+- **Syntax Highlighting**: Beautiful code blocks powered by [Shiki](https://shiki.matsu.io/).
+- **Math Equations**: Full support for LaTeX/KaTeX mathematical expressions.
+- **Responsive Design**: Looks great on all devices.
+- **Dark/Light Theme**: Built-in theme support.
+- **SEO Friendly**: RSS/Atom feeds, sitemap, OG tags and canonical URLs.
+- **Tags & Archives**: Organize posts with tags and view archives.
+- **Search & Filter**: Easy content discovery.
+- **Static Site Generation**: Deploy anywhere with zero runtime dependencies(and zero costs).
 
-- **To bold text**, use `<strong>`.
-- *To italicize text*, use `<em>`.
-- Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use `<abbr>`, with an optional `title` attribute for the full phrase.
-- Citations, like <cite>&mdash; Mark otto</cite>, should use `<cite>`.
-- <del>Deleted</del> text should use `<del>` and <ins>inserted</ins> text should use `<ins>`.
-- Superscript <sup>text</sup> uses `<sup>` and subscript <sub>text</sub> uses `<sub>`.
-- <kbd>keyboard input</kbd> use `<kbd>`.
-- <mark>marked</mark> text should use `<mark>`.
-- <q>short inline quotations</q> should use `<q>`.
-- <s>strikethrough</s> text should use `<s>`.
-- <small>small text</small> should use `<small>`.
-- <span>span</span> text should use `<span>`.
-- <sub>subscript</sub> text should use `<sub>`.
-- <sup>superscript</sup> text should use `<sup>`.
-- <time>datetime</time> text should use `<time>`.
+## Prerequisites
 
-## Links
+Before you begin, ensure you have the following installed on your system:
 
-[This is an inline link](https://example.com)
+- **Node.js** (v18 or higher) - [Download here](https://nodejs.org/)
+- **npm** or **yarn** - Comes with Node.js
+- **Git** - [Download here](https://git-scm.com/)
+- A code editor like [VS Code](https://code.visualstudio.com/)
 
-[This is a link with a title](https://example.com "Link Title")
+## Installation
 
-## Lists
+### 1. Clone the Repository
 
-### Unordered Lists
+First, clone the repository to your local machine:
 
-- Item 1
-- Item 2
-  - Nested item 2.1
-  - Nested item 2.2
-- Item 3
+```bash
+git clone https://github.com/ahampriyanshu/norm-has-a-blog.git
+cd norm-has-a-blog
+```
 
-### Ordered Lists
+### 2. Install Dependencies
 
-1. First item
-2. Second item
-   1. Nested item 2.1
-   2. Nested item 2.2
-3. Third item
+Install all required npm packages:
 
-### Task Lists
+```bash
+npm install
+```
 
-- [x] Completed task
-- [ ] Incomplete task
-- [ ] Another task
+This will install all dependencies including SvelteKit, MDSveX, Shiki, and other required packages.
 
-## Code
+### 3. Start the Development Server
 
-### Inline Code
+Launch the development server to see your blog in action:
 
-Use `inline code` for short code snippets.
+```bash
+npm run dev
+```
 
-### Code Blocks
+Your blog should now be running at `http://localhost:5173`. The development server supports hot module replacement (HMR), so any changes you make will be reflected instantly.
 
-You can add filenames to code blocks using the syntax: ` ```language:filename.ext `
+## Project Structure
 
-```javascript:greeting.js
-const greeting = (name) => {
-  return `Hello, ${name}!`;
+Understanding the project structure will help you customize and extend your blog:
+
+```
+norm-has-a-blog/
+├── src/
+│   ├── lib/
+│   │   ├── components/     # Reusable Svelte components
+│   │   ├── layouts/        # Page and post layouts
+│   │   ├── styles/         # SCSS stylesheets
+│   │   ├── utils/          # Utility functions
+│   │   └── config.ts       # Blog configuration
+│   ├── posts/              # Your markdown blog posts
+│   ├── routes/             # SvelteKit routes
+│   │   ├── +page.svelte    # Homepage
+│   │   ├── posts/          # Blog post routes
+│   │   ├── tags/           # Tag listing and filtering
+│   │   ├── archives/       # Archive page
+│   │   └── api/            # API endpoints
+│   └── app.html            # HTML template
+├── static/                 # Static assets
+│   ├── images/             # Image files
+│   └── assets/             # CSS, fonts, etc.
+├── build/                  # Production build output
+├── svelte.config.js        # Svelte/Kit configuration
+├── vite.config.ts          # Vite configuration
+└── package.json            # Project dependencies
+```
+
+## Configuration
+
+### Basic Configuration
+
+The main configuration file is located at `src/lib/config.ts`. This is where you'll customize your blog:
+
+```typescript:src/lib/config.ts
+export const siteConfig = {
+  title: 'Your Blog Title',
+  description: 'Your blog description',
+  author: 'Your Name',
+  designation: 'Your Role/Designation',
+  baseURL: 'https://yourdomain.com',
+  subPath: '',  // Leave empty for root domain, or '/blog' for subdirectory
+  githubUsername: 'yourusername',
+  githubRepo: 'your-repo',
+  twitterHandle: 'yourhandle',
+  lang: 'en',
+  timezone: 'America/New_York',
+  theme: 'dark',  // 'dark' or 'light'
+  // ... more configuration options
 };
-
-console.log(greeting('World'));
 ```
 
-Or without a filename:
+### Important Settings to Update
 
-```css
-.button {
-  background-color: #0066cc;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-}
+1. **Personal Information**
+   - `title`: Your blog's title
+   - `author`: Your name
+   - `description`: A brief description of your blog
+
+2. **URLs and Paths**
+   - `baseURL`: Your production domain
+   - `subPath`: Subdirectory path if not deploying to root
+
+3. **Social Links**
+   - Update `contact` object with your social media profiles
+   - Set your `githubUsername` and `twitterHandle`
+
+4. **Navigation**
+   - Customize `navItems` to add/remove navigation links
+
+5. **Analytics** (Optional)
+   - Add your Google Analytics tracking IDs
+
+### Customizing the Base Path
+
+If you're deploying to a subdirectory (like GitHub Pages at `username.github.io/blog`), update the `basePath` in `svelte.config.js`:
+
+```javascript:svelte.config.js
+const basePath = '/your-subdirectory';
 ```
 
-or just the code snippet:
+And also update `subPath` in `src/lib/config.ts` to match.
 
+## Writing Your First Post
+
+Create a new markdown file in the `src/posts/` directory:
+
+```bash
+touch src/posts/my-first-post.md
 ```
-These are the instructions to find the meaning of life.
-```
 
+Add frontmatter and content:
 
-## Blockquotes
-
-> This is a blockquote.
-
-
-## Tables
-
-| Syntax | Description | Example |
-|--------|-------------|---------|
-| Header | Title | Value |
-| Paragraph | Text | Content |
-| Bold | **Bold** | **Example** |
-| Italic | _Italic_ | _Example_ |
-
-Aligned tables:
-
-| Left aligned | Center aligned | Right aligned |
-|:-------------|:--------------:|--------------:|
-| Left | Center | Right |
-| Text | Text | Text |
-
-## Horizontal Rule
-
-Use three or more hyphens, asterisks, or underscores:
-
+```markdown
+---
+title: My First Blog Post
+description: This is my first post on my new blog
+date: '2025-11-02'
+tags:
+  - introduction
+  - first-post
 ---
 
-## Images
+## Hello World!
 
-You can add images using standard Markdown syntax:
+This is my first blog post. I'm excited to start writing!
+```
 
-![Alt text](/images/hero.jpeg)
+For a detailed guide on writing posts, see the [Adding New Post](/posts/adding-new-post) guide.
 
-## Math Equations
+## Building for Production
 
-Mathematical expressions are fully supported using MathJax. Use single dollar signs `$...$` for inline math and double dollar signs `$$...$$` for multi line math.
+When you're ready to deploy your blog, create a production build:
 
-### Inline Math
+```bash
+npm run build
+```
 
-You can write inline equations like $E = mc^2$ or the quadratic formula $x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$ directly in your text.
+This generates optimized static files in the `build/` directory. The build process:
 
-### Multi Line Math
+1. Pre-renders all pages for optimal performance
+2. Optimizes and minifies JavaScript and CSS
+3. Generates sitemap, RSS, and Atom feeds
+4. Creates optimized images and assets
 
-For larger equations, use display mode:
+### Preview the Build
+
+Test your production build locally:
+
+```bash
+npm run preview
+```
+
+## Deployment
+
+Your blog is a static site and can be deployed anywhere. Here are some popular options:
+
+### GitHub Pages (Recommended)
+
+1. Make sure the githup pages is configured for your account.
+2. 
+
+### Vercel
+
+1. **Install Vercel CLI**
+
+```bash
+npm i -g vercel
+```
+
+2. **Deploy**
+
+```bash
+vercel
+```
+
+Follow the prompts. Vercel will automatically detect your SvelteKit project.
+
+### Netlify
+
+1. **Connect Your Repository** on Netlify dashboard
+2. **Configure Build Settings**:
+   - Build command: `npm run build`
+   - Publish directory: `build`
+
+3. Deploy!
+
+### Cloudflare Pages
+
+1. **Connect Your Repository** on Cloudflare Pages
+2. **Configure Build Settings**:
+   - Build command: `npm run build`
+   - Build output directory: `build`
+
+
+## Customizing Styles
+
+The blog uses SCSS for styling. Main styles are located in:
+
+- `src/lib/styles/louie.scss` - Main stylesheet
+- `static/assets/css/skins/` - Theme skins
+
+You can customize colors, fonts, spacing, and more by editing these files.
+
+## Adding Features
+
+### Enable Math Support for a Post
+
+Add `math: true` to the frontmatter:
+
+```markdown
+---
+title: Advanced Mathematics
+math: true
+---
+
+Inline equation: $E = mc^2$
+
+Display equation:
 
 $$
 \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
 $$
+```
 
-### Summation and Limits
+### Pin a Post to the Top
 
-$$
-\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
-$$
+Add `pin: true` to the frontmatter to pin important posts:
 
-$$
-\lim_{x \to 0} \frac{\sin x}{x} = 1
-$$
+```markdown
+---
+title: Important Announcement
+pin: true
+---
+```
 
-The Schrödinger equation:
+## Troubleshooting
 
-$$
-i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat{H}\Psi(\mathbf{r},t)
-$$
+### Port Already in Use
 
-Maxwell's equations in differential form:
+If port 5173 is already in use:
 
-$$
-\begin{aligned}
-\nabla \cdot \mathbf{E} &= \frac{\rho}{\epsilon_0} \\
-\nabla \cdot \mathbf{B} &= 0 \\
-\nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
-\nabla \times \mathbf{B} &= \mu_0\mathbf{J} + \mu_0\epsilon_0\frac{\partial \mathbf{E}}{\partial t}
-\end{aligned}
-$$
+```bash
+npm run dev -- --port 3000
+```
 
-Matrix notation:
+### Build Errors
 
-$$
-\begin{bmatrix}
-a & b \\
-c & d
-\end{bmatrix}
-\begin{bmatrix}
-x \\
-y
-\end{bmatrix}
-=
-\begin{bmatrix}
-ax + by \\
-cx + dy
-\end{bmatrix}
-$$
+1. Clear the build cache:
 
+```bash
+rm -rf build .svelte-kit
+npm run build
+```
 
-## HTML
+2. Reinstall dependencies:
 
-You can also use raw HTML in Markdown:
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
 
-<div style="border: 1px solid #f0f0f0; padding: 10px; border-radius: 12px; text-align: center;">
-  This is a custom HTML div with inline styles.
-</div>
+### Image Paths Not Working
+
+Ensure images are in the `static/images/` directory and referenced with `/images/` in markdown:
+
+```markdown
+![My Image](/images/my-image.jpg)
+```
+
+## Next Steps
+
+Now that you have your blog set up, here's what to do next:
+
+1. **Customize Your Configuration** - Update `src/lib/config.ts` with your information
+2. **Write Your First Post** - See the [Adding New Post](/posts/adding-new-post) guide
+3. **Explore Markdown Features** - Check out the [Markdown Syntax Guide](/posts/markdown-syntax-guide)
+4. **Customize the Design** - Modify styles in `src/lib/styles/`
+5. **Deploy Your Blog** - Choose a hosting platform and go live!
+
+Happy blogging! 🚀

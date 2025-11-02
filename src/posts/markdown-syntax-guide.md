@@ -1,6 +1,6 @@
 ---
 title: Markdown Syntax Guide
-description: A comprehensive guide to Markdown syntax and formatting
+description: Master markdown formatting with examples of text styling, code blocks, tables, math equations, and more. Complete reference for content creators.
 date: '2023-12-10'
 tags:
   - markdown

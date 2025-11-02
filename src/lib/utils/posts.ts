@@ -24,33 +24,40 @@ export interface PostMetadata extends Post {
   commitInfo?: CommitInfo;
 }
 
-/**
- * Get all posts from the file system
- */
+// Type for Svelte component default export
+interface SvelteComponent {
+  render?: () => {
+    html: string;
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
+
+// Type for markdown module imports
+interface MarkdownModule {
+  metadata: Post;
+  default: SvelteComponent;
+}
+
 export async function getPosts(): Promise<PostMetadata[]> {
   const postFiles = import.meta.glob('/src/posts/**/*.md');
   const posts: PostMetadata[] = [];
 
   for (const path in postFiles) {
-    const post = await postFiles[path]();
-    const metadata = (post as any).metadata;
+    const post = (await postFiles[path]()) as MarkdownModule;
+    const metadata = post.metadata;
 
     if (metadata) {
-      const slug = path
-        .replace('/src/posts/', '')
-        .replace('.md', '')
-        .split('/')
-        .pop() || '';
+      const slug = path.replace('/src/posts/', '').replace('.md', '').split('/').pop() || '';
 
       posts.push({
         ...metadata,
         slug,
-        readingTime: calculateReadingTime((post as any).default?.render?.()?.html || '')
+        readingTime: calculateReadingTime(post.default?.render?.()?.html || '')
       });
     }
   }
 
-  // Sort by date (newest first) and pin status
   return posts.sort((a, b) => {
     if (a.pin && !b.pin) return -1;
     if (!a.pin && b.pin) return 1;
@@ -58,12 +65,11 @@ export async function getPosts(): Promise<PostMetadata[]> {
   });
 }
 
-/**
- * Get a single post by slug
- */
-export async function getPost(slug: string): Promise<{ metadata: PostMetadata; content: any } | null> {
+export async function getPost(
+  slug: string
+): Promise<{ metadata: PostMetadata; content: SvelteComponent } | null> {
   try {
-    const post = await import(`../../posts/${slug}.md`);
+    const post = (await import(`../../posts/${slug}.md`)) as MarkdownModule;
     return {
       metadata: {
         ...post.metadata,
@@ -77,15 +83,12 @@ export async function getPost(slug: string): Promise<{ metadata: PostMetadata; c
   }
 }
 
-/**
- * Get all unique tags from posts
- */
 export async function getTags(): Promise<Map<string, number>> {
   const posts = await getPosts();
   const tags = new Map<string, number>();
 
-  posts.forEach(post => {
-    post.tags?.forEach(tag => {
+  posts.forEach((post) => {
+    post.tags?.forEach((tag) => {
       tags.set(tag, (tags.get(tag) || 0) + 1);
     });
   });
@@ -93,27 +96,18 @@ export async function getTags(): Promise<Map<string, number>> {
   return tags;
 }
 
-/**
- * Get posts by tag
- */
 export async function getPostsByTag(tag: string): Promise<PostMetadata[]> {
   const posts = await getPosts();
-  return posts.filter(post => post.tags?.includes(tag));
+  return posts.filter((post) => post.tags?.includes(tag));
 }
 
-/**
- * Calculate reading time from HTML content
- */
 function calculateReadingTime(html: string): string {
   const text = html.replace(/<[^>]*>/g, '');
   const words = text.trim().split(/\s+/).length;
-  const minutes = Math.ceil(words / 200); // Average reading speed: 200 words/min
+  const minutes = Math.ceil(words / 200);
   return `${minutes} min read`;
 }
 
-/**
- * Format date
- */
 export function formatDate(date: string): string {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -122,14 +116,11 @@ export function formatDate(date: string): string {
   });
 }
 
-/**
- * Get archives grouped by year and month
- */
 export async function getArchives(): Promise<Map<string, Map<string, PostMetadata[]>>> {
   const posts = await getPosts();
   const archives = new Map<string, Map<string, PostMetadata[]>>();
 
-  posts.forEach(post => {
+  posts.forEach((post) => {
     const date = new Date(post.date);
     const year = date.getFullYear().toString();
     const month = date.toLocaleDateString('en-US', { month: 'long' });
@@ -149,32 +140,31 @@ export async function getArchives(): Promise<Map<string, Map<string, PostMetadat
   return archives;
 }
 
-/**
- * Get the latest git commit information for a specific file using local git commands
- */
-export async function getLatestCommit(filePath: string, githubUsername: string, githubRepo: string): Promise<CommitInfo | null> {
+export async function getLatestCommit(
+  filePath: string,
+  githubUsername: string,
+  githubRepo: string
+): Promise<CommitInfo | null> {
   try {
-    // Only run in Node.js environment (during build)
     if (typeof window !== 'undefined') {
       return null;
     }
 
     const { execSync } = await import('child_process');
-    
-    // Get the latest commit hash, message, and timestamp for the file
-    const gitLog = execSync(
-      `git log -1 --pretty=format:"%H|%s|%aI" -- "${filePath}"`,
-      { encoding: 'utf-8', cwd: process.cwd() }
-    ).trim();
+
+    const gitLog = execSync(`git log -1 --pretty=format:"%H|%s|%aI" -- "${filePath}"`, {
+      encoding: 'utf-8',
+      cwd: process.cwd()
+    }).trim();
 
     if (!gitLog) {
       return null;
     }
 
     const [hash, message, date] = gitLog.split('|');
-    
+
     return {
-      hash: hash.substring(0, 7), // Short hash
+      hash: hash.substring(0, 7),
       message,
       date,
       url: `https://github.com/${githubUsername}/${githubRepo}/commit/${hash}`
@@ -184,4 +174,3 @@ export async function getLatestCommit(filePath: string, githubUsername: string, 
     return null;
   }
 }
-

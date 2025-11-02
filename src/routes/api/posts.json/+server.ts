@@ -5,8 +5,7 @@ import type { RequestHandler } from './$types';
 export const GET: RequestHandler = async () => {
   const posts = await getPosts();
 
-  // Return simplified post data for search
-  const searchData = posts.map(post => ({
+  const searchData = posts.map((post) => ({
     slug: post.slug,
     title: post.title,
     description: post.description,
@@ -16,4 +15,3 @@ export const GET: RequestHandler = async () => {
 
   return json(searchData);
 };
-

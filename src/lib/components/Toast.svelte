@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  
+
   export let message: string;
   export let duration: number = 3000;
   export let onClose: () => void;
@@ -8,15 +8,13 @@
   let visible = false;
 
   onMount(() => {
-    // Trigger animation
     setTimeout(() => {
       visible = true;
     }, 10);
 
-    // Auto-hide after duration
     const timer = setTimeout(() => {
       visible = false;
-      setTimeout(onClose, 300); // Wait for fade out animation
+      setTimeout(onClose, 300);
     }, duration);
 
     return () => clearTimeout(timer);
@@ -25,7 +23,17 @@
 
 <div class="toast-container">
   <div class="toast" class:visible>
-    <svg class="toast-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg
+      class="toast-icon"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
       <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
     <span class="toast-message">{message}</span>
@@ -72,4 +80,3 @@
     line-height: 1.4;
   }
 </style>
-

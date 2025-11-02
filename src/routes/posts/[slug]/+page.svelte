@@ -79,7 +79,6 @@
     dropdownOpen = false;
   }
 
-  // Close dropdown when clicking outside
   onMount(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownOpen && dropdownButton && !dropdownButton.contains(event.target as Node)) {
@@ -103,7 +102,6 @@
   {/if}
 </svelte:head>
 
-<!-- Post Title Section - Outside main content area -->
 <div class="post-header-section">
   <div class="post-title-wrapper">
     <h1 class="post-title-main">{metadata.title}</h1>
@@ -136,9 +134,7 @@
     </div>
   {/if}
 
-  <!-- Action Widget -->
   <div class="post-actions-widget">
-    <!-- Copy and Dropdown Buttons -->
     <div class="copy-dropdown-wrapper" bind:this={dropdownButton}>
       <button class="action-btn copy-btn" on:click={copyPostContent} aria-label="Copy post content">
         <Icon name="copy" size={16} />
@@ -171,7 +167,6 @@
       {/if}
     </div>
 
-    <!-- Navigation Buttons -->
     {#if previousPost}
       <a
         href="{base}/posts/{previousPost.slug}"
@@ -204,7 +199,6 @@
   </div>
 </div>
 
-<!-- Main Article Content -->
 <article class="post-article">
   <div class="content prose">
     {#if Content}
@@ -212,7 +206,6 @@
     {/if}
   </div>
 
-  <!-- Post Action Links -->
   <div class="post-action-links">
     <a
       href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/edit/main/src/posts/{metadata.slug}.md"

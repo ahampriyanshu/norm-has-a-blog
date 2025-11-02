@@ -10,9 +10,7 @@
 </script>
 
 <footer class="site-footer">
-  <!-- Enhanced Footer Section -->
   <div class="footer-enhanced">
-    <!-- Breadcrumb (only on post pages) -->
     {#if isPostPage && postTitle}
       <nav class="footer-breadcrumb" aria-label="Breadcrumb">
         <ol class="breadcrumb-list">
@@ -25,9 +23,7 @@
       </nav>
     {/if}
 
-    <!-- Footer Main Content -->
     <div class="footer-main">
-      <!-- Left Section: Profile & Contact -->
       <div class="footer-left">
         <div class="profile-image">
           <img src="{base}/logo.png" alt={siteConfig.author} />
@@ -72,9 +68,7 @@
         </div>
       </div>
 
-      <!-- Right Section: Link Columns -->
       <div class="footer-right">
-        <!-- Projects Links -->
         <div class="footer-section">
           <ul class="footer-links">
             {#each siteConfig.footerLinks.projects as link}
@@ -87,7 +81,6 @@
           </ul>
         </div>
 
-        <!-- Blog Links -->
         <div class="footer-section">
           <ul class="footer-links">
             {#each siteConfig.footerLinks.blogs as link}
@@ -100,7 +93,6 @@
           </ul>
         </div>
 
-        <!-- Personal Collection -->
         <div class="footer-section">
           <ul class="footer-links">
             {#each siteConfig.footerLinks.personal as link}
@@ -121,7 +113,6 @@
     </div>
   </div>
 
-  <!-- Original Simple Footer -->
   <div class="footer-divider" aria-hidden="true"></div>
   <div class="footer-content">
     <p class="footer-note">

@@ -15,7 +15,6 @@
   let recentPosts = data.recentPosts ?? [];
 
   onMount(() => {
-    // Check for saved theme preference or default to 'dark' mode
     const savedTheme = localStorage.getItem('theme') || 'dark';
     theme = savedTheme;
     document.documentElement.setAttribute('data-mode', theme);
@@ -27,7 +26,6 @@
     localStorage.setItem('theme', theme);
   }
 
-  // Check if we're on a post page
   $: isPostPage = $page.url.pathname.includes('/posts/');
   $: postTitle = $page.data?.metadata?.title || '';
   $: recentPosts = data.recentPosts ?? [];
@@ -48,12 +46,10 @@
       <div class="content-wrapper" class:has-sidebar={isPostPage}>
         {#if isPostPage}
           <aside aria-label="Panel" class="sidebar-panel">
-            <!-- Recent Posts - scrolls away -->
             <div class="panel-recent">
               <RecentlyUpdated {recentPosts} />
             </div>
 
-            <!-- TOC - becomes sticky -->
             <div class="panel-toc-sticky">
               <TOC {headings} />
             </div>

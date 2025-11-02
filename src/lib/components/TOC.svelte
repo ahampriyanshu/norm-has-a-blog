@@ -13,7 +13,6 @@
     children: Heading[];
   }
 
-  // Prop: headings from SSR
   export let headings: Heading[] = [];
 
   let activeId: string = '';
@@ -22,7 +21,6 @@
   let visibleHeadings = new Set<string>();
   let scrollCleanup: (() => void) | null = null;
 
-  // Group headings by their parent h2
   function groupHeadingsByH2(allHeadings: Heading[]): HeadingGroup[] {
     const groups: HeadingGroup[] = [];
     let currentGroup: HeadingGroup | null = null;
@@ -48,10 +46,8 @@
     return groups;
   }
 
-  // Reactive statement: group headings whenever they change
   $: groupedHeadings = groupHeadingsByH2(headings);
 
-  // Find which h2 section a heading belongs to
   function findParentH2(headingId: string): string {
     if (groupedHeadings.length === 0) return '';
 
@@ -66,7 +62,6 @@
     return '';
   }
 
-  // Update active h2 whenever activeId changes
   function updateActiveH2(headingId: string) {
     if (!headingId || groupedHeadings.length === 0) return;
 
@@ -76,11 +71,9 @@
     }
   }
 
-  // Client-side only: Set up active state tracking
   onMount(() => {
     if (!browser || headings.length === 0) return;
 
-    // Set up Intersection Observer for scroll tracking
     const observerOptions = {
       rootMargin: '-100px 0px -66% 0px',
       threshold: 0
@@ -95,7 +88,6 @@
         }
       });
 
-      // Find the first visible heading in the document order
       if (visibleHeadings.size > 0) {
         for (const heading of headings) {
           if (visibleHeadings.has(heading.id)) {
@@ -107,7 +99,6 @@
       }
     }, observerOptions);
 
-    // Observe all headings by their IDs
     headings.forEach((heading) => {
       const element = document.getElementById(heading.id);
       if (element) {
@@ -115,14 +106,12 @@
       }
     });
 
-    // Handle scroll events for better accuracy
     const handleScroll = () => {
       if (headings.length === 0 || groupedHeadings.length === 0) return;
 
       const scrollPosition = window.scrollY + 150;
       let foundHeading = false;
 
-      // Find the current heading based on scroll position
       for (let i = headings.length - 1; i >= 0; i--) {
         const heading = headings[i];
         const element = document.getElementById(heading.id);
@@ -136,7 +125,6 @@
         }
       }
 
-      // If we're at the very top, highlight the first heading
       if (!foundHeading && headings.length > 0) {
         activeId = headings[0].id;
         updateActiveH2(headings[0].id);
@@ -145,7 +133,6 @@
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Set initial state with a small delay to ensure everything is ready
     setTimeout(() => {
       handleScroll();
     }, 50);

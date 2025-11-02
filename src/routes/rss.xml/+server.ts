@@ -7,8 +7,7 @@ export const prerender = true;
 export const GET: RequestHandler = async () => {
   const posts = await getPosts();
   const url = getSiteUrl();
-  
-  // Generate RSS feed
+
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" 
   xmlns:atom="http://www.w3.org/2005/Atom"
@@ -31,7 +30,7 @@ ${posts
       <link>${url}/posts/${post.slug}</link>
       <guid isPermaLink="true">${url}/posts/${post.slug}</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-${post.updated ? `      <atom:updated>${new Date(post.updated).toISOString()}</atom:updated>\n` : ''}${post.tags ? post.tags.map(tag => `      <category>${escapeXml(tag)}</category>`).join('\n') + '\n' : ''}      <author>${escapeXml(siteConfig.contact.email)} (${escapeXml(siteConfig.author)})</author>
+${post.updated ? `      <atom:updated>${new Date(post.updated).toISOString()}</atom:updated>\n` : ''}${post.tags ? post.tags.map((tag) => `      <category>${escapeXml(tag)}</category>`).join('\n') + '\n' : ''}      <author>${escapeXml(siteConfig.contact.email)} (${escapeXml(siteConfig.author)})</author>
     </item>`
   )
   .join('\n')}
@@ -46,9 +45,6 @@ ${post.updated ? `      <atom:updated>${new Date(post.updated).toISOString()}</a
   });
 };
 
-/**
- * Escape special XML characters
- */
 function escapeXml(unsafe: string): string {
   return unsafe
     .replace(/&/g, '&amp;')
@@ -57,4 +53,3 @@ function escapeXml(unsafe: string): string {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
 }
-

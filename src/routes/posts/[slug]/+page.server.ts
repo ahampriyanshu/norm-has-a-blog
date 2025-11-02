@@ -11,28 +11,25 @@ interface Heading {
   level: number;
 }
 
-// Convert heading text to slug ID (matching rehype-slug behavior)
 function slugify(text: string): string {
   return text
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, '') // Remove special characters
-    .replace(/[\s_]+/g, '-') // Replace spaces and underscores with hyphens
-    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 function extractHeadingsFromMarkdown(markdown: string): Heading[] {
   const headings: Heading[] = [];
 
-  // Remove frontmatter
   const contentWithoutFrontmatter = markdown.replace(/^---[\s\S]*?---\n/, '');
 
-  // Match markdown headings (##, ###, ####)
   const headingRegex = /^(#{2,4})\s+(.+)$/gm;
   let match;
 
   while ((match = headingRegex.exec(contentWithoutFrontmatter)) !== null) {
-    const level = match[1].length; // Number of # symbols
+    const level = match[1].length;
     const text = match[2].trim();
     const id = slugify(text);
 
@@ -62,7 +59,6 @@ export const load: PageServerLoad = async ({ params }) => {
   const previousPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
   const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
 
-  // Extract headings from markdown file
   let headings: Heading[] = [];
   try {
     const markdownPath = join(process.cwd(), filePath);

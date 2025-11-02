@@ -7,8 +7,7 @@ export const prerender = true;
 export const GET: RequestHandler = async () => {
   const posts = await getPosts();
   const url = getSiteUrl();
-  
-  // Generate Atom feed
+
   const atom = `<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>${escapeXml(siteConfig.title)}</title>
@@ -34,7 +33,7 @@ ${posts
     <author>
       <name>${escapeXml(siteConfig.author)}</name>
     </author>
-${post.tags ? post.tags.map(tag => `    <category term="${escapeXml(tag)}" />`).join('\n') + '\n' : ''}  </entry>`
+${post.tags ? post.tags.map((tag) => `    <category term="${escapeXml(tag)}" />`).join('\n') + '\n' : ''}  </entry>`
   )
   .join('\n')}
 </feed>`;
@@ -47,9 +46,6 @@ ${post.tags ? post.tags.map(tag => `    <category term="${escapeXml(tag)}" />`).
   });
 };
 
-/**
- * Escape special XML characters
- */
 function escapeXml(unsafe: string): string {
   return unsafe
     .replace(/&/g, '&amp;')
@@ -58,4 +54,3 @@ function escapeXml(unsafe: string): string {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
 }
-

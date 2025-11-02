@@ -7,18 +7,16 @@ export const prerender = true;
 export const GET: RequestHandler = async () => {
   const posts = await getPosts();
   const tags = await getTags();
-  
+
   const url = getSiteUrl();
-  
-  // Static pages with their priorities and change frequencies
+
   const staticPages = [
     { url: '', priority: '0.9', changefreq: 'weekly' },
     { url: '/about', priority: '0.8', changefreq: 'monthly' },
     { url: '/archives', priority: '0.7', changefreq: 'weekly' },
     { url: '/tags', priority: '0.7', changefreq: 'weekly' }
   ];
-  
-  // Generate sitemap XML
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${staticPages
@@ -58,4 +56,3 @@ ${Array.from(tags.keys())
     }
   });
 };
-

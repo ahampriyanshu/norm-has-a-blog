@@ -16,19 +16,18 @@
   let searchInputElement: HTMLInputElement;
   let themeToggleIcon: 'sun' | 'moon' = 'moon';
   $: themeToggleIcon = theme === 'dark' ? 'sun' : 'moon';
-  $: popularPosts = allPosts.slice(0, 6);
+  // $: popularPosts = allPosts.slice(0, 6);
 
   const navItems = siteConfig.navItems;
-  
+
   function getNavUrl(url: string): string {
     if (url.startsWith('http')) {
       return url;
     }
-    return url === '/' ? (base || '/') : `${base}${url}`;
+    return url === '/' ? base || '/' : `${base}${url}`;
   }
 
   onMount(() => {
-    // Load all posts for search
     (async () => {
       try {
         const response = await fetch(`${base}/api/posts.json`);
@@ -40,9 +39,7 @@
       }
     })();
 
-    // Add keyboard shortcut listener
     const handleKeyboard = (e: KeyboardEvent) => {
-      // Cmd+K on Mac or Ctrl+K on Windows/Linux
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
         toggleSearch();
@@ -71,10 +68,10 @@
     }
 
     const query = searchQuery.toLowerCase();
-    searchResults = allPosts.filter(post => {
+    searchResults = allPosts.filter((post) => {
       const titleMatch = post.title.toLowerCase().includes(query);
       const descMatch = post.description?.toLowerCase().includes(query);
-      const tagMatch = post.tags?.some(tag => tag.toLowerCase().includes(query));
+      const tagMatch = post.tags?.some((tag) => tag.toLowerCase().includes(query));
 
       return titleMatch || descMatch || tagMatch;
     });
@@ -106,7 +103,8 @@
         <a
           href={getNavUrl(item.url)}
           class="nav-link"
-          class:active={currentPath === getNavUrl(item.url) || (item.url !== '/' && currentPath.startsWith(getNavUrl(item.url)))}
+          class:active={currentPath === getNavUrl(item.url) ||
+            (item.url !== '/' && currentPath.startsWith(getNavUrl(item.url)))}
         >
           {item.name}
         </a>
@@ -146,7 +144,6 @@
     aria-modal="true"
     tabindex="-1"
   >
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="search-modal" on:click|stopPropagation on:keydown={handleKeydown} role="document">
       <div class="search-header">
         <div class="search-input-wrapper">
@@ -168,7 +165,9 @@
         {#if searchQuery.trim()}
           {#if searchResults.length > 0}
             <div class="results-header">
-              <span class="results-count">{searchResults.length} result{searchResults.length !== 1 ? 's' : ''}</span>
+              <span class="results-count"
+                >{searchResults.length} result{searchResults.length !== 1 ? 's' : ''}</span
+              >
             </div>
             <div class="results-list">
               {#each searchResults as post}
@@ -201,16 +200,46 @@
           </div>
           <div class="search-shortcuts">
             <div class="shortcut-item">
-              <svg class="shortcut-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                class="shortcut-icon"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <polygon points="12 19 6 12 18 12 12 19"></polygon>
               </svg>
-              <svg class="shortcut-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                class="shortcut-icon"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <polygon points="12 5 6 12 18 12 12 5"></polygon>
               </svg>
               <span>to navigate</span>
             </div>
             <div class="shortcut-item">
-              <svg class="shortcut-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                class="shortcut-icon"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
               </svg>

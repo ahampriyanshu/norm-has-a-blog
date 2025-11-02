@@ -47,7 +47,6 @@ interface Post {
 }
 
 export const load = async (): Promise<{ posts: Post[] }> => {
-  // Load your posts
 };
 ```
 

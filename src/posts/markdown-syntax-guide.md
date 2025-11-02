@@ -66,8 +66,6 @@ Use `inline code` for short code snippets.
 You can add filenames to code blocks using the syntax: ` ```language:filename.ext `
 
 ```javascript:greeting.js
-// JavaScript example with filename
-
 const greeting = (name) => {
   return `Hello, ${name}!`;
 };

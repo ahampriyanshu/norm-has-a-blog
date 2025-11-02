@@ -1,4 +1,3 @@
-// Variables
 $sidebar-width: 260px;
 $sidebar-width-large: 300px;
 $topbar-height: 3rem;
@@ -7,7 +6,6 @@ $main-content-max-width: 1250px;
 $radius-sm: 6px;
 $radius-lg: 10px;
 
-// Base styles
 *,
 *::before,
 *::after {
@@ -65,7 +63,6 @@ $radius-lg: 10px;
   --heading-color: #cccccc;
   --link-color: rgb(138 180 248);
   --border-color: rgb(66 66 66);
-  // #ff5e00
   --sidebar-bg: #1e1e1e;
   --sidebar-border-color: #292929;
   --sidebar-active-color: rgb(255 255 255 / 95%);
@@ -95,7 +92,6 @@ $radius-lg: 10px;
   --blockquote-border: #00adb5;
   --blockquote-text: #eaeaea;
 
-  // Override action button styles for dark mode
   .post-header-section .action-btn {
     background: #2d2e30;
     border: none;
@@ -114,7 +110,6 @@ $radius-lg: 10px;
     background: #2d2e30;
   }
 
-  // Override copy dropdown wrapper for dark mode
   .post-header-section .copy-dropdown-wrapper {
     background: #2d2e30;
     border: 1px solid #404040;
@@ -136,7 +131,6 @@ $radius-lg: 10px;
     }
   }
 
-  // Override dropdown styles for dark mode
   .post-header-section .dropdown-menu {
     background: #2d2e30;
     border: 1px solid #404040;
@@ -202,9 +196,6 @@ a {
   }
 }
 
-// Sidebar and topbar styles removed - now using header navigation
-
-// Cards
 .card {
   background-color: var(--card-bg);
   border-radius: $radius-lg;
@@ -258,7 +249,6 @@ a {
   }
 }
 
-// Utility classes
 .d-flex {
   display: flex;
 }
@@ -387,7 +377,6 @@ a {
   box-shadow: var(--card-shadow);
 }
 
-// Responsive grid
 .container {
   width: 100%;
   max-width: $main-content-max-width;
@@ -482,14 +471,12 @@ a {
   font-style: italic;
 }
 
-// Icon component styling
 .icon {
   display: inline-block;
   vertical-align: middle;
   line-height: 1;
 }
 
-// Code block styles (global, outside prose)
 :global(.code-block-wrapper) {
   position: relative;
   margin-bottom: 1.5rem;
@@ -533,6 +520,52 @@ a {
       font-weight: 500;
       letter-spacing: 0.01em;
     }
+
+    .copy-code-btn {
+      background: transparent;
+      border: none;
+      color: #9ca3af;
+      padding: 0.375rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      position: relative;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #d4d4d4;
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+
+      .copy-icon {
+        display: block;
+        transition: opacity 0.2s ease;
+      }
+
+      .check-icon {
+        display: none;
+        position: absolute;
+        transition: opacity 0.2s ease;
+      }
+
+      &.copied {
+        color: #4ade80;
+
+        .copy-icon {
+          display: none;
+        }
+
+        .check-icon {
+          display: block;
+        }
+      }
+    }
   }
 }
 
@@ -561,7 +594,6 @@ a {
     margin-bottom: 0.5rem;
   }
 
-  // Task list styling
   ul:has(input[type='checkbox']),
   ul.contains-task-list {
     list-style: none;
@@ -621,7 +653,6 @@ a {
       }
     }
 
-    // Strike through completed tasks
     &:has(input[type='checkbox']:checked) {
       color: var(--text-muted);
 
@@ -655,7 +686,6 @@ a {
     }
   }
 
-  // Code block with filename header
   .code-block-wrapper {
     position: relative;
     margin-bottom: 1.5rem;
@@ -701,32 +731,48 @@ a {
       }
 
       .copy-code-btn {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        color: #d4d4d4;
-        padding: 0.25rem 0.625rem;
-        border-radius: 4px;
-        font-size: 0.75rem;
+        background: transparent;
+        border: none;
+        color: #9ca3af;
+        padding: 0.375rem;
         cursor: pointer;
         transition: all 0.2s ease;
-        font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
         display: flex;
         align-items: center;
-        gap: 0.375rem;
+        justify-content: center;
+        border-radius: 4px;
+        position: relative;
 
         &:hover {
-          background: rgba(255, 255, 255, 0.15);
-          border-color: rgba(255, 255, 255, 0.25);
+          background: rgba(255, 255, 255, 0.1);
+          color: #d4d4d4;
         }
 
         &:active {
-          transform: scale(0.95);
+          transform: scale(0.9);
+        }
+
+        .copy-icon {
+          display: block;
+          transition: opacity 0.2s ease;
+        }
+
+        .check-icon {
+          display: none;
+          position: absolute;
+          transition: opacity 0.2s ease;
         }
 
         &.copied {
-          background: rgba(34, 197, 94, 0.2);
-          border-color: rgba(34, 197, 94, 0.4);
           color: #4ade80;
+
+          .copy-icon {
+            display: none;
+          }
+
+          .check-icon {
+            display: block;
+          }
         }
       }
     }
@@ -739,7 +785,6 @@ a {
     }
   }
 
-  // Shiki code blocks styling
   pre.shiki,
   pre.shiki code {
     background: none !important;
@@ -825,7 +870,6 @@ a {
       border-bottom: none;
     }
 
-    // Text alignment from markdown
     th[align='center'],
     td[align='center'] {
       text-align: center;
@@ -843,11 +887,6 @@ a {
   }
 }
 
-// ============================================================================
-// Component Styles
-// ============================================================================
-
-// Layout Styles
 .app-container {
   min-height: 100vh;
   display: flex;
@@ -910,24 +949,20 @@ a {
     padding-left: 3rem;
   }
 
-  // Search - first item in sidebar
   .panel-search {
     margin-bottom: 2rem;
   }
 
-  // Recent Posts - scrolls normally
   .panel-recent {
     margin-bottom: 2rem;
   }
 
-  // TOC - becomes sticky when scrolling
   .panel-toc-sticky {
     position: sticky;
     top: 2rem;
     max-height: calc(100vh - 4rem);
     overflow-y: hidden;
 
-    /* Custom scrollbar */
     &::-webkit-scrollbar {
       width: 4px;
     }
@@ -953,7 +988,6 @@ a {
   }
 }
 
-// Header/Topbar Styles
 .site-header {
   padding: 2rem 0 1.5rem 0;
   margin-bottom: 2rem;
@@ -1053,7 +1087,6 @@ a {
   }
 }
 
-// Search Modal Styles
 .search-overlay {
   position: fixed;
   top: 0;
@@ -1257,7 +1290,6 @@ a {
   }
 }
 
-// Search Empty State
 .search-empty-state {
   display: flex;
   align-items: center;
@@ -1272,7 +1304,6 @@ a {
   margin: 0;
 }
 
-// Search Shortcuts
 .search-shortcuts {
   display: flex;
   align-items: center;
@@ -1318,7 +1349,6 @@ a {
   background: #3a3a3a;
 }
 
-// Footer Styles
 .site-footer {
   margin-top: 2.5rem;
   padding: 2rem 0 1.5rem;
@@ -1370,7 +1400,6 @@ a {
   font-size: 0.9rem;
 }
 
-// Enhanced Footer Styles
 .footer-enhanced {
   padding: 3rem 0 2rem;
   max-width: 1200px;
@@ -1615,7 +1644,6 @@ a {
   }
 }
 
-// Back to Top Button
 #back-to-top {
   position: fixed;
   bottom: 2rem;
@@ -1730,7 +1758,6 @@ a {
     }
   }
 
-  // Collapsible subsections
   .toc-sublist {
     list-style: none;
     padding: 0;
@@ -1779,7 +1806,6 @@ a {
   }
 }
 
-// Recently Updated / Recent Posts Styles
 .recently-updated {
   .panel-heading {
     font-size: 1rem;
@@ -1818,7 +1844,6 @@ a {
   }
 }
 
-// Home Page Styles
 .post-list {
   max-width: 100%;
 
@@ -1912,7 +1937,6 @@ a {
   }
 }
 
-// Tags Page Styles
 .tags-page {
   .page-title {
     font-size: 2rem;
@@ -1946,7 +1970,6 @@ a {
   }
 }
 
-// Archives Page Styles
 .archives-page {
   .page-title {
     font-size: 2rem;
@@ -2006,7 +2029,6 @@ a {
   }
 }
 
-// About Page Styles
 .about-page {
   max-width: 800px;
   line-height: 1.8;
@@ -2060,7 +2082,6 @@ a {
   }
 }
 
-// Error Page Styles
 .error-page {
   display: flex;
   align-items: center;
@@ -2109,8 +2130,6 @@ a {
   }
 }
 
-// Post Page Styles
-// Post Header Section (outside main content, full width)
 .post-header-section {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
@@ -2128,7 +2147,6 @@ a {
     line-height: 1.2;
   }
 
-  // Action Widget Styles
   .post-actions-widget {
     display: flex;
     align-items: center;
@@ -2372,13 +2390,11 @@ a {
   }
 }
 
-// Post Article Content
 .post-article {
   .content {
     margin-bottom: 3rem;
     line-height: 1.8;
 
-    // Ensure first heading is h2, not h1
     :global(h1) {
       font-size: 1.75rem;
       font-weight: 600;
@@ -2459,7 +2475,6 @@ a {
   }
 }
 
-// Legacy article styles (for backwards compatibility)
 article {
   .px-1 {
     padding-left: 0.25rem;
@@ -2525,7 +2540,6 @@ article {
   }
 }
 
-// Responsive adjustments for search
 @media (max-width: 768px) {
   .site-header {
     padding: 1.5rem 0 1rem 0;
@@ -2605,7 +2619,6 @@ article {
   }
 }
 
-// Tag Page & Category Page Styles (for individual tag/category)
 .tag-page,
 .category-page {
   .page-title {
@@ -2622,7 +2635,6 @@ article {
   }
 }
 
-// Sidebar Search Styles
 .sidebar-search {
   .search-input-wrapper {
     position: relative;

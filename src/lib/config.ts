@@ -7,6 +7,7 @@ export const siteConfig = {
   subPath: '/norm-has-a-blog',
   githubUsername: 'ahampriyanshu',
   githubRepo: 'norm-has-a-blog',
+  twitterHandle: 'ahampriyanshu', // Optional: your Twitter username without @
   lang: 'en',
   timezone: 'Asia/Kolkata',
   theme: 'dark',

@@ -8,7 +8,37 @@
 </script>
 
 <svelte:head>
-  <title>{data.siteConfig.title}</title>
+  <title>{data.siteConfig.title} - {data.siteConfig.description}</title>
+  <meta name="description" content={data.siteConfig.description} />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{data.siteConfig.baseURL}{data.siteConfig.subPath}/" />
+
+  <!-- OpenGraph meta tags for homepage -->
+  <meta property="og:site_name" content={data.siteConfig.title} />
+  <meta property="og:title" content="{data.siteConfig.title} - {data.siteConfig.description}" />
+  <meta property="og:description" content={data.siteConfig.description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/" />
+  <meta
+    property="og:image"
+    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/images/hero.jpeg"
+  />
+  <meta property="og:image:alt" content={data.siteConfig.title} />
+  <meta property="og:locale" content={data.siteConfig.lang} />
+
+  <!-- Twitter Card meta tags for homepage -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{data.siteConfig.title} - {data.siteConfig.description}" />
+  <meta name="twitter:description" content={data.siteConfig.description} />
+  <meta
+    name="twitter:image"
+    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/images/hero.jpeg"
+  />
+  {#if data.siteConfig.twitterHandle}
+    <meta name="twitter:site" content="@{data.siteConfig.twitterHandle}" />
+    <meta name="twitter:creator" content="@{data.siteConfig.twitterHandle}" />
+  {/if}
 </svelte:head>
 
 <div class="post-list">
@@ -17,7 +47,7 @@
       <a href="{base}/posts/{post.slug}" class="post-preview">
         {#if post.image}
           <div class="post-image">
-            <img src={post.image} alt={post.title} loading="lazy">
+            <img src={post.image} alt={post.title} loading="lazy" />
           </div>
         {/if}
 
@@ -53,4 +83,3 @@
     </article>
   {/each}
 </div>
-

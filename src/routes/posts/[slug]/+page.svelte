@@ -100,6 +100,76 @@
   {#if metadata.description}
     <meta name="description" content={metadata.description} />
   {/if}
+
+  <!-- Canonical URL -->
+  <link
+    rel="canonical"
+    href="{data.siteConfig.baseURL}{data.siteConfig.subPath}/posts/{metadata.slug}"
+  />
+
+  <!-- OpenGraph meta tags for blog posts -->
+  <meta property="og:site_name" content={data.siteConfig.title} />
+  <meta property="og:title" content={metadata.title} />
+  {#if metadata.description}
+    <meta property="og:description" content={metadata.description} />
+  {/if}
+  <meta property="og:type" content="article" />
+  <meta
+    property="og:url"
+    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/posts/{metadata.slug}"
+  />
+  {#if metadata.image}
+    <meta
+      property="og:image"
+      content="{data.siteConfig.baseURL}{data.siteConfig.subPath}{metadata.image}"
+    />
+    <meta property="og:image:alt" content={metadata.title} />
+  {:else}
+    <meta
+      property="og:image"
+      content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/images/hero.jpeg"
+    />
+    <meta property="og:image:alt" content={metadata.title} />
+  {/if}
+  <meta property="og:locale" content={data.siteConfig.lang} />
+  <meta property="article:published_time" content={metadata.date} />
+  {#if metadata.updated}
+    <meta property="article:modified_time" content={metadata.updated} />
+  {/if}
+  <meta property="article:author" content={data.siteConfig.author} />
+  {#if metadata.tags && metadata.tags.length > 0}
+    {#each metadata.tags as tag}
+      <meta property="article:tag" content={tag} />
+    {/each}
+  {/if}
+
+  <!-- Twitter Card meta tags for blog posts -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={metadata.title} />
+  {#if metadata.description}
+    <meta name="twitter:description" content={metadata.description} />
+  {/if}
+  {#if metadata.image}
+    <meta
+      name="twitter:image"
+      content="{data.siteConfig.baseURL}{data.siteConfig.subPath}{metadata.image}"
+    />
+  {:else}
+    <meta
+      name="twitter:image"
+      content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/images/hero.jpeg"
+    />
+  {/if}
+  {#if data.siteConfig.twitterHandle}
+    <meta name="twitter:site" content="@{data.siteConfig.twitterHandle}" />
+    <meta name="twitter:creator" content="@{data.siteConfig.twitterHandle}" />
+  {/if}
+  <meta name="twitter:label1" content="Reading time" />
+  <meta name="twitter:data1" content={metadata.readingTime} />
+  {#if metadata.tags && metadata.tags.length > 0}
+    <meta name="twitter:label2" content="Tags" />
+    <meta name="twitter:data2" content={metadata.tags.join(', ')} />
+  {/if}
   {#if data.metadata.math}
     <script>
       window.MathJax = {

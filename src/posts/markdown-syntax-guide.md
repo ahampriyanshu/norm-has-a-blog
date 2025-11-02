@@ -132,13 +132,13 @@ You can use emojis! 😄 🎉 🚀 ✨ 💡
 
 ## Math Equations
 
-Mathematical expressions are fully supported using MathJax. Use single dollar signs `$...$` for inline math and double dollar signs `$$...$$` for display math.
+Mathematical expressions are fully supported using MathJax. Use single dollar signs `$...$` for inline math and double dollar signs `$$...$$` for multi line math.
 
 ### Inline Math
 
 You can write inline equations like $E = mc^2$ or the quadratic formula $x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$ directly in your text.
 
-### Display Math
+### Multi Line Math
 
 For larger equations, use display mode:
 
@@ -147,6 +147,17 @@ $$
 $$
 
 ### Complex Examples
+
+
+### Summation and Limits
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+$$
+
+$$
+\lim_{x \to 0} \frac{\sin x}{x} = 1
+$$
 
 The Schrödinger equation:
 
@@ -183,19 +194,6 @@ cx + dy
 \end{bmatrix}
 $$
 
-### Greek Letters and Symbols
-
-You can use Greek letters like $\alpha$, $\beta$, $\gamma$, $\Delta$, $\Omega$ and symbols like $\infty$, $\partial$, $\nabla$, $\sum$, $\prod$, $\int$.
-
-### Summation and Limits
-
-$$
-\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
-$$
-
-$$
-\lim_{x \to 0} \frac{\sin x}{x} = 1
-$$
 
 ## HTML
 

@@ -1,6 +1,11 @@
-# norm-has-a-blog
+# Norm has a blog
 
-A modern, fast, and feature-rich blog built with SvelteKit. Write your blog posts in Markdown and enjoy automatic static site generation.
+A modern, fast, and feature-rich blog built with SvelteKit.
+
+[![CI](https://img.shields.io/github/actions/workflow/status/ahampriyanshu/norm-has-a-blog/ci.yml?logo=github)][ci]&nbsp;
+[![GitHub license](https://img.shields.io/github/license/ahampriyanshu/norm-has-a-blog?color=goldenrod)][license]&nbsp;
+[![Website status](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://ahampriyanshu.com/norm-has-a-blog)
+[![Release](https://img.shields.io/github/v/release/ahampriyanshu/norm-has-a-blog?logo=github)][release]&nbsp;
 
 ## Features
 
@@ -19,20 +24,18 @@ A modern, fast, and feature-rich blog built with SvelteKit. Write your blog post
 
 ### Prerequisites
 
-- Node.js 18 or higher
-- npm, pnpm, or yarn
+- Node.js 22
+- npm
 
 ### Installation
 
-1. Clone this repository or download the `sveltekit-blog` folder
+1. Clone this repository
 
 2. Install dependencies:
 
 ```bash
 npm install
 ```
-
-### Development
 
 Start the development server:
 
@@ -41,8 +44,6 @@ npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-### Building for Production
 
 Build the static site:
 
@@ -64,40 +65,6 @@ npm run preview
 2. Add frontmatter with metadata
 3. Write your content in Markdown
 
-### Post Frontmatter
-
-```markdown
----
-title: Your Post Title
-description: A brief description of your post
-date: '2024-01-15'
-updated: '2024-01-16'  # Optional
-author: Your Name        # Optional
-tags:
-  - tag1
-  - tag2
-  - tag3
-pin: false               # Pin to top of home page
-image: /path/to/image.jpg # Optional featured image
----
-
-Your content here...
-```
-
-### Supported Frontmatter Fields
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `title` | string | ✅ | Post title |
-| `description` | string | ✅ | Short description/excerpt |
-| `date` | string | ✅ | Publication date (YYYY-MM-DD) |
-| `updated` | string | ❌ | Last updated date |
-| `author` | string | ❌ | Post author |
-| `tags` | array | ❌ | Post tags |
-| `pin` | boolean | ❌ | Pin post to homepage |
-| `image` | string | ❌ | Featured image URL |
-| `math` | boolean | ❌ | Enable math rendering |
-| `mermaid` | boolean | ❌ | Enable Mermaid diagrams |
 
 ## Configuration
 
@@ -208,18 +175,6 @@ Create Svelte components in `src/lib/components/` and import them where needed.
 - Post layout: `src/routes/posts/[slug]/+page.svelte`
 - Markdown layouts: `src/lib/layouts/`
 
-## Features Roadmap
-
-- [ ] Full-text search
-- [ ] RSS feed generation
-- [ ] Comment system integration
-- [ ] Analytics integration
-- [ ] Social share buttons
-- [ ] Related posts
-- [ ] Reading progress indicator
-- [ ] Math equation support (KaTeX)
-- [ ] Mermaid diagrams support
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -236,8 +191,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 - Built with [SvelteKit](https://kit.svelte.dev/)
 - Markdown processing by [mdsvex](https://mdsvex.pngwn.io/)
-
----
-
-Made with ❤️ using SvelteKit
+- Math rendering by [MathJax](https://www.mathjax.org/)
+- Code highlighting by [Shiki](https://shiki.gitbook.io/)
+- Deployed on [GitHub Pages](https://pages.github.com/)
 

@@ -5,7 +5,6 @@ date: '2025-11-02'
 tags:
   - writing
   - guide
-pin: true
 ---
 
 ## Headings

@@ -24,21 +24,21 @@ pin: true
 
 HTML defines a long list of available inline tags, a complete list of which can be found on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
 
-- **To bold text**, use `<strong>`.
-- *To italicize text*, use `<em>`.
-- Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use `<abbr>`, with an optional `title` attribute for the full phrase.
-- Citations, like <cite>&mdash; Mark otto</cite>, should use `<cite>`.
-- <del>Deleted</del> text should use `<del>` and <ins>inserted</ins> text should use `<ins>`.
-- Superscript <sup>text</sup> uses `<sup>` and subscript <sub>text</sub> uses `<sub>`.
-- <kbd>keyboard input</kbd> use `<kbd>`.
-- <mark>marked</mark> text should use `<mark>`.
-- <q>short inline quotations</q> should use `<q>`.
-- <s>strikethrough</s> text should use `<s>`.
-- <small>small text</small> should use `<small>`.
-- <span>span</span> text should use `<span>`.
-- <sub>subscript</sub> text should use `<sub>`.
-- <sup>superscript</sup> text should use `<sup>`.
-- <time>datetime</time> text should use `<time>`.
+**To bold text**, use `<strong>`.
+*To italicize text*, use `<em>`.
+Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use `<abbr>`, with an optional `title` attribute for the full phrase.
+Citations, like <cite>&mdash; Mark otto</cite>, should use `<cite>`.
+<del>Deleted</del> text should use `<del>` and <ins>inserted</ins> text should use `<ins>`.
+Superscript <sup>text</sup> uses `<sup>` and subscript <sub>text</sub> uses `<sub>`.
+<kbd>keyboard input</kbd> use `<kbd>`.
+<mark>marked</mark> text should use `<mark>`.
+<q>short inline quotations</q> should use `<q>`.
+<s>strikethrough</s> text should use `<s>`.
+<small>small text</small> should use `<small>`.
+<span>span</span> text should use `<span>`.
+<sub>subscript</sub> text should use `<sub>`.
+<sup>superscript</sup> text should use `<sup>`.
+<time>datetime</time> text should use `<time>`.
 
 ## Links
 

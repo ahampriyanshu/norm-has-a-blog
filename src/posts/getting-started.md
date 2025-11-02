@@ -7,8 +7,6 @@ tags:
   - writing
   - guide
   - syntax
-math: true
-pin: true
 ---
 
 ## Headings

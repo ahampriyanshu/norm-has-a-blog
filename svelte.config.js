@@ -8,13 +8,29 @@ import remarkToc from 'remark-toc';
 import remarkMath from 'remark-math';
 import { rehypeEscapeMath } from './src/lib/utils/rehype-escape-math.js';
 import { createCodeHighlighter } from './src/lib/utils/code-highlighter.js';
+import { visit } from 'unist-util-visit';
 
 const basePath = '/norm-has-a-blog';
+
+// Simple inline rehype plugin to fix image paths
+const rehypeFixImagePaths = () => (tree) => {
+  const base = process.env.NODE_ENV === 'production' ? basePath : '';
+  if (!base) return;
+
+  visit(tree, 'element', (node) => {
+    if (node.tagName === 'img' && node.properties?.src) {
+      const src = node.properties.src;
+      if (typeof src === 'string' && src.startsWith('/') && !src.startsWith('//')) {
+        node.properties.src = `${base}${src}`;
+      }
+    }
+  });
+};
 
 const mdsvexOptions = {
   extensions: ['.md'],
   remarkPlugins: [remarkGfm, remarkToc, remarkMath],
-  rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeEscapeMath],
+  rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeEscapeMath, rehypeFixImagePaths],
   layout: {
     post: './src/lib/layouts/PostLayout.svelte',
     _: './src/lib/layouts/DefaultLayout.svelte'

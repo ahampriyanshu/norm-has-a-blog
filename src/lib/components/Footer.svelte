@@ -6,6 +6,7 @@
   export let isPostPage = false;
   export let postTitle = '';
 
+  const startYear = 2022;
   const currentYear = new Date().getFullYear();
 
   function scrollToTop() {
@@ -127,7 +128,7 @@
         </a>
       </p>
       <p class="footer-credits-license">
-        Copyright © 2022 - {currentYear} Distributed under
+        Copyright © {startYear} - {currentYear} Distributed under
         <a
           href="https://github.com/ahampriyanshu/norm-has-a-blog/blob/main/LICENSE"
           target="_blank"

@@ -489,6 +489,83 @@ a {
   line-height: 1;
 }
 
+// Code block styles (global, outside prose)
+:global(.code-block-standalone) {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  display: block;
+
+  pre.shiki {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    display: block;
+  }
+
+  .copy-code-btn-standalone {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #d4d4d4;
+    padding: 0.25rem 0.625rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    opacity: 0;
+    z-index: 10;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &.copied {
+      opacity: 1;
+      background: rgba(34, 197, 94, 0.2);
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #4ade80;
+    }
+  }
+
+  &:hover .copy-code-btn-standalone {
+    opacity: 1;
+  }
+}
+
+:global(.code-block-wrapper) {
+  position: relative;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+  .code-filename {
+    background: #2d2d2d;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.8125rem;
+    color: #d4d4d4;
+  }
+}
+
 .prose {
   h2 {
     margin-top: 2rem;
@@ -514,6 +591,77 @@ a {
     margin-bottom: 0.5rem;
   }
 
+  // Task list styling
+  ul:has(input[type='checkbox']),
+  ul.contains-task-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  li:has(> input[type='checkbox']),
+  li.task-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-left: 0;
+    list-style: none;
+
+    &::before {
+      content: none;
+    }
+
+    input[type='checkbox'] {
+      margin-top: 0.35rem;
+      width: 1.125rem;
+      height: 1.125rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 2px solid var(--border-color);
+      border-radius: 0.25rem;
+      background-color: var(--card-bg);
+      position: relative;
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-color: var(--link-color);
+      }
+
+      &:checked {
+        background-color: var(--link-color);
+        border-color: var(--link-color);
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0.3rem;
+          top: 0.05rem;
+          width: 0.35rem;
+          height: 0.65rem;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+      }
+
+      &:disabled {
+        cursor: default;
+        opacity: 0.6;
+      }
+    }
+
+    // Strike through completed tasks
+    &:has(input[type='checkbox']:checked) {
+      color: var(--text-muted);
+
+      > *:not(input) {
+        text-decoration: line-through;
+        opacity: 0.7;
+      }
+    }
+  }
+
   code {
     background: var(--code-bg);
     padding: 0.2rem 0.4rem;
@@ -537,19 +685,162 @@ a {
     }
   }
 
-  // Shiki code blocks styling
+  // Code block with filename header
+  .code-block-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+    border-radius: $radius-sm;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .code-filename {
+      background: #2d2d2d;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+      font-size: 0.8125rem;
+      color: #d4d4d4;
+
+      .filename-left {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .code-icon {
+          font-size: 0.95rem;
+          line-height: 1;
+        }
+
+        .code-filename-text {
+          font-weight: 500;
+          letter-spacing: 0.01em;
+        }
+      }
+
+      .copy-code-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #d4d4d4;
+        padding: 0.25rem 0.625rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+
+        &.copied {
+          background: rgba(34, 197, 94, 0.2);
+          border-color: rgba(34, 197, 94, 0.4);
+          color: #4ade80;
+        }
+      }
+    }
+
+    pre.shiki {
+      margin: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      border: none !important;
+    }
+  }
+
+  // Shiki code blocks styling (without filename)
   pre.shiki,
   pre.shiki code {
     background: none !important;
   }
 
   pre.shiki {
-    background-color: #1e1e1e !important; // VS Code dark background
+    position: relative;
+    background-color: #1e1e1e !important;
     padding: 1rem;
     border-radius: $radius-sm;
     overflow-x: auto;
     margin-bottom: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: none;
+
+    &:hover .copy-code-btn-standalone {
+      opacity: 1;
+    }
+  }
+
+  // Standalone code block container (added via JS for non-filename blocks)
+  :global(.code-block-standalone) {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $radius-sm;
+    margin-bottom: 1rem;
+    overflow: hidden;
+
+    pre.shiki {
+      margin-bottom: 0 !important;
+      border-radius: 0 !important;
+    }
+  }
+
+  .code-block-standalone {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $radius-sm;
+    margin-bottom: 1rem;
+    overflow: hidden;
+
+    pre.shiki {
+      margin-bottom: 0 !important;
+      border-radius: 0 !important;
+    }
+  }
+
+  // Copy button for standalone code blocks (no filename)
+  .copy-code-btn-standalone {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #d4d4d4;
+    padding: 0.25rem 0.625rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    opacity: 0;
+    z-index: 10;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &.copied {
+      opacity: 1;
+      background: rgba(34, 197, 94, 0.2);
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #4ade80;
+    }
   }
 
   blockquote {
@@ -591,17 +882,52 @@ a {
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 1rem;
+    margin: 2rem 0;
+    font-size: 0.9rem;
 
     th,
     td {
-      padding: 0.75rem;
-      border: 1px solid var(--border-color);
+      padding: 0.875rem 1rem;
+      text-align: left;
+    }
+
+    thead {
+      border-bottom: 2px solid var(--border-color);
     }
 
     th {
-      background-color: var(--card-bg);
       font-weight: 600;
+      color: var(--heading-color);
+      padding-bottom: 0.75rem;
+    }
+
+    td {
+      color: var(--text-color);
+      border-bottom: 1px solid var(--border-color);
+
+      code {
+        font-size: 0.85em;
+      }
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    // Text alignment from markdown
+    th[align='center'],
+    td[align='center'] {
+      text-align: center;
+    }
+
+    th[align='right'],
+    td[align='right'] {
+      text-align: right;
+    }
+
+    th[align='left'],
+    td[align='left'] {
+      text-align: left;
     }
   }
 }

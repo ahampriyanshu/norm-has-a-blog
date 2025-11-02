@@ -63,8 +63,10 @@ Use `inline code` for short code snippets.
 
 ### Code Blocks
 
-```javascript
-// JavaScript example
+You can add filenames to code blocks using the syntax: ` ```language:filename.ext `
+
+```javascript:greeting.js
+// JavaScript example with filename
 
 const greeting = (name) => {
   return `Hello, ${name}!`;
@@ -73,8 +75,17 @@ const greeting = (name) => {
 console.log(greeting('World'));
 ```
 
-```python
-# Python example
+Or without a filename:
+
+```javascript
+// JavaScript example without filename
+function add(a, b) {
+  return a + b;
+}
+```
+
+```python:fibonacci.py
+# Python example with filename
 def fibonacci(n):
     if n <= 1:
         return n
@@ -83,8 +94,8 @@ def fibonacci(n):
 print(fibonacci(10))
 ```
 
-```css
-/* CSS example */
+```css:styles.css
+/* CSS example with filename */
 .button {
   background-color: #0066cc;
   color: white;

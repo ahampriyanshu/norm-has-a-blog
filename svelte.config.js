@@ -32,14 +32,32 @@ const mdsvexOptions = {
         });
       }
 
+      // Parse language and filename (supports formats like "javascript:file.js" or "javascript {file.js}")
+      let validLang = lang || 'text';
+      let filename = '';
+
+      if (lang) {
+        // Match patterns like "javascript:file.js" or "js:file.js"
+        const colonMatch = lang.match(/^(\w+):(.+)$/);
+        // Match patterns like "javascript {file.js}" or "js {file.js}"
+        const braceMatch = lang.match(/^(\w+)\s*\{(.+)\}$/);
+
+        if (colonMatch) {
+          validLang = colonMatch[1];
+          filename = colonMatch[2].trim();
+        } else if (braceMatch) {
+          validLang = braceMatch[1];
+          filename = braceMatch[2].trim();
+        }
+      }
+
       // Default to plaintext if language is not recognized
-      let validLang = lang;
       const loadedLanguages = highlighter.getLoadedLanguages();
-      if (!loadedLanguages.includes(lang)) {
+      if (!loadedLanguages.includes(validLang)) {
         validLang = 'text';
       }
 
-      const html = highlighter.codeToHtml(code, {
+      let html = highlighter.codeToHtml(code, {
         lang: validLang,
         themes: {
           light: 'gruvbox-dark-hard',
@@ -47,8 +65,76 @@ const mdsvexOptions = {
         }
       });
 
+      // Escape the code for the data attribute
+      const escapedCode = code.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+      // Add filename header if present, or add copy button to standalone code blocks
+      let finalHtml = html;
+      if (filename) {
+        // Get file icon based on extension
+        const ext = filename.split('.').pop()?.toLowerCase() || '';
+        let icon = '📄';
+
+        const iconMap = {
+          js: '📜',
+          ts: '📘',
+          jsx: '⚛️',
+          tsx: '⚛️',
+          py: '🐍',
+          css: '🎨',
+          scss: '🎨',
+          html: '🌐',
+          json: '📋',
+          md: '📝',
+          yaml: '⚙️',
+          yml: '⚙️',
+          sh: '🔧',
+          bash: '🔧',
+          rs: '🦀',
+          go: '🐹',
+          java: '☕',
+          php: '🐘',
+          rb: '💎',
+          vue: '💚',
+          svelte: '🧡'
+        };
+
+        icon = iconMap[ext] || icon;
+
+        finalHtml = `<div class="code-block-wrapper"><div class="code-filename"><div class="filename-left"><span class="code-icon">${icon}</span><span class="code-filename-text">${filename}</span></div><button class="copy-code-btn" onclick="
+          const code = this.getAttribute('data-code');
+          navigator.clipboard.writeText(code).then(() => {
+            const btn = this;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✓ Copied';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.classList.remove('copied');
+            }, 2000);
+          });
+        " data-code="${escapedCode}">📋 Copy</button></div>${html}</div>`;
+      } else {
+        // Wrap standalone code blocks in a container and add copy button
+        const modifiedHtml = html.replace(/<pre class="shiki/, `<pre class="shiki`);
+
+        finalHtml = `<div class="code-block-standalone"><button class="copy-code-btn-standalone" onclick="
+          const code = this.getAttribute('data-code');
+          navigator.clipboard.writeText(code).then(() => {
+            const btn = this;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✓ Copied';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.classList.remove('copied');
+            }, 2000);
+          });
+        " data-code="${escapedCode}">📋 Copy</button>${modifiedHtml}</div>`;
+      }
+
       // Use escapeSvelte to properly handle Svelte syntax in the output
-      return `{@html \`${escapeSvelte(html)}\` }`;
+      return `{@html \`${escapeSvelte(finalHtml)}\` }`;
     }
   }
 };

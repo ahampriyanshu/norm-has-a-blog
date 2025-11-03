@@ -8,20 +8,7 @@ tags:
   - tutorial
 ---
 
-## Creating Your First Post
-
 Writing a new blog post is simple and straightforward. This guide will walk you through the entire process, from creating a markdown file to publishing your post.
-
-## Quick Start
-
-The fastest way to create a new post:
-
-1. Create a new `.md` file in `src/posts/`
-2. Add frontmatter with metadata
-3. Write your content in markdown
-4. Save and view in your browser
-
-That's it! The blog automatically discovers and renders new posts.
 
 ## Step-by-Step Guide
 
@@ -217,7 +204,7 @@ Tags help readers discover related content:
 
 ```markdown
 tags:
-  - javascript        # Language
+  - javascript       # Language
   - react            # Framework
   - hooks            # Specific feature
   - tutorial         # Content type

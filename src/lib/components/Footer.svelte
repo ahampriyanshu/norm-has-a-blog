@@ -30,8 +30,18 @@
 
     <div class="footer-main">
       <div class="footer-left">
-        <div class="profile-image">
-          <img src="{base}/logo.png" alt={siteConfig.author} />
+        <div class="profile-image-wrapper">
+          <div class="profile-image">
+            <img src="{base}/logo.png" alt={siteConfig.author} />
+          </div>
+
+          <button
+            class="footer-cta"
+            on:click={() =>
+              (window.location.href = `${siteConfig.contact.email}?subject=Let's Collaborate!`)}
+          >
+            Let's collaborate!
+          </button>
         </div>
 
         <div class="profile-info">
@@ -39,17 +49,14 @@
           <p class="profile-title">{siteConfig.designation}</p>
 
           <div class="social-icons">
-            <a href={siteConfig.contact.email} class="social-icon" aria-label="Email">
-              <Icon name="mail" size={18} />
-            </a>
             <a
-              href={siteConfig.contact.telegram}
+              href={siteConfig.contact.twitter}
               target="_blank"
               rel="noopener noreferrer"
               class="social-icon"
-              aria-label="Telegram"
+              aria-label="X (Twitter)"
             >
-              <Icon name="telegram" size={18} />
+              <Icon name="twitter" size={18} />
             </a>
             <a
               href={siteConfig.contact.github}
@@ -69,12 +76,22 @@
             >
               <Icon name="linkedin" size={18} />
             </a>
+            <a
+              href={siteConfig.contact.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+              aria-label="Resume"
+            >
+              <Icon name="file-text" size={18} />
+            </a>
           </div>
         </div>
       </div>
 
       <div class="footer-right">
         <div class="footer-section">
+          <h4 class="footer-section-title">Projects</h4>
           <ul class="footer-links">
             {#each siteConfig.footerLinks.projects as link}
               <li>
@@ -87,6 +104,7 @@
         </div>
 
         <div class="footer-section">
+          <h4 class="footer-section-title">Blogs</h4>
           <ul class="footer-links">
             {#each siteConfig.footerLinks.blogs as link}
               <li>
@@ -99,6 +117,7 @@
         </div>
 
         <div class="footer-section">
+          <h4 class="footer-section-title">Personal</h4>
           <ul class="footer-links">
             {#each siteConfig.footerLinks.personal as link}
               <li>

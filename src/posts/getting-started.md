@@ -7,7 +7,6 @@ tags:
   - setup
   - getting-started
   - tutorial
-pin: true
 ---
 
 **norm-has-a-blog** is a simple, static, and zero config blog built with SvelteKit. It's designed for developers who want to save and share the stuff they're discovering. (but can be used by anyone for anything.)
@@ -208,24 +207,11 @@ Your blog is a static site and can be deployed anywhere. Here are some popular o
 
 ### GitHub Pages (Recommended)
 
-1. Make sure the githup pages is configured for your account.
-2. 
+1. Make sure [githup pages is configured](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow) for your account.
+2. Push the changes to origin.
+3. Enable GitHub Pages in repository settings.
+4. The [Deploy to GitHub Pages / build (push)](https://github.com/ahampriyanshu/norm-has-a-blog/actions/workflows/deploy.yml) workflow will automatically build and deploy your site to GitHub Pages.
 
-### Vercel
-
-1. **Install Vercel CLI**
-
-```bash
-npm i -g vercel
-```
-
-2. **Deploy**
-
-```bash
-vercel
-```
-
-Follow the prompts. Vercel will automatically detect your SvelteKit project.
 
 ### Netlify
 

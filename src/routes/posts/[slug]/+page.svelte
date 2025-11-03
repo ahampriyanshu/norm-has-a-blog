@@ -10,16 +10,21 @@
 
   export let data: PageData;
 
-  const { metadata } = data;
-  const { previousPost, nextPost, siteConfig } = data;
   const postModules = import.meta.glob('../../../posts/**/*.md', { eager: true }) as Record<
     string,
     { default: ComponentType }
   >;
-  const contentEntry = Object.entries(postModules).find(([path]) =>
+
+  // Make these reactive so they update when data changes
+  $: metadata = data.metadata;
+  $: previousPost = data.previousPost;
+  $: nextPost = data.nextPost;
+  $: siteConfig = data.siteConfig;
+
+  $: contentEntry = Object.entries(postModules).find(([path]) =>
     path.endsWith(`/${metadata.slug}.md`)
   );
-  const Content = contentEntry?.[1]?.default;
+  $: Content = contentEntry?.[1]?.default;
 
   let showToast = false;
   let toastMessage = '';

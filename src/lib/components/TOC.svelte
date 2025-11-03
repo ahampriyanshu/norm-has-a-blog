@@ -71,8 +71,25 @@
     }
   }
 
-  onMount(() => {
+  function setupObserver() {
     if (!browser || headings.length === 0) return;
+
+    // Cleanup existing observer
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
+
+    // Cleanup existing scroll listener
+    if (scrollCleanup) {
+      scrollCleanup();
+      scrollCleanup = null;
+    }
+
+    // Reset state
+    visibleHeadings.clear();
+    activeId = '';
+    activeH2Id = '';
 
     const observerOptions = {
       rootMargin: '-100px 0px -66% 0px',
@@ -140,6 +157,15 @@
     scrollCleanup = () => {
       window.removeEventListener('scroll', handleScroll);
     };
+  }
+
+  // Re-setup observer when headings change
+  $: if (browser && headings) {
+    setTimeout(() => setupObserver(), 50);
+  }
+
+  onMount(() => {
+    setupObserver();
 
     return () => {
       scrollCleanup?.();

@@ -7,7 +7,7 @@ export const siteConfig = {
   subPath: '/norm-has-a-blog',
   githubUsername: 'ahampriyanshu',
   githubRepo: 'norm-has-a-blog',
-  twitterHandle: 'ahampriyanshu', // Optional: your Twitter username without @
+  twitterHandle: 'ahampriyanshu',
   lang: 'en',
   timezone: 'Asia/Kolkata',
   theme: 'dark',
@@ -17,10 +17,12 @@ export const siteConfig = {
   },
   paginate: 10,
   contact: {
-    email: 'mailto:vayampriyanshu@gmail.com',
-    telegram: 'https://t.me/ahampriyanshu',
     github: 'https://github.com/ahampriyanshu',
-    linkedin: 'https://linkedin.com/in/ahampriyanshu'
+    linkedin: 'https://linkedin.com/in/ahampriyanshu',
+    resume: 'https://ahampriyanshu.com/resume',
+    twitter: 'https://twitter.com/ahampriyanshu',
+    email: 'mailto:vayampriyanshu@gmail.com'
+    // telegram: 'https://t.me/ahampriyanshu',
   },
   navItems: [
     { name: 'Home', url: '/' },

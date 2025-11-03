@@ -37,6 +37,10 @@ a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>
 
 H<sub>2</sub> + SO<sub>4</sub> &rarr; H<sub>2</sub>SO<sub>4</sub>
 
+### Headings
+
+#### Subheadings
+
 ## Links
 
 [This is an inline link](https://example.com)

@@ -121,12 +121,10 @@ Use three or more hyphens, asterisks, or underscores:
 
 ## Tables
 
-| Syntax | Description | Example |
+|  | God Exists | God Does Not Exist |
 |--------|-------------|---------|
-| Header | Title | Value |
-| Paragraph | Text | Content |
-| Bold | **Bold** | **Example** |
-| Italic | _Italic_ | _Example_ |
+| You Believe | Major Gain | Minor Loss |
+| You Don't Believe | Major Loss | Minor Gain |
 
 Aligned tables:
 
@@ -139,7 +137,7 @@ Aligned tables:
 
 You can add images using standard Markdown syntax:
 
-![Alt text](/images/hero.jpeg)
+![Hero Image](/images/hero.jpeg)
 
 ## Math Equations
 
@@ -151,13 +149,11 @@ You can write inline equations like $E = mc^2$ or the quadratic formula $x = \fr
 
 ### Multi Line Math
 
-For larger equations, use multi line math.
+Summation and Limits:
 
 $$
 \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
 $$
-
-Summation and Limits
 
 $$
 \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}

@@ -50,15 +50,6 @@
 
           <div class="social-icons">
             <a
-              href={siteConfig.contact.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-icon"
-              aria-label="X (Twitter)"
-            >
-              <Icon name="twitter" size={18} />
-            </a>
-            <a
               href={siteConfig.contact.github}
               target="_blank"
               rel="noopener noreferrer"
@@ -84,6 +75,16 @@
               aria-label="Resume"
             >
               <Icon name="file-text" size={18} />
+            </a>
+
+            <a
+              href={siteConfig.contact.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-icon"
+              aria-label="X (Twitter)"
+            >
+              <Icon name="twitter" size={18} />
             </a>
           </div>
         </div>

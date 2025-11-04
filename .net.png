@@ -50,7 +50,7 @@ export const siteConfig = {
       { name: 'SuperTrips', url: 'https://supertrips.ahampriyanshu.com' },
       { name: '9AM Playlist', url: 'https://open.spotify.com/user/yourprofile' },
       { name: '9PM Playlist', url: 'https://youtube.com/@yourchannel' },
-      { name: 'Bookshelf', url: 'https://goodreads.com/yourprofile' }
+      { name: 'Bookshelf', url: 'https://goodreads.com/yourprofile' },
     ]
   }
 };

@@ -9,7 +9,7 @@ tags:
   - tutorial
 ---
 
-**norm-has-a-blog** is a simple, static, and zero config blog built with SvelteKit. It's designed for developers who want to save and share the stuff they're discovering. (but can be used by anyone for anything.)
+**norm-has-a-blog** is a simple, static, and zero config blog built with SvelteKit. It's designed for developers who want to save and share the stuff they're discovering. [but can be used by anyone for anything :)]
 
 ## Features
 

@@ -6,9 +6,6 @@
   export let isPostPage = false;
   export let postTitle = '';
 
-  const startYear = 2022;
-  const currentYear = new Date().getFullYear();
-
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -146,15 +143,6 @@
         <a href="https://github.com/ahampriyanshu/norm-has-a-blog" target="_blank" rel="noopener">
           <strong>norm-has-a-blog</strong>
         </a>
-      </p>
-      <p class="footer-credits-license">
-        Copyright © {startYear} - {currentYear}. Distributed under
-        <a
-          href="https://github.com/ahampriyanshu/norm-has-a-blog/blob/main/LICENSE"
-          target="_blank"
-          rel="noopener">MIT</a
-        >
-        license.
       </p>
     </div>
     <div class="footer-actions">

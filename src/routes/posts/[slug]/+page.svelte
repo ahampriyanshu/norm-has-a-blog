@@ -211,8 +211,7 @@
 
   <div class="post-meta-inline text-muted">
     <span class="meta-item">
-      <Icon name="calendar" size={16} />
-      <time datetime={metadata.date}>{formatDate(metadata.date)}</time>
+      <time datetime={metadata.date}>Posted on {formatDate(metadata.date)}</time>
     </span>
     <span class="meta-item">
       <Icon name="clock" size={16} />

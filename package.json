@@ -1,6 +1,6 @@
 {
   "name": "norm-has-a-blog",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "A minimal, responsive, and feature-rich blog built with SvelteKit",
   "license": "MIT",
   "type": "module",

@@ -213,10 +213,18 @@
     <span class="meta-item">
       <time datetime={metadata.date}>Posted on {formatDate(metadata.date)}</time>
     </span>
-    <span class="meta-item">
-      <Icon name="clock" size={16} />
-      <span>{metadata.readingTime}</span>
-    </span>
+    {#if metadata.tags && metadata.tags.length > 0}
+      <span class="meta-item">
+        <Icon name="tag" size={16} />
+        <span>
+          {#each metadata.tags as tag, i}
+            <a href="{base}/tags/{tag.toLowerCase()}" class="tag-link-plain">{tag}</a
+            >{#if i < metadata.tags.length - 1},
+            {/if}
+          {/each}
+        </span>
+      </span>
+    {/if}
   </div>
 
   {#if metadata.commitInfo}
@@ -335,3 +343,14 @@
 {#if showToast}
   <Toast message={toastMessage} onClose={handleToastClose} />
 {/if}
+
+<style>
+  .tag-link-plain {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tag-link-plain:hover {
+    text-decoration: underline;
+  }
+</style>

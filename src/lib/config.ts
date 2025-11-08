@@ -26,20 +26,20 @@ export const siteConfig = {
   },
   navItems: [
     { name: 'Home', url: '/' },
-    { name: 'Tags', url: '/tags' },
     { name: 'Categories', url: '/categories' },
+    { name: 'Tags', url: '/tags' },
     { name: 'Archives', url: '/archives' },
-    { name: 'About', url: 'https://portfolio.ahampriyanshu.com' }
+    { name: 'Zmail', url: 'https://portfolio.ahampriyanshu.com' }
   ],
   footerLinks: {
     projects: [
-      {
-        name: 'Indian Elections EDA',
-        url: 'https://www.kaggle.com/datasets/ahampriyanshu/lok-sabha'
-      },
+      { name: 'o1on', url: 'https://github.com/ahampriyanshu/o1' },
       { name: 'iGnez', url: 'https://ahampriyanshu.com/ignez/' },
       { name: 'Algo 101', url: 'https://github.com/ahampriyanshu/algo-ds-101/' },
-      { name: 'View All Projects', url: 'https://github.com/ahampriyanshu' }
+      {
+        name: 'Indian Elections Dataset',
+        url: 'https://www.kaggle.com/datasets/ahampriyanshu/lok-sabha'
+      }
     ],
     blogs: [
       { name: 'Stocks', url: 'https://github.com/ahampriyanshu' },

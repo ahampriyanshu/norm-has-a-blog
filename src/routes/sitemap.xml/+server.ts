@@ -12,7 +12,7 @@ export const GET: RequestHandler = async () => {
 
   const staticPages = [
     { url: '', priority: '0.9', changefreq: 'weekly' },
-    { url: '/about', priority: '0.8', changefreq: 'monthly' },
+    { url: '/categories', priority: '0.8', changefreq: 'monthly' },
     { url: '/archives', priority: '0.7', changefreq: 'weekly' },
     { url: '/tags', priority: '0.7', changefreq: 'weekly' }
   ];

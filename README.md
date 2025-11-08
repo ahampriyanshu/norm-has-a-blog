@@ -81,7 +81,7 @@ export const siteConfig = {
 };
 ```
 
-## Writing Posts
+## Writing a new article
 
 1. Create a new `.md` file in the `src/posts` directory
 2. Add frontmatter with metadata

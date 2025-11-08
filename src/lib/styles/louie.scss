@@ -581,10 +581,11 @@ a {
   h2 {
     margin-top: 2rem;
     margin-bottom: 1rem;
+    font-size: 2rem;
   }
 
   h3 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
   }
@@ -1463,7 +1464,7 @@ a {
 
 .site-footer {
   margin-top: auto;
-  padding-top: 3rem;
+  padding-top: 1rem;
   margin-bottom: 1rem;
   border-top: 1px solid var(--border-color);
 }
@@ -2233,59 +2234,6 @@ a {
   }
 }
 
-.about-page {
-  max-width: 800px;
-  line-height: 1.8;
-
-  h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    margin-bottom: 1rem;
-  }
-
-  ul {
-    margin-bottom: 1.5rem;
-    padding-left: 2rem;
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  code {
-    background: var(--code-bg);
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.25rem;
-    font-size: 0.875em;
-    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
-  }
-
-  pre {
-    background-color: #1e1e1e;
-    padding: 1rem;
-    border-radius: $radius-sm;
-    overflow-x: auto;
-    margin-bottom: 1rem;
-
-    code {
-      background: none;
-      padding: 0;
-      color: #d4d4d4;
-    }
-  }
-}
-
 .error-page {
   display: flex;
   align-items: center;
@@ -2343,7 +2291,7 @@ a {
   }
 
   .post-title-main {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 700;
     margin: 0;
     color: var(--heading-color);
@@ -2734,6 +2682,20 @@ a {
     text-decoration: none;
   }
 
+  .post-tags-inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .post-tags-inline .tags-heading {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0;
+  }
+
   .post-tag {
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -2802,6 +2764,23 @@ article {
     font-weight: 600;
     margin-bottom: 1.5rem;
     color: var(--heading-color);
+  }
+
+  .post-tags-inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .post-tags-inline a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
   }
 
   .post-tags {

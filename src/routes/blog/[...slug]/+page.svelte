@@ -317,11 +317,10 @@
 
   {#if metadata.tags && metadata.tags.length > 0}
     <div class="post-tail-wrapper">
-      <h3 class="tags-heading">Read more on similar topics</h3>
-      <div class="post-tags">
+      <div class="post-tags-inline">
         {#each metadata.tags as tag}
-          <a href="{base}/tags/{tag.toLowerCase()}" class="post-tag no-text-decoration">
-            {tag}
+          <a href="{base}/tags/{tag.toLowerCase()}">
+            #{tag}
           </a>
         {/each}
       </div>

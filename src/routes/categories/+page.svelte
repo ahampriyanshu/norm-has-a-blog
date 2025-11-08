@@ -42,79 +42,15 @@
 <div class="tags-page">
   <h1 class="page-title">Categories</h1>
 
-  <div class="category-index">
+  <div class="tag-index">
     {#each sortedCategories as [category, subcategories]}
-      <div class="category-section">
-        <a href="{base}/categories/{category.toLowerCase()}" class="category-main">
-          <h2 class="category-name">{category}</h2>
-          <span class="category-count">
-            {Array.from(subcategories.values()).reduce((sum, count) => sum + count, 0)} post{Array.from(
-              subcategories.values()
-            ).reduce((sum, count) => sum + count, 0) !== 1
-              ? 's'
-              : ''}
-          </span>
-        </a>
-
-        {#if subcategories.size > 0 && !(subcategories.size === 1 && subcategories.has('_main'))}
-          <div class="subcategory-list">
-            {#each Array.from(subcategories)
-              .filter(([subcategory]) => subcategory !== '_main')
-              .sort((a, b) => a[0].localeCompare(b[0])) as [subcategory, count]}
-              <a
-                href="{base}/categories/{category.toLowerCase()}/{subcategory.toLowerCase()}"
-                class="index-item subcategory-item"
-              >
-                <span class="tag-name">{subcategory}</span>
-                <span class="dots"></span>
-                <span class="count">{count}</span>
-              </a>
-            {/each}
-          </div>
-        {/if}
-      </div>
+      <a href="{base}/categories/{category.toLowerCase()}" class="index-item">
+        <span class="tag-name">{category}</span>
+        <span class="dots"></span>
+        <span class="count">
+          {Array.from(subcategories.values()).reduce((sum, count) => sum + count, 0)}
+        </span>
+      </a>
     {/each}
   </div>
 </div>
-
-<style>
-  .category-section {
-    margin-bottom: 2rem;
-  }
-
-  .category-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background: var(--bg-color-secondary, #f8f9fa);
-    border-radius: 8px;
-    text-decoration: none;
-    color: inherit;
-    transition: background-color 0.2s ease;
-  }
-
-  .category-main:hover {
-    background: var(--bg-color-hover, #e9ecef);
-  }
-
-  .category-name {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0;
-  }
-
-  .category-count {
-    font-size: 0.9rem;
-    color: var(--text-color-secondary, #6c757d);
-  }
-
-  .subcategory-list {
-    margin-top: 0.5rem;
-    padding-left: 2rem;
-  }
-
-  .subcategory-item {
-    padding: 0.5rem 0;
-  }
-</style>

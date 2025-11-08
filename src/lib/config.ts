@@ -27,6 +27,7 @@ export const siteConfig = {
   navItems: [
     { name: 'Home', url: '/' },
     { name: 'Tags', url: '/tags' },
+    { name: 'Categories', url: '/categories' },
     { name: 'Archives', url: '/archives' },
     { name: 'About', url: 'https://portfolio.ahampriyanshu.com' }
   ],

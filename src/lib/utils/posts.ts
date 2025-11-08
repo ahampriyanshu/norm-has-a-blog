@@ -4,6 +4,7 @@ export interface Post {
   date: string;
   updated?: string;
   tags?: string[];
+  categories?: string[];
   pin?: boolean;
   math?: boolean;
   mermaid?: boolean;
@@ -134,6 +135,60 @@ export async function getTags(): Promise<Map<string, number>> {
 export async function getPostsByTag(tag: string): Promise<PostMetadata[]> {
   const posts = await getPosts();
   return posts.filter((post) => post.tags?.includes(tag));
+}
+
+export async function getCategories(): Promise<Map<string, Map<string, number>>> {
+  const posts = await getPosts();
+  const categories = new Map<string, Map<string, number>>();
+
+  posts.forEach((post) => {
+    post.categories?.forEach((category) => {
+      const parts = category.split('/').map((part) => part.trim());
+      const mainCategory = parts[0];
+      const subCategory = parts.length > 1 ? parts[1] : null;
+
+      if (!categories.has(mainCategory)) {
+        categories.set(mainCategory, new Map());
+      }
+
+      const subCategoryMap = categories.get(mainCategory)!;
+      if (subCategory) {
+        subCategoryMap.set(subCategory, (subCategoryMap.get(subCategory) || 0) + 1);
+      } else {
+        // Count for main category without subcategory
+        subCategoryMap.set('_main', (subCategoryMap.get('_main') || 0) + 1);
+      }
+    });
+  });
+
+  return categories;
+}
+
+export async function getPostsByCategory(category: string): Promise<PostMetadata[]> {
+  const posts = await getPosts();
+  return posts.filter((post) =>
+    post.categories?.some((cat) => {
+      const mainCategory = cat.split('/')[0].trim();
+      return mainCategory.toLowerCase() === category.toLowerCase();
+    })
+  );
+}
+
+export async function getPostsBySubcategory(
+  category: string,
+  subcategory: string
+): Promise<PostMetadata[]> {
+  const posts = await getPosts();
+  return posts.filter((post) =>
+    post.categories?.some((cat) => {
+      const parts = cat.split('/').map((part) => part.trim());
+      if (parts.length < 2) return false;
+      return (
+        parts[0].toLowerCase() === category.toLowerCase() &&
+        parts[1].toLowerCase() === subcategory.toLowerCase()
+      );
+    })
+  );
 }
 
 function calculateReadingTime(html: string): string {

@@ -7,6 +7,9 @@ tags:
   - writing
   - guide
   - syntax
+categories:
+  - Documentation/Formatting
+  - Reference
 math: true
 pin: true
 ---

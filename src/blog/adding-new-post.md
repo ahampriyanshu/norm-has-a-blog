@@ -6,6 +6,9 @@ tags:
   - writing
   - guide
   - tutorial
+categories:
+  - Documentation/Content Creation
+  - Tutorial
 ---
 
 Writing a new blog post is simple and straightforward. This guide will walk you through the entire process, from creating a markdown file to publishing your post.
@@ -33,6 +36,9 @@ date: '2025-11-02'
 tags:
   - javascript
   - tutorial
+categories:
+  - Technology/Web Development
+  - Tutorial
 ---
 ```
 
@@ -44,6 +50,7 @@ tags:
 | `description` | Brief summary (used for SEO and previews) | `"Learn the basics of SvelteKit"` |
 | `date` | Publication date in YYYY-MM-DD format | `'2025-11-02'` |
 | `tags` | Array of tags (at least one recommended) | `[javascript, tutorial]` |
+| `categories` | Array of categories (with optional subcategories) | `[Technology/Web Development, Tutorial]` |
 
 #### Optional Fields
 
@@ -51,6 +58,23 @@ tags:
 |-------|-------------|---------|
 | `math` | Enable math equation rendering | `false` |
 | `pin` | Pin post to top of the list | `false` |
+
+### Categories
+
+Categories help organize your posts hierarchically. You can use:
+
+- **Main categories only**: `Technology`, `Tutorial`
+- **Categories with subcategories**: `Technology/Web Development`, `Documentation/Installation`
+
+Format subcategories using a forward slash (`/`). For example:
+- `Technology/Web Development`
+- `Documentation/Content Creation`
+- `Programming/JavaScript`
+
+Posts with categories will be accessible via:
+- Main category page: `/categories/technology`
+- Subcategory page: `/categories/technology/web-development`
+- All categories: `/categories`
 
 ## Write Your Content
 

@@ -241,29 +241,6 @@ The blog uses SCSS for styling. Main styles are located in:
 
 You can customize colors, fonts, spacing, and more by editing these files.
 
-## Adding Features
-
-### Enable Math Support for a Post
-
-Add `math: true` to the frontmatter:
-
-```markdown
----
-title: Advanced Mathematics
-math: true
----
-
-### Pin a Post to the Top
-
-Add `pin: true` to the frontmatter to pin important posts:
-
-```markdown
----
-title: Important Announcement
-pin: true
----
-```
-
 ## Troubleshooting
 
 ### Port Already in Use

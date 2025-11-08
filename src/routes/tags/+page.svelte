@@ -39,15 +39,12 @@
 <div class="tags-page">
   <h1 class="page-title">Tags</h1>
 
-  <div class="tag-cloud">
+  <div class="tag-index">
     {#each Array.from(data.tags) as [tag, count]}
-      <a
-        href="{base}/tags/{tag.toLowerCase()}"
-        class="tag-item"
-        style="font-size: {Math.min(1 + count * 0.2, 2)}rem"
-      >
-        {tag}
-        <span class="count">({count})</span>
+      <a href="{base}/tags/{tag.toLowerCase()}" class="index-item">
+        <span class="tag-name">{tag}</span>
+        <span class="dots"></span>
+        <span class="count">{count}</span>
       </a>
     {/each}
   </div>

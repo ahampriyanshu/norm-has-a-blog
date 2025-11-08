@@ -27,7 +27,9 @@
 
   $: isPostPage = $page.url.pathname.includes('/blog/');
   $: postTitle = $page.data?.metadata?.title || '';
-  $: recentPosts = data.recentPosts ?? [];
+  $: currentSlug = $page.data?.metadata?.slug;
+  // Filter out current post from recent posts and limit to 3
+  $: recentPosts = (data.recentPosts ?? []).filter((post) => post.slug !== currentSlug).slice(0, 3);
   $: headings = $page.data?.headings ?? [];
 </script>
 

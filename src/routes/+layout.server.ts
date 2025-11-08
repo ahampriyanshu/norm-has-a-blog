@@ -5,6 +5,6 @@ export const load: LayoutServerLoad = async () => {
   const posts = await getPosts();
 
   return {
-    recentPosts: posts.slice(0, 3)
+    recentPosts: posts.slice(0, 4)
   };
 };

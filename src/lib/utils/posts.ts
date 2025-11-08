@@ -44,18 +44,32 @@ export async function getPosts(): Promise<PostMetadata[]> {
   const posts: PostMetadata[] = [];
 
   for (const path in blogFiles) {
-    const post = (await blogFiles[path]()) as MarkdownModule;
-    const metadata = post.metadata;
+    try {
+      const post = (await blogFiles[path]()) as MarkdownModule;
+      const metadata = post.metadata;
 
-    if (metadata) {
-      // Keep the full path including subfolders for the slug
-      const slug = path.replace('/src/blog/', '').replace('.md', '');
+      if (metadata && metadata.title && metadata.description && metadata.date) {
+        // Keep the full path including subfolders for the slug
+        const slug = path.replace('/src/blog/', '').replace('.md', '');
 
-      posts.push({
-        ...metadata,
-        slug,
-        readingTime: calculateReadingTime(post.default?.render?.()?.html || '')
-      });
+        let readingTime = '5 min read';
+        try {
+          const html = post.default?.render?.()?.html;
+          if (html) {
+            readingTime = calculateReadingTime(html);
+          }
+        } catch (e) {
+          console.warn(`Failed to calculate reading time for ${path}:`, e);
+        }
+
+        posts.push({
+          ...metadata,
+          slug,
+          readingTime
+        });
+      }
+    } catch (error) {
+      console.error(`Error loading post from ${path}:`, error);
     }
   }
 
@@ -70,16 +84,36 @@ export async function getPost(
   slug: string
 ): Promise<{ metadata: PostMetadata; content: SvelteComponent } | null> {
   try {
-    const post = (await import(`../../blog/${slug}.md`)) as MarkdownModule;
+    // Use glob import to support nested paths
+    const blogFiles = import.meta.glob('/src/blog/**/*.md');
+    const postPath = `/src/blog/${slug}.md`;
+
+    if (!blogFiles[postPath]) {
+      return null;
+    }
+
+    const post = (await blogFiles[postPath]()) as MarkdownModule;
+
+    let readingTime = '5 min read';
+    try {
+      const html = post.default?.render?.()?.html;
+      if (html) {
+        readingTime = calculateReadingTime(html);
+      }
+    } catch (e) {
+      console.warn(`Failed to calculate reading time for ${slug}:`, e);
+    }
+
     return {
       metadata: {
         ...post.metadata,
         slug,
-        readingTime: calculateReadingTime(post.default?.render?.()?.html || '')
+        readingTime
       },
       content: post.default
     };
-  } catch {
+  } catch (error) {
+    console.error(`Error loading post ${slug}:`, error);
     return null;
   }
 }

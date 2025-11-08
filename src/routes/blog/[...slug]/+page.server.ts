@@ -41,13 +41,15 @@ function extractHeadingsFromMarkdown(markdown: string): Heading[] {
 }
 
 export const load: PageServerLoad = async ({ params }) => {
-  const post = await getPost(params.slug);
+  // With [...slug], params.slug is the full path as a string
+  const slugPath = params.slug;
+  const post = await getPost(slugPath);
 
   if (!post) {
     throw error(404, 'Post not found');
   }
 
-  const filePath = `src/blog/${params.slug}.md`;
+  const filePath = `src/blog/${slugPath}.md`;
   const commitInfo = await getLatestCommit(
     filePath,
     siteConfig.githubUsername,
@@ -55,7 +57,7 @@ export const load: PageServerLoad = async ({ params }) => {
   );
 
   const allPosts = await getPosts();
-  const currentIndex = allPosts.findIndex((p) => p.slug === params.slug);
+  const currentIndex = allPosts.findIndex((p) => p.slug === slugPath);
 
   // Circular navigation: wrap around to the beginning/end
   const previousIndex = currentIndex > 0 ? currentIndex - 1 : allPosts.length - 1;

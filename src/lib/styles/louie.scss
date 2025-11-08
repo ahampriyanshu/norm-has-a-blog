@@ -1011,6 +1011,8 @@ a {
 
 .content-area {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -1018,10 +1020,10 @@ a {
 }
 
 .content-wrapper {
+  flex: 1;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  flex: 1;
 }
 
 .post-sections-wrapper {
@@ -1460,7 +1462,8 @@ a {
 }
 
 .site-footer {
-  margin-top: 3rem;
+  margin-top: auto;
+  padding-top: 3rem;
   margin-bottom: 1rem;
   border-top: 1px solid var(--border-color);
 }

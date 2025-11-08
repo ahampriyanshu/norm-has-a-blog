@@ -3,6 +3,9 @@
   import type { PageData } from './$types';
 
   export let data: PageData;
+
+  // Sort categories alphabetically
+  $: sortedCategories = Array.from(data.categories).sort((a, b) => a[0].localeCompare(b[0]));
 </script>
 
 <svelte:head>
@@ -40,7 +43,7 @@
   <h1 class="page-title">Categories</h1>
 
   <div class="category-index">
-    {#each Array.from(data.categories) as [category, subcategories]}
+    {#each sortedCategories as [category, subcategories]}
       <div class="category-section">
         <a href="{base}/categories/{category.toLowerCase()}" class="category-main">
           <h2 class="category-name">{category}</h2>
@@ -55,17 +58,17 @@
 
         {#if subcategories.size > 0 && !(subcategories.size === 1 && subcategories.has('_main'))}
           <div class="subcategory-list">
-            {#each Array.from(subcategories) as [subcategory, count]}
-              {#if subcategory !== '_main'}
-                <a
-                  href="{base}/categories/{category.toLowerCase()}/{subcategory.toLowerCase()}"
-                  class="index-item subcategory-item"
-                >
-                  <span class="tag-name">{subcategory}</span>
-                  <span class="dots"></span>
-                  <span class="count">{count}</span>
-                </a>
-              {/if}
+            {#each Array.from(subcategories)
+              .filter(([subcategory]) => subcategory !== '_main')
+              .sort((a, b) => a[0].localeCompare(b[0])) as [subcategory, count]}
+              <a
+                href="{base}/categories/{category.toLowerCase()}/{subcategory.toLowerCase()}"
+                class="index-item subcategory-item"
+              >
+                <span class="tag-name">{subcategory}</span>
+                <span class="dots"></span>
+                <span class="count">{count}</span>
+              </a>
             {/each}
           </div>
         {/if}

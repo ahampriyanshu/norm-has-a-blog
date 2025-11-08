@@ -3,6 +3,9 @@
   import type { PageData } from './$types';
 
   export let data: PageData;
+
+  // Sort tags alphabetically
+  $: sortedTags = Array.from(data.tags).sort((a, b) => a[0].localeCompare(b[0]));
 </script>
 
 <svelte:head>
@@ -40,7 +43,7 @@
   <h1 class="page-title">Tags</h1>
 
   <div class="tag-index">
-    {#each Array.from(data.tags) as [tag, count]}
+    {#each sortedTags as [tag, count]}
       <a href="{base}/tags/{tag.toLowerCase()}" class="index-item">
         <span class="tag-name">{tag}</span>
         <span class="dots"></span>

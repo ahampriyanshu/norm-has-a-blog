@@ -2,10 +2,10 @@
   import type { ComponentType } from 'svelte';
   import type { PageData } from './$types';
   import { formatDate } from '$lib/utils/posts';
-  import Icon from '$lib/components/Icon.svelte';
   import Toast from '$lib/components/Toast.svelte';
-  import CopyDropdown from '$lib/components/CopyDropdown.svelte';
+  import CopyDropdown, { type DropdownAction } from '$lib/components/CopyDropdown.svelte';
   import { base } from '$app/paths';
+  import { browser } from '$app/environment';
 
   export let data: PageData;
 
@@ -28,14 +28,86 @@
   let showToast = false;
   let toastMessage = '';
 
+  function showToastMessage(message: string) {
+    toastMessage = message;
+    showToast = true;
+  }
+
   function handleToastClose() {
     showToast = false;
   }
 
-  function handleDropdownToast(event: CustomEvent<{ message: string }>) {
-    toastMessage = event.detail.message;
-    showToast = true;
+  function getPostUrl(): string {
+    if (browser) {
+      return window.location.href;
+    }
+    return '';
   }
+
+  async function copyPostContent() {
+    if (!browser) return;
+    const articleElement = document.querySelector('.post-article .content');
+
+    if (articleElement) {
+      const text = articleElement.textContent?.trim() ?? '';
+      await navigator.clipboard.writeText(text);
+      showToastMessage('Post content copied to clipboard!');
+    }
+  }
+
+  async function copyUrl() {
+    if (!browser) return;
+    await navigator.clipboard.writeText(getPostUrl());
+    showToastMessage('Link copied to clipboard!');
+  }
+
+  function viewAsMarkdown() {
+    if (!browser) return;
+    const url = `https://raw.githubusercontent.com/${siteConfig.githubUsername}/${siteConfig.githubRepo}/refs/heads/main/src/blog/${metadata.slug}.md`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  $: repoBaseUrl = `https://github.com/${siteConfig.githubUsername}/${siteConfig.githubRepo}`;
+
+  const noopRel = 'noopener noreferrer';
+
+  $: copyPrimaryAction = {
+    label: 'Copy Page',
+    icon: 'copy',
+    ariaLabel: 'Copy post content',
+    onClick: copyPostContent
+  } satisfies DropdownAction;
+
+  $: copyDropdownItems = [
+    { label: 'Copy URL', icon: 'link', onClick: copyUrl },
+    { label: 'Raw Markdown', icon: 'code', onClick: viewAsMarkdown }
+  ] satisfies DropdownAction[];
+
+  $: editPrimaryAction = {
+    label: 'Edit page',
+    icon: 'pencil',
+    ariaLabel: 'Edit page',
+    href: `${repoBaseUrl}/edit/main/src/blog/${metadata.slug}.md`,
+    target: '_blank',
+    rel: noopRel
+  } satisfies DropdownAction;
+
+  $: editDropdownItems = [
+    {
+      label: 'Report Issue',
+      icon: 'alert',
+      href: `${repoBaseUrl}/issues/new`,
+      target: '_blank',
+      rel: noopRel
+    },
+    {
+      label: 'Suggest New Page',
+      icon: 'git-pull-request',
+      href: `${repoBaseUrl}/compare`,
+      target: '_blank',
+      rel: noopRel
+    }
+  ] satisfies DropdownAction[];
 </script>
 
 <svelte:head>
@@ -147,13 +219,13 @@
     <ol class="breadcrumb-list">
       <li><a href="{base}/">Home</a></li>
       <li><span class="separator">></span></li>
+      <li><a href="{base}/blog">Blog</a></li>
       {#if metadata.categories && metadata.categories.length > 0}
         {@const category = metadata.categories[0]}
         {@const parentCategory = category.split('/')[0]}
-        <li><a href="{base}/categories/{parentCategory.toLowerCase()}">{parentCategory}</a></li>
         <li><span class="separator">></span></li>
+        <li><a href="{base}/categories/{parentCategory.toLowerCase()}">{parentCategory}</a></li>
       {/if}
-      <li class="current">{metadata.title}</li>
     </ol>
   </nav>
 
@@ -165,62 +237,29 @@
     <span class="meta-item">
       <time datetime={metadata.date}>Posted on {formatDate(metadata.date)}</time>
     </span>
-    {#if metadata.tags && metadata.tags.length > 0}
+    {#if metadata.commitInfo}
+      <span class="meta-separator">•</span>
       <span class="meta-item">
-        <Icon name="tag" size={16} />
-      </span>
-      <span class="meta-item">
-        <span>{metadata.readingTime}</span>
-      </span>
-    {/if}
-  </div>
-
-  {#if metadata.commitInfo}
-    <div class="post-update-info text-muted">
-      <span>
-        Updated on {formatDate(metadata.commitInfo.date)} via
+        Updated on {formatDate(metadata.commitInfo.date)}
         <a
           href={metadata.commitInfo.url}
           target="_blank"
           rel="noopener noreferrer"
           class="commit-link"
         >
-          {metadata.commitInfo.message}
+          #{metadata.commitInfo.hash}
         </a>
       </span>
-    </div>
-  {/if}
+    {/if}
+  </div>
 
   <div class="post-actions-widget">
-    <CopyDropdown {metadata} {siteConfig} markdownRoot="src/blog" on:toast={handleDropdownToast} />
-
-    <a
-      href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/edit/main/src/blog/{metadata.slug}.md"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="action-link"
-    >
-      <Icon name="pencil" size={16} />
-      <span>Edit this page</span>
-    </a>
-    <a
-      href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/issues/new"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="action-link"
-    >
-      <Icon name="alert" size={16} />
-      <span>Report Issue</span>
-    </a>
-    <a
-      href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/compare"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="action-link"
-    >
-      <Icon name="git-pull-request" size={16} />
-      <span>Suggest New Page</span>
-    </a>
+    <CopyDropdown primaryAction={copyPrimaryAction} dropdownItems={copyDropdownItems} />
+    <CopyDropdown
+      primaryAction={editPrimaryAction}
+      dropdownItems={editDropdownItems}
+      dropdownAriaLabel="More page options"
+    />
   </div>
 </div>
 
@@ -230,6 +269,17 @@
       <svelte:component this={Content} />
     {/if}
   </div>
+
+  <nav class="post-navigation" aria-label="Post navigation">
+    <a href="{base}/blog/{previousPost.slug}" class="nav-item nav-previous">
+      <span class="nav-label">PREVIOUS</span>
+      <span class="nav-title">{previousPost.title}</span>
+    </a>
+    <a href="{base}/blog/{nextPost.slug}" class="nav-item nav-next">
+      <span class="nav-label">NEXT</span>
+      <span class="nav-title">{nextPost.title}</span>
+    </a>
+  </nav>
 
   {#if metadata.tags && metadata.tags.length > 0}
     <div class="post-tail-wrapper">
@@ -242,17 +292,6 @@
       </div>
     </div>
   {/if}
-
-  <nav class="post-navigation" aria-label="Post navigation">
-    <a href="{base}/blog/{previousPost.slug}" class="nav-item nav-previous">
-      <span class="nav-label">PREVIOUS</span>
-      <span class="nav-title">{previousPost.title}</span>
-    </a>
-    <a href="{base}/blog/{nextPost.slug}" class="nav-item nav-next">
-      <span class="nav-label">NEXT</span>
-      <span class="nav-title">{nextPost.title}</span>
-    </a>
-  </nav>
 </article>
 
 {#if showToast}

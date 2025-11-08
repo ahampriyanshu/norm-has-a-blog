@@ -22,20 +22,19 @@ export const siteConfig = {
     resume: 'https://ahampriyanshu.com/resume',
     twitter: 'https://twitter.com/ahampriyanshu',
     email: 'mailto:vayampriyanshu@gmail.com'
-    // telegram: 'https://t.me/ahampriyanshu',
   },
   navItems: [
     { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blog' },
     { name: 'Categories', url: '/categories' },
     { name: 'Tags', url: '/tags' },
-    { name: 'Archives', url: '/archives' },
-    { name: 'Zmail', url: 'https://portfolio.ahampriyanshu.com' }
+    { name: 'Archives', url: '/archives' }
   ],
   footerLinks: {
     projects: [
       { name: 'o1on', url: 'https://github.com/ahampriyanshu/o1' },
-      { name: 'iGnez', url: 'https://ahampriyanshu.com/ignez/' },
-      { name: 'Algo 101', url: 'https://github.com/ahampriyanshu/algo-ds-101/' },
+      { name: 'Zmail', url: 'https://portfolio.ahampriyanshu.com' },
+      { name: 'Algo 101', url: 'https://github.com/ahampriyanshu/algo-ds-101' },
       {
         name: 'Indian Elections Dataset',
         url: 'https://www.kaggle.com/datasets/ahampriyanshu/lok-sabha'

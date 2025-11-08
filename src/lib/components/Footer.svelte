@@ -3,9 +3,6 @@
   import { siteConfig } from '$lib/config';
   import Icon from '$lib/components/Icon.svelte';
 
-  export let isPostPage = false;
-  export let postTitle = '';
-
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -13,18 +10,6 @@
 
 <footer class="site-footer">
   <div class="footer-enhanced">
-    {#if isPostPage && postTitle}
-      <nav class="footer-breadcrumb" aria-label="Breadcrumb">
-        <ol class="breadcrumb-list">
-          <li><a href={base || '/'}>Home</a></li>
-          <li><span class="separator">></span></li>
-          <li><a href="{base}/archives">Blog</a></li>
-          <li><span class="separator">></span></li>
-          <li class="current">{postTitle}</li>
-        </ol>
-      </nav>
-    {/if}
-
     <div class="footer-main">
       <div class="footer-left">
         <div class="profile-image-wrapper">

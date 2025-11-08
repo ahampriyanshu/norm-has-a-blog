@@ -4,9 +4,8 @@
   import { formatDate } from '$lib/utils/posts';
   import Icon from '$lib/components/Icon.svelte';
   import Toast from '$lib/components/Toast.svelte';
-  import { browser } from '$app/environment';
+  import CopyDropdown from '$lib/components/CopyDropdown.svelte';
   import { base } from '$app/paths';
-  import { onMount } from 'svelte';
 
   export let data: PageData;
 
@@ -28,76 +27,15 @@
 
   let showToast = false;
   let toastMessage = '';
-  let dropdownOpen = false;
-  let dropdownButton: HTMLDivElement;
-
-  function getPostUrl(): string {
-    if (browser) {
-      return window.location.href;
-    }
-    return '';
-  }
-
-  function copyLink() {
-    if (browser) {
-      navigator.clipboard.writeText(getPostUrl()).then(() => {
-        toastMessage = 'Link copied to clipboard!';
-        showToast = true;
-      });
-    }
-  }
 
   function handleToastClose() {
     showToast = false;
   }
 
-  function toggleDropdown() {
-    dropdownOpen = !dropdownOpen;
+  function handleDropdownToast(event: CustomEvent<{ message: string }>) {
+    toastMessage = event.detail.message;
+    showToast = true;
   }
-
-  function copyPostContent() {
-    if (browser) {
-      const articleElement = document.querySelector('.post-article .content');
-      if (articleElement) {
-        const text = articleElement.textContent || '';
-        navigator.clipboard.writeText(text).then(() => {
-          toastMessage = 'Post content copied to clipboard!';
-          showToast = true;
-        });
-      }
-    }
-  }
-
-  function copyUrl() {
-    copyLink();
-    dropdownOpen = false;
-  }
-
-  function getMarkdownUrl(): string {
-    return `https://raw.githubusercontent.com/${siteConfig.githubUsername}/${siteConfig.githubRepo}/refs/heads/main/src/blog/${metadata.slug}.md`;
-  }
-
-  function viewAsMarkdown() {
-    if (browser) {
-      window.open(getMarkdownUrl(), '_blank');
-    }
-    dropdownOpen = false;
-  }
-
-  onMount(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownOpen && dropdownButton && !dropdownButton.contains(event.target as Node)) {
-        dropdownOpen = false;
-      }
-    }
-
-    if (browser) {
-      document.addEventListener('click', handleClickOutside);
-      return () => {
-        document.removeEventListener('click', handleClickOutside);
-      };
-    }
-  });
 </script>
 
 <svelte:head>
@@ -205,6 +143,20 @@
 </svelte:head>
 
 <div class="post-header-section">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol class="breadcrumb-list">
+      <li><a href="{base}/">Home</a></li>
+      <li><span class="separator">></span></li>
+      {#if metadata.categories && metadata.categories.length > 0}
+        {@const category = metadata.categories[0]}
+        {@const parentCategory = category.split('/')[0]}
+        <li><a href="{base}/categories/{parentCategory.toLowerCase()}">{parentCategory}</a></li>
+        <li><span class="separator">></span></li>
+      {/if}
+      <li class="current">{metadata.title}</li>
+    </ol>
+  </nav>
+
   <div class="post-title-wrapper">
     <h1 class="post-title-main">{metadata.title}</h1>
   </div>
@@ -240,43 +192,7 @@
   {/if}
 
   <div class="post-actions-widget">
-    <div class="copy-dropdown-container" bind:this={dropdownButton}>
-      <div class="copy-dropdown-wrapper">
-        <button
-          class="action-btn copy-btn"
-          on:click={copyPostContent}
-          aria-label="Copy post content"
-        >
-          <Icon name="copy" size={16} />
-          <span>Copy Page</span>
-        </button>
-        <button
-          class="action-btn copy-dropdown-arrow"
-          on:click={toggleDropdown}
-          aria-label="More options"
-        >
-          <Icon name="chevron-down" size={16} />
-        </button>
-      </div>
-      {#if dropdownOpen}
-        <div
-          class="dropdown-menu"
-          role="menu"
-          tabindex="-1"
-          on:click|stopPropagation
-          on:keydown|stopPropagation
-        >
-          <button class="dropdown-item" on:click={copyUrl}>
-            <Icon name="link" size={14} />
-            <span>Copy URL</span>
-          </button>
-          <button class="dropdown-item" on:click={viewAsMarkdown}>
-            <Icon name="code" size={14} />
-            <span>Raw Markdown</span>
-          </button>
-        </div>
-      {/if}
-    </div>
+    <CopyDropdown {metadata} {siteConfig} markdownRoot="src/blog" on:toast={handleDropdownToast} />
 
     <a
       href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/edit/main/src/blog/{metadata.slug}.md"

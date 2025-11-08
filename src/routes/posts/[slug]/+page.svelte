@@ -74,7 +74,7 @@
   }
 
   function getMarkdownUrl(): string {
-    return `https://github.com/${siteConfig.githubUsername}/${siteConfig.githubRepo}/blob/main/src/posts/${metadata.slug}.md`;
+    return `https://raw.githubusercontent.com/${siteConfig.githubUsername}/${siteConfig.githubRepo}/refs/heads/main/src/posts/${metadata.slug}.md`;
   }
 
   function viewAsMarkdown() {
@@ -216,13 +216,9 @@
     {#if metadata.tags && metadata.tags.length > 0}
       <span class="meta-item">
         <Icon name="tag" size={16} />
-        <span>
-          {#each metadata.tags as tag, i}
-            <a href="{base}/tags/{tag.toLowerCase()}" class="tag-link-plain">{tag}</a
-            >{#if i < metadata.tags.length - 1},
-            {/if}
-          {/each}
-        </span>
+      </span>
+      <span class="meta-item">
+        <span>{metadata.readingTime}</span>
       </span>
     {/if}
   </div>
@@ -270,22 +266,12 @@
           </button>
           <button class="dropdown-item" on:click={viewAsMarkdown}>
             <Icon name="code" size={14} />
-            <span>View as Markdown</span>
+            <span>Raw Markdown</span>
           </button>
         </div>
       {/if}
     </div>
-  </div>
-</div>
 
-<article class="post-article">
-  <div class="content prose">
-    {#if Content}
-      <svelte:component this={Content} />
-    {/if}
-  </div>
-
-  <div class="post-action-links">
     <a
       href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/edit/main/src/posts/{metadata.slug}.md"
       target="_blank"
@@ -314,17 +300,14 @@
       <span>Suggest New Page</span>
     </a>
   </div>
+</div>
 
-  <nav class="post-navigation" aria-label="Post navigation">
-    <a href="{base}/posts/{previousPost.slug}" class="nav-item nav-previous">
-      <span class="nav-label">PREVIOUS</span>
-      <span class="nav-title">{previousPost.title}</span>
-    </a>
-    <a href="{base}/posts/{nextPost.slug}" class="nav-item nav-next">
-      <span class="nav-label">NEXT</span>
-      <span class="nav-title">{nextPost.title}</span>
-    </a>
-  </nav>
+<article class="post-article">
+  <div class="content prose">
+    {#if Content}
+      <svelte:component this={Content} />
+    {/if}
+  </div>
 
   {#if metadata.tags && metadata.tags.length > 0}
     <div class="post-tail-wrapper">
@@ -338,19 +321,19 @@
       </div>
     </div>
   {/if}
+
+  <nav class="post-navigation" aria-label="Post navigation">
+    <a href="{base}/posts/{previousPost.slug}" class="nav-item nav-previous">
+      <span class="nav-label">PREVIOUS</span>
+      <span class="nav-title">{previousPost.title}</span>
+    </a>
+    <a href="{base}/posts/{nextPost.slug}" class="nav-item nav-next">
+      <span class="nav-label">NEXT</span>
+      <span class="nav-title">{nextPost.title}</span>
+    </a>
+  </nav>
 </article>
 
 {#if showToast}
   <Toast message={toastMessage} onClose={handleToastClose} />
 {/if}
-
-<style>
-  .tag-link-plain {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .tag-link-plain:hover {
-    text-decoration: underline;
-  }
-</style>

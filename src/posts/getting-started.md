@@ -9,7 +9,7 @@ tags:
   - tutorial
 ---
 
-**norm-has-a-blog** is a simple, static, and zero config blog built with SvelteKit. It's designed for developers who want to save and share the stuff they're discovering. [but can be used by anyone for anything :)]
+**norm-has-a-blog** is a simple, static, and zero config blog built with SvelteKit. It's designed for developers who want to save and share the stuff they're discovering.(but can be used by anyone for anything)
 
 ## Features
 
@@ -19,12 +19,14 @@ This blog comes packed with powerful features out of the box:
 - **Markdown Support**: Write posts in Markdown with [MDSveX](https://mdsvex.pngwn.io/). GFM is also supported.
 - **Syntax Highlighting**: Beautiful code blocks powered by [Shiki](https://shiki.matsu.io/).
 - **Math Equations**: Full support for LaTeX/KaTeX mathematical expressions powered by [MathJax](https://www.mathjax.org/).
+- **Static Site Generation**: Deploy anywhere with zero runtime dependencies(and zero cost).
+- **Table of Contents**: Interactive table of contents for easy navigation.
 - **Responsive Design**: Looks great on all devices.
 - **Dark/Light Theme**: Built-in theme support.
 - **SEO Friendly**: RSS/Atom feeds, sitemap, OG tags and canonical URLs.
 - **Tags & Archives**: Organize posts with tags and view archives.
 - **Search & Filter**: Easy content discovery.
-- **Static Site Generation**: Deploy anywhere with zero runtime dependencies(and zero cost).
+
 
 ## Prerequisites
 

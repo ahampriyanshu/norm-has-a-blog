@@ -7,8 +7,8 @@ tags:
   - guide
   - tutorial
 categories:
-  - Documentation/Content Creation
   - Tutorial
+pin: true
 ---
 
 Writing a new blog post is simple and straightforward. This guide will walk you through the entire process, from creating a markdown file to publishing your post.
@@ -52,12 +52,14 @@ categories:
 | `tags` | Array of tags (at least one recommended) | `[javascript, tutorial]` |
 | `categories` | Array of categories (with optional subcategories) | `[Technology/Web Development, Tutorial]` |
 
-#### Optional Fields
+### Optional Fields
 
 | Field | Description | Default |
 |-------|-------------|---------|
 | `math` | Enable math equation rendering | `false` |
-| `pin` | Pin post to top of the list | `false` |
+| `pin` | Pin post to homepage as featured | `false` |
+
+> **Note**: Posts with `pin: true` will appear in the "Featured Posts" section on the homepage.
 
 ### Categories
 

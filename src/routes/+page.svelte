@@ -1,14 +1,20 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import type { PageData } from './$types';
-  import { formatDate } from '$lib/utils/posts';
-  import Icon from '$lib/components/Icon.svelte';
 
   export let data: PageData;
+
+  function formatDateSimple(dateString: string): string {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 </script>
 
 <svelte:head>
-  <title>{data.siteConfig.title} - {data.siteConfig.description}</title>
+  <title>{data.siteConfig.author}</title>
   <meta name="description" content={data.siteConfig.description} />
 
   <!-- Canonical URL -->
@@ -16,24 +22,21 @@
 
   <!-- OpenGraph meta tags for homepage -->
   <meta property="og:site_name" content={data.siteConfig.title} />
-  <meta property="og:title" content="{data.siteConfig.title} - {data.siteConfig.description}" />
+  <meta property="og:title" content={data.siteConfig.author} />
   <meta property="og:description" content={data.siteConfig.description} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/" />
-  <meta
-    property="og:image"
-    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/images/hero.jpeg"
-  />
-  <meta property="og:image:alt" content={data.siteConfig.title} />
+  <meta property="og:image" content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/user.jpg" />
+  <meta property="og:image:alt" content={data.siteConfig.author} />
   <meta property="og:locale" content={data.siteConfig.lang} />
 
   <!-- Twitter Card meta tags for homepage -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{data.siteConfig.title} - {data.siteConfig.description}" />
+  <meta name="twitter:title" content={data.siteConfig.author} />
   <meta name="twitter:description" content={data.siteConfig.description} />
   <meta
     name="twitter:image"
-    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/images/hero.jpeg"
+    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/user.jpg"
   />
   {#if data.siteConfig.twitterHandle}
     <meta name="twitter:site" content="@{data.siteConfig.twitterHandle}" />
@@ -41,45 +44,144 @@
   {/if}
 </svelte:head>
 
-<div class="post-list">
-  {#each data.posts as post}
-    <article class="card-wrapper card">
-      <a href="{base}/blog/{post.slug}" class="post-preview">
-        {#if post.image}
-          <div class="post-image">
-            <img src={post.image} alt={post.title} loading="lazy" />
-          </div>
-        {/if}
+<div class="homepage">
+  <div class="hero-section">
+    <div class="profile-image-wrapper">
+      <img src="{base}/user.jpg" alt={data.siteConfig.author} class="profile-image" />
+    </div>
 
-        <div class="post-content">
-          <h1 class="post-title">{post.title}</h1>
+    <div class="hero-content">
+      <h1 class="hero-title">Hi, I'm Priyanshu 👋</h1>
 
-          {#if post.description}
-            <p class="post-description">{post.description}</p>
-          {/if}
+      <div class="bio-section">
+        {#each data.siteConfig.bio as bioText}
+          <p class="bio-text">{bioText}</p>
+        {/each}
+      </div>
+    </div>
+  </div>
 
-          <div class="post-meta">
-            <div class="meta-left">
-              <Icon name="calendar" size={14} className="me-1" />
-              <time datetime={post.date}>{formatDate(post.date)}</time>
-
-              {#if post.tags && post.tags.length > 0}
-                <Icon name="tags" size={14} className="ms-3 me-1" />
-                <span class="tags">
-                  {post.tags.slice(0, 2).join(', ')}
-                </span>
-              {/if}
-            </div>
-
-            {#if post.pin}
-              <div class="pin">
-                <Icon name="pin" size={14} className="me-1" />
-                <span>Pinned</span>
-              </div>
-            {/if}
-          </div>
-        </div>
-      </a>
-    </article>
-  {/each}
+  {#if data.pinnedPosts && data.pinnedPosts.length > 0}
+    <div class="featured-section blog-page">
+      <h2 class="featured-heading">Featured Posts</h2>
+      <ul class="blog-list">
+        {#each data.pinnedPosts as post}
+          <li class="blog-item">
+            <time class="blog-date" datetime={post.date}>{formatDateSimple(post.date)}</time>
+            <a href="{base}/blog/{post.slug}" class="blog-link">
+              {post.title}
+            </a>
+          </li>
+        {/each}
+      </ul>
+    </div>
+  {/if}
 </div>
+
+<style lang="scss">
+  .homepage {
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .profile-image-wrapper {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 24px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--heading-color);
+  }
+
+  .bio-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .bio-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+    margin: 0;
+    text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    .homepage {
+      padding: 0rem 0rem 4rem;
+    }
+
+    .hero-section {
+      gap: 3rem;
+    }
+
+    .profile-image-wrapper {
+      width: 250px;
+      height: 250px;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-section {
+      flex-direction: row;
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .profile-image-wrapper {
+      order: 2;
+    }
+
+    .hero-content {
+      order: 1;
+    }
+  }
+
+  .featured-section {
+    margin-top: 4rem;
+
+    .blog-item {
+      gap: 0.5rem;
+    }
+  }
+
+  .featured-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: var(--heading-color);
+  }
+</style>

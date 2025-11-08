@@ -4,9 +4,11 @@ import type { PageLoad } from './$types';
 
 export const load: PageLoad = async () => {
   const posts = await getPosts();
+  const pinnedPosts = posts.filter((post) => post.pin);
+
   return {
-    posts: posts.slice(0, siteConfig.paginate),
-    siteConfig
+    siteConfig,
+    pinnedPosts
   };
 };
 

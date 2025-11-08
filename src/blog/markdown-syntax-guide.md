@@ -8,8 +8,7 @@ tags:
   - guide
   - syntax
 categories:
-  - Documentation/Formatting
-  - Reference
+  - Formatting
 math: true
 pin: true
 ---

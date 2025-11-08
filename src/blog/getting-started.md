@@ -8,8 +8,8 @@ tags:
   - getting-started
   - tutorial
 categories:
-  - Documentation/Installation
-  - Tutorial
+  - Documentation
+pin: true
 ---
 
 **norm-has-a-blog** is a simple, static, and zero config blog built with SvelteKit. It's designed for developers who want to save and share the stuff they're discovering.(but can be used by anyone for anything)
@@ -27,8 +27,10 @@ This blog comes packed with powerful features out of the box:
 - **Responsive Design**: Looks great on all devices.
 - **Dark/Light Theme**: Built-in theme support.
 - **SEO Friendly**: RSS/Atom feeds, sitemap, OG tags and canonical URLs.
-- **Tags & Archives**: Organize posts with tags and view archives.
-- **Search & Filter**: Easy content discovery.
+- **Tags & Categories**: Organize posts with hierarchical categories and tags.
+- **Featured Posts**: Pin important posts to the homepage.
+- **Enhanced Footer**: Customizable footer with projects, blogs, and social links.
+- **Archives**: Browse posts by date.
 
 
 ## Prerequisites
@@ -113,6 +115,11 @@ export const siteConfig = {
   description: 'Your blog description',
   author: 'Your Name',
   designation: 'Your Role/Designation',
+  bio: [
+    'First paragraph of your bio...',
+    'Second paragraph...',
+    'Third paragraph...'
+  ],
   baseURL: 'https://yourdomain.com',
   subPath: '',  // Leave empty for root domain, or '/blog' for subdirectory
   githubUsername: 'yourusername',
@@ -121,6 +128,24 @@ export const siteConfig = {
   lang: 'en',
   timezone: 'America/New_York',
   theme: 'dark',  // 'dark' or 'light'
+  contact: {
+    github: 'https://github.com/yourusername',
+    linkedin: 'https://linkedin.com/in/yourusername',
+    resume: 'https://yourresume.com',
+    twitter: 'https://twitter.com/yourhandle',
+    email: 'mailto:your@email.com'
+  },
+  footerLinks: {
+    projects: [
+      { name: 'Project 1', url: 'https://github.com/...' }
+    ],
+    blogs: [
+      { name: 'Blog 1', url: 'https://...' }
+    ],
+    personal: [
+      { name: 'Bookshelf', url: 'https://...' }
+    ]
+  }
   // ... more configuration options
 };
 ```
@@ -130,6 +155,8 @@ export const siteConfig = {
 1. **Personal Information**
    - `title`: Your blog's title
    - `author`: Your name
+   - `designation`: Your job title or role
+   - `bio`: Array of paragraphs for the homepage bio section
    - `description`: A brief description of your blog
 
 2. **URLs and Paths**
@@ -137,13 +164,18 @@ export const siteConfig = {
    - `subPath`: Subdirectory path if not deploying to root
 
 3. **Social Links**
-   - Update `contact` object with your social media profiles
+   - Update `contact` object with your social media profiles (GitHub, LinkedIn, Resume, Twitter, Email)
    - Set your `githubUsername` and `twitterHandle`
 
-4. **Navigation**
+4. **Footer Links**
+   - `footerLinks.projects`: Add your projects with name and URL
+   - `footerLinks.blogs`: Link to other blogs you maintain
+   - `footerLinks.personal`: Personal links like playlists, bookshelf, etc.
+
+5. **Navigation**
    - Customize `navItems` to add/remove navigation links
 
-5. **Analytics** (Optional)
+6. **Analytics** (Optional)
    - Add your Google Analytics tracking IDs
 
 ### Customizing the Base Path
@@ -174,12 +206,17 @@ date: '2025-11-02'
 tags:
   - introduction
   - first-post
+categories:
+  - General
+pin: true
 ---
 
 ## Hello World!
 
 This is my first blog post. I'm excited to start writing!
 ```
+
+> **Tip**: Set `pin: true` to feature this post on your homepage!
 
 For a detailed guide on writing posts, see the [Adding New Post](./adding-new-post) guide.
 
@@ -235,7 +272,25 @@ Your blog is a static site and can be deployed anywhere. Here are some popular o
    - Build output directory: `build`
 
 
-## Customizing Styles
+## Customizing Your Blog
+
+### Homepage
+
+The homepage displays:
+- **Profile Image**: Place your image at `static/user.jpg` (displayed as a 200x250px rounded image)
+- **Hero Section**: Shows your bio from `config.ts`
+- **Featured Posts**: Displays posts with `pin: true` in their frontmatter
+
+### Footer
+
+The footer is enhanced with:
+- **Profile Section**: Shows your logo (`static/logo.png`), name, and designation
+- **Social Icons**: Links to GitHub, LinkedIn, Resume, and Twitter
+- **Three Sections**: Customizable links for Projects, Blogs, and Personal
+- **Subscribe Button**: Links to your RSS feed
+- **Scroll to Top**: Smooth scroll functionality
+
+### Styles
 
 The blog uses SCSS for styling. Main styles are located in:
 

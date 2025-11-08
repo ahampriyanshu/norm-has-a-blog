@@ -3,6 +3,12 @@ export const siteConfig = {
   description: 'A minimal, responsive, and feature-rich blog theme',
   author: 'Priyanshu Tiwari',
   designation: 'Senior Software Engineer',
+  bio: [
+    "I'm a software engineer passionate about building elegant solutions to complex problems. I write about technology, software development, and my journey in tech.",
+    'Currently exploring the intersection of machine learning and web development, with a focus on creating performant and accessible applications.',
+    "When I'm not coding, you'll find me contributing to open source, writing technical blog posts, or exploring new technologies.",
+    "These are my notes on programming, personal finance, and whatever else I'm figuring out."
+  ],
   baseURL: 'https://ahampriyanshu.com',
   subPath: '/norm-has-a-blog',
   githubUsername: 'ahampriyanshu',
@@ -19,7 +25,7 @@ export const siteConfig = {
   contact: {
     github: 'https://github.com/ahampriyanshu',
     linkedin: 'https://linkedin.com/in/ahampriyanshu',
-    resume: 'https://ahampriyanshu.com/resume',
+    resume: 'https://resume.ahampriyanshu.com',
     twitter: 'https://twitter.com/ahampriyanshu',
     email: 'mailto:vayampriyanshu@gmail.com'
   },

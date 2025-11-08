@@ -16,14 +16,6 @@
           <div class="profile-image">
             <img src="{base}/logo.png" alt={siteConfig.author} />
           </div>
-
-          <button
-            class="footer-cta"
-            on:click={() =>
-              (window.location.href = `${siteConfig.contact.email}?subject=Let's Collaborate!`)}
-          >
-            Let's collaborate!
-          </button>
         </div>
 
         <div class="profile-info">

@@ -81,10 +81,10 @@ norm-has-a-blog/
 │   │   ├── styles/         # SCSS stylesheets
 │   │   ├── utils/          # Utility functions
 │   │   └── config.ts       # Blog configuration
-│   ├── posts/              # Your markdown blog posts
+│   ├── blog/               # Your markdown articles
 │   ├── routes/             # SvelteKit routes
 │   │   ├── +page.svelte    # Homepage
-│   │   ├── posts/          # Blog post routes
+│   │   ├── blog/           # Blog post routes
 │   │   ├── tags/           # Tag listing and filtering
 │   │   ├── archives/       # Archive page
 │   │   └── api/            # API endpoints
@@ -155,10 +155,10 @@ And also update `subPath` in `src/lib/config.ts` to match.
 
 ## Writing Your First Post
 
-Create a new markdown file in the `src/posts/` directory:
+Create a new markdown file in the `src/blog/` directory:
 
 ```bash
-touch src/posts/my-first-post.md
+touch src/blog/my-first-post.md
 ```
 
 Add frontmatter and content:

@@ -115,7 +115,7 @@ Create Svelte components in `src/lib/components/` and import them where needed.
 ### Modifying Layouts
 
 - Main layout: `src/routes/+layout.svelte`
-- Post layout: `src/routes/posts/[slug]/+page.svelte`
+- Post layout: `src/routes/blog/[slug]/+page.svelte`
 - Markdown layouts: `src/lib/layouts/`
 
 ## License

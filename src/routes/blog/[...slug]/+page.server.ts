@@ -47,7 +47,7 @@ export const load: PageServerLoad = async ({ params }) => {
     throw error(404, 'Post not found');
   }
 
-  const filePath = `src/posts/${params.slug}.md`;
+  const filePath = `src/blog/${params.slug}.md`;
   const commitInfo = await getLatestCommit(
     filePath,
     siteConfig.githubUsername,

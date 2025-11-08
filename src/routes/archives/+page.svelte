@@ -8,7 +8,10 @@
 
 <svelte:head>
   <title>Archives | {data.siteConfig.title}</title>
-  <meta name="description" content="Browse all posts in the archives on {data.siteConfig.title}" />
+  <meta
+    name="description"
+    content="Browse all articles in the archives on {data.siteConfig.title}"
+  />
 
   <!-- Canonical URL -->
   <link rel="canonical" href="{data.siteConfig.baseURL}{data.siteConfig.subPath}/archives" />
@@ -18,7 +21,7 @@
   <meta property="og:title" content="Archives | {data.siteConfig.title}" />
   <meta
     property="og:description"
-    content="Browse all posts in the archives on {data.siteConfig.title}"
+    content="Browse all articles in the archives on {data.siteConfig.title}"
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/archives" />
@@ -32,7 +35,7 @@
   <meta name="twitter:title" content="Archives | {data.siteConfig.title}" />
   <meta
     name="twitter:description"
-    content="Browse all posts in the archives on {data.siteConfig.title}"
+    content="Browse all articles in the archives on {data.siteConfig.title}"
   />
   <meta
     name="twitter:image"
@@ -59,7 +62,7 @@
               {#each posts as post}
                 <li>
                   <time datetime={post.date}>{formatDate(post.date)}</time>
-                  <a href="{base}/posts/{post.slug}">{post.title}</a>
+                  <a href="{base}/blog/{post.slug}">{post.title}</a>
                 </li>
               {/each}
             </ul>

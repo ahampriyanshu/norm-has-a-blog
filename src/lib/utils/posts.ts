@@ -40,15 +40,16 @@ interface MarkdownModule {
 }
 
 export async function getPosts(): Promise<PostMetadata[]> {
-  const postFiles = import.meta.glob('/src/posts/**/*.md');
+  const blogFiles = import.meta.glob('/src/blog/**/*.md');
   const posts: PostMetadata[] = [];
 
-  for (const path in postFiles) {
-    const post = (await postFiles[path]()) as MarkdownModule;
+  for (const path in blogFiles) {
+    const post = (await blogFiles[path]()) as MarkdownModule;
     const metadata = post.metadata;
 
     if (metadata) {
-      const slug = path.replace('/src/posts/', '').replace('.md', '').split('/').pop() || '';
+      // Keep the full path including subfolders for the slug
+      const slug = path.replace('/src/blog/', '').replace('.md', '');
 
       posts.push({
         ...metadata,
@@ -69,7 +70,7 @@ export async function getPost(
   slug: string
 ): Promise<{ metadata: PostMetadata; content: SvelteComponent } | null> {
   try {
-    const post = (await import(`../../posts/${slug}.md`)) as MarkdownModule;
+    const post = (await import(`../../blog/${slug}.md`)) as MarkdownModule;
     return {
       metadata: {
         ...post.metadata,

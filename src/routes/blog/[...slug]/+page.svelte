@@ -10,7 +10,7 @@
 
   export let data: PageData;
 
-  const postModules = import.meta.glob('../../../posts/**/*.md', { eager: true }) as Record<
+  const blogModules = import.meta.glob('../../../blog/**/*.md', { eager: true }) as Record<
     string,
     { default: ComponentType }
   >;
@@ -21,7 +21,7 @@
   $: nextPost = data.nextPost;
   $: siteConfig = data.siteConfig;
 
-  $: contentEntry = Object.entries(postModules).find(([path]) =>
+  $: contentEntry = Object.entries(blogModules).find(([path]) =>
     path.endsWith(`/${metadata.slug}.md`)
   );
   $: Content = contentEntry?.[1]?.default;
@@ -74,7 +74,7 @@
   }
 
   function getMarkdownUrl(): string {
-    return `https://raw.githubusercontent.com/${siteConfig.githubUsername}/${siteConfig.githubRepo}/refs/heads/main/src/posts/${metadata.slug}.md`;
+    return `https://raw.githubusercontent.com/${siteConfig.githubUsername}/${siteConfig.githubRepo}/refs/heads/main/src/blog/${metadata.slug}.md`;
   }
 
   function viewAsMarkdown() {
@@ -109,10 +109,10 @@
   <!-- Canonical URL -->
   <link
     rel="canonical"
-    href="{data.siteConfig.baseURL}{data.siteConfig.subPath}/posts/{metadata.slug}"
+    href="{data.siteConfig.baseURL}{data.siteConfig.subPath}/blog/{metadata.slug}"
   />
 
-  <!-- OpenGraph meta tags for blog posts -->
+  <!-- OpenGraph meta tags for articles -->
   <meta property="og:site_name" content={data.siteConfig.title} />
   <meta property="og:title" content={metadata.title} />
   {#if metadata.description}
@@ -121,7 +121,7 @@
   <meta property="og:type" content="article" />
   <meta
     property="og:url"
-    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/posts/{metadata.slug}"
+    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/blog/{metadata.slug}"
   />
   {#if metadata.image}
     <meta
@@ -148,7 +148,7 @@
     {/each}
   {/if}
 
-  <!-- Twitter Card meta tags for blog posts -->
+  <!-- Twitter Card meta tags for articles -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={metadata.title} />
   {#if metadata.description}
@@ -240,18 +240,24 @@
   {/if}
 
   <div class="post-actions-widget">
-    <div class="copy-dropdown-wrapper" bind:this={dropdownButton}>
-      <button class="action-btn copy-btn" on:click={copyPostContent} aria-label="Copy post content">
-        <Icon name="copy" size={16} />
-        <span>Copy Page</span>
-      </button>
-      <button
-        class="action-btn copy-dropdown-arrow"
-        on:click={toggleDropdown}
-        aria-label="More options"
-      >
-        <Icon name="chevron-down" size={16} />
-      </button>
+    <div class="copy-dropdown-container" bind:this={dropdownButton}>
+      <div class="copy-dropdown-wrapper">
+        <button
+          class="action-btn copy-btn"
+          on:click={copyPostContent}
+          aria-label="Copy post content"
+        >
+          <Icon name="copy" size={16} />
+          <span>Copy Page</span>
+        </button>
+        <button
+          class="action-btn copy-dropdown-arrow"
+          on:click={toggleDropdown}
+          aria-label="More options"
+        >
+          <Icon name="chevron-down" size={16} />
+        </button>
+      </div>
       {#if dropdownOpen}
         <div
           class="dropdown-menu"
@@ -273,7 +279,7 @@
     </div>
 
     <a
-      href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/edit/main/src/posts/{metadata.slug}.md"
+      href="https://github.com/{siteConfig.githubUsername}/{siteConfig.githubRepo}/edit/main/src/blog/{metadata.slug}.md"
       target="_blank"
       rel="noopener noreferrer"
       class="action-link"
@@ -323,11 +329,11 @@
   {/if}
 
   <nav class="post-navigation" aria-label="Post navigation">
-    <a href="{base}/posts/{previousPost.slug}" class="nav-item nav-previous">
+    <a href="{base}/blog/{previousPost.slug}" class="nav-item nav-previous">
       <span class="nav-label">PREVIOUS</span>
       <span class="nav-title">{previousPost.title}</span>
     </a>
-    <a href="{base}/posts/{nextPost.slug}" class="nav-item nav-next">
+    <a href="{base}/blog/{nextPost.slug}" class="nav-item nav-next">
       <span class="nav-label">NEXT</span>
       <span class="nav-title">{nextPost.title}</span>
     </a>

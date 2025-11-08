@@ -25,7 +25,7 @@
     localStorage.setItem('theme', theme);
   }
 
-  $: isPostPage = $page.url.pathname.includes('/posts/');
+  $: isPostPage = $page.url.pathname.includes('/blog/');
   $: postTitle = $page.data?.metadata?.title || '';
   $: recentPosts = data.recentPosts ?? [];
   $: headings = $page.data?.headings ?? [];

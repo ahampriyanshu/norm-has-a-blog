@@ -1,6 +1,6 @@
 ---
 title: Adding New Post
-description: Step-by-step guide to writing and publishing blog posts. Learn frontmatter, markdown features, best practices, and troubleshooting tips.
+description: Step-by-step guide to writing and publishing articles. Learn frontmatter, markdown features, best practices, and troubleshooting tips.
 date: '2025-11-02'
 tags:
   - writing
@@ -12,10 +12,10 @@ Writing a new blog post is simple and straightforward. This guide will walk you 
 
 ## Create a New Markdown File
 
-Navigate to the `src/posts/` directory and create a new markdown file. 
+Navigate to the `src/blog/` directory and create a new markdown file. 
 
 ```bash
-cd src/posts
+cd src/blog
 touch my-awesome-post.md
 ```
 

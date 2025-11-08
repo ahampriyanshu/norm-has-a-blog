@@ -30,12 +30,12 @@
   onMount(() => {
     (async () => {
       try {
-        const response = await fetch(`${base}/api/posts.json`);
+        const response = await fetch(`${base}/api/blog.json`);
         if (response.ok) {
           allPosts = await response.json();
         }
       } catch (error) {
-        console.error('Failed to load posts for search:', error);
+        console.error('Failed to load blog for search:', error);
       }
     })();
 
@@ -152,7 +152,7 @@
             type="text"
             bind:this={searchInputElement}
             bind:value={searchQuery}
-            placeholder="Search posts..."
+            placeholder="Search blog..."
             class="search-input"
           />
           <button on:click={toggleSearch} class="search-close" aria-label="Close search">
@@ -171,7 +171,7 @@
             </div>
             <div class="results-list">
               {#each searchResults as post}
-                <a href="{base}/posts/{post.slug}" class="result-item" on:click={toggleSearch}>
+                <a href="{base}/blog/{post.slug}" class="result-item" on:click={toggleSearch}>
                   <div class="result-content">
                     <h3 class="result-title">{post.title}</h3>
                     {#if post.description}
@@ -191,7 +191,7 @@
             </div>
           {:else}
             <div class="no-results">
-              <p>No posts found for "{searchQuery}"</p>
+              <p>No articles found for "{searchQuery}"</p>
             </div>
           {/if}
         {:else}

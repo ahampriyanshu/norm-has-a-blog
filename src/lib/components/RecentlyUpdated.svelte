@@ -7,11 +7,11 @@
 
 {#if recentPosts.length > 0}
   <div class="recently-updated">
-    <h3 class="panel-heading">Recent Posts</h3>
+    <h3 class="panel-heading">Recent Articles</h3>
     <ul class="post-list">
       {#each recentPosts as post}
         <li>
-          <a href="{base}/posts/{post.slug}" class="post-link">
+          <a href="{base}/blog/{post.slug}" class="post-link">
             {post.title}
           </a>
         </li>

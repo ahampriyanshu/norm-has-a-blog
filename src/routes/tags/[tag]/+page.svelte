@@ -9,7 +9,7 @@
 
 <svelte:head>
   <title>{data.tag} | {data.siteConfig.title}</title>
-  <meta name="description" content="Posts tagged with {data.tag} on {data.siteConfig.title}" />
+  <meta name="description" content="Articles tagged with {data.tag} on {data.siteConfig.title}" />
 
   <!-- Canonical URL -->
   <link
@@ -22,7 +22,7 @@
   <meta property="og:title" content="{data.tag} | {data.siteConfig.title}" />
   <meta
     property="og:description"
-    content="Posts tagged with {data.tag} on {data.siteConfig.title}"
+    content="Articles tagged with {data.tag} on {data.siteConfig.title}"
   />
   <meta property="og:type" content="website" />
   <meta
@@ -39,7 +39,7 @@
   <meta name="twitter:title" content="{data.tag} | {data.siteConfig.title}" />
   <meta
     name="twitter:description"
-    content="Posts tagged with {data.tag} on {data.siteConfig.title}"
+    content="Articles tagged with {data.tag} on {data.siteConfig.title}"
   />
   <meta
     name="twitter:image"
@@ -57,7 +57,7 @@
   <div class="post-list">
     {#each data.posts as post}
       <article class="card-wrapper card">
-        <a href="{base}/posts/{post.slug}" class="post-preview">
+        <a href="{base}/blog/{post.slug}" class="post-preview">
           {#if post.image}
             <div class="post-image">
               <img src={post.image} alt={post.title} loading="lazy" />

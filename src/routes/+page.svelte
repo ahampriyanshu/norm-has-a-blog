@@ -44,7 +44,7 @@
 <div class="post-list">
   {#each data.posts as post}
     <article class="card-wrapper card">
-      <a href="{base}/posts/{post.slug}" class="post-preview">
+      <a href="{base}/blog/{post.slug}" class="post-preview">
         {#if post.image}
           <div class="post-image">
             <img src={post.image} alt={post.title} loading="lazy" />

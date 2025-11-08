@@ -18,7 +18,7 @@
         <ol class="breadcrumb-list">
           <li><a href={base || '/'}>Home</a></li>
           <li><span class="separator">></span></li>
-          <li><a href="{base}/archives">Posts</a></li>
+          <li><a href="{base}/archives">Blog</a></li>
           <li><span class="separator">></span></li>
           <li class="current">{postTitle}</li>
         </ol>

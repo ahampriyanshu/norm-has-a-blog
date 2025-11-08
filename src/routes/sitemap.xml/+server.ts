@@ -31,7 +31,7 @@ ${staticPages
 ${posts
   .map(
     (post) => `  <url>
-    <loc>${url}/posts/${post.slug}</loc>
+    <loc>${url}/blog/${post.slug}</loc>
     <lastmod>${new Date(post.updated || post.date).toISOString()}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1</priority>

@@ -27,8 +27,8 @@ ${posts
     (post) => `    <item>
       <title>${escapeXml(post.title)}</title>
       <description>${escapeXml(post.description)}</description>
-      <link>${url}/posts/${post.slug}</link>
-      <guid isPermaLink="true">${url}/posts/${post.slug}</guid>
+      <link>${url}/blog/${post.slug}</link>
+      <guid isPermaLink="true">${url}/blog/${post.slug}</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
 ${post.updated ? `      <atom:updated>${new Date(post.updated).toISOString()}</atom:updated>\n` : ''}${post.tags ? post.tags.map((tag) => `      <category>${escapeXml(tag)}</category>`).join('\n') + '\n' : ''}      <author>${escapeXml(siteConfig.contact.email)} (${escapeXml(siteConfig.author)})</author>
     </item>`

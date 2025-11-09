@@ -42,7 +42,7 @@ export const siteConfig = {
       { name: 'Zmail', url: 'https://portfolio.ahampriyanshu.com' },
       { name: 'Algo 101', url: 'https://github.com/ahampriyanshu/algo-ds-101' },
       {
-        name: 'Indian Elections Dataset',
+        name: 'Lok Sabha EDA',
         url: 'https://www.kaggle.com/datasets/ahampriyanshu/lok-sabha'
       }
     ],

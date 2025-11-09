@@ -141,6 +141,25 @@ You can add images using standard Markdown syntax:
 
 ![Hero Image](/images/hero.jpeg)
 
+## With captions
+
+<figure class="align-center">
+  <img src="https://github.com/ahampriyanshu/meta/blob/main/blog/norm.png?raw=true" alt="norm">
+  <figcaption>Rolling Stone ranked norm 139 out of 145 SNL cast members</figcaption>
+</figure>
+
+<fig>
+
+## HTML
+
+You can also use raw HTML in Markdown:
+
+<div style="border: 1px solid #f0f0f0; padding: 10px; border-radius: 12px; text-align: center;">
+  This is a custom HTML div with inline styles.
+</div>
+
+
+
 ## Math Equations
 
 Mathematical expressions are fully supported using MathJax.
@@ -193,11 +212,3 @@ ax + by \\
 cx + dy
 \end{bmatrix}
 $$
-
-## HTML
-
-You can also use raw HTML in Markdown:
-
-<div style="border: 1px solid #f0f0f0; padding: 10px; border-radius: 12px; text-align: center;">
-  This is a custom HTML div with inline styles.
-</div>

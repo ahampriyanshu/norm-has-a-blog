@@ -1,6 +1,6 @@
 export interface Post {
   title: string;
-  description: string;
+  description?: string;
   date: string;
   updated?: string;
   tags?: string[];
@@ -49,15 +49,21 @@ export async function getPosts(): Promise<PostMetadata[]> {
       const post = (await blogFiles[path]()) as MarkdownModule;
       const metadata = post.metadata;
 
-      if (metadata && metadata.title && metadata.description && metadata.date) {
+      if (metadata && metadata.title && metadata.date) {
         // Keep the full path including subfolders for the slug
         const slug = path.replace('/src/blog/', '').replace('.md', '');
 
         let readingTime = '5 min read';
+        let description = metadata.description;
+
         try {
           const html = post.default?.render?.()?.html;
           if (html) {
             readingTime = calculateReadingTime(html);
+            // If no description provided, extract first 50 words
+            if (!description) {
+              description = extractFirst50Words(html);
+            }
           }
         } catch (e) {
           console.warn(`Failed to calculate reading time for ${path}:`, e);
@@ -65,6 +71,7 @@ export async function getPosts(): Promise<PostMetadata[]> {
 
         posts.push({
           ...metadata,
+          description,
           slug,
           readingTime
         });
@@ -96,10 +103,16 @@ export async function getPost(
     const post = (await blogFiles[postPath]()) as MarkdownModule;
 
     let readingTime = '5 min read';
+    let description = post.metadata.description;
+
     try {
       const html = post.default?.render?.()?.html;
       if (html) {
         readingTime = calculateReadingTime(html);
+        // If no description provided, extract first 50 words
+        if (!description) {
+          description = extractFirst50Words(html);
+        }
       }
     } catch (e) {
       console.warn(`Failed to calculate reading time for ${slug}:`, e);
@@ -108,6 +121,7 @@ export async function getPost(
     return {
       metadata: {
         ...post.metadata,
+        description,
         slug,
         readingTime
       },
@@ -196,6 +210,13 @@ function calculateReadingTime(html: string): string {
   const words = text.trim().split(/\s+/).length;
   const minutes = Math.ceil(words / 200);
   return `${minutes} min read`;
+}
+
+function extractFirst50Words(html: string): string {
+  const text = html.replace(/<[^>]*>/g, '');
+  const words = text.trim().split(/\s+/);
+  const first50 = words.slice(0, 50).join(' ');
+  return first50 + (words.length > 50 ? '...' : '');
 }
 
 export function formatDate(date: string): string {

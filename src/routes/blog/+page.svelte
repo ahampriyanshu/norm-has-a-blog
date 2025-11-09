@@ -1,16 +1,8 @@
 <script lang="ts">
-  import { base } from '$app/paths';
   import type { PageData } from './$types';
+  import BlogList from '$lib/components/BlogList.svelte';
 
   export let data: PageData;
-
-  function formatDateSimple(dateString: string): string {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
 </script>
 
 <svelte:head>
@@ -48,14 +40,5 @@
   <h1 class="page-title">Articles</h1>
   <p class="tag-count">{data.posts.length} post{data.posts.length !== 1 ? 's' : ''}</p>
 
-  <ul class="blog-list">
-    {#each data.posts as post}
-      <li class="blog-item">
-        <time class="blog-date" datetime={post.date}>{formatDateSimple(post.date)}</time>
-        <a href="{base}/blog/{post.slug}" class="blog-link">
-          {post.title}
-        </a>
-      </li>
-    {/each}
-  </ul>
+  <BlogList posts={data.posts} />
 </div>

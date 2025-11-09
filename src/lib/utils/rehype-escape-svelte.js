@@ -22,26 +22,43 @@ export function rehypeEscapeSvelte() {
       }
     });
 
-    visit(tree, 'text', (node) => {
+    // Visit ALL text nodes in the entire tree (including those nested in elements)
+    visit(tree, 'text', (node, index, parent) => {
       if (node.value && typeof node.value === 'string') {
+        // Skip if this is inside a code block or pre tag (already handled by syntax highlighter)
+        if (
+          parent &&
+          parent.type === 'element' &&
+          (parent.tagName === 'code' || parent.tagName === 'pre')
+        ) {
+          return;
+        }
+
         // Escape double curly braces (Svelte/Liquid template syntax) in text nodes
-        // But only if they're not in image paths (already handled above)
         node.value = node.value.replace(/\{\{/g, '&#123;&#123;').replace(/\}\}/g, '&#125;&#125;');
+
+        // Escape < and > to prevent them from being interpreted as HTML tags or Svelte syntax
+        // This is crucial to prevent the app from breaking when these characters are used in markdown
+        node.value = node.value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
       }
     });
 
-    // Escape < and > in table cells and list items
-    visit(tree, 'element', (node) => {
-      if (node.tagName === 'td' || node.tagName === 'th' || node.tagName === 'li') {
-        visit(node, 'text', (textNode) => {
-          if (textNode.value && typeof textNode.value === 'string') {
-            // Only escape < and > that appear to be comparison operators (not part of HTML tags)
-            // This regex looks for < or > surrounded by spaces or at word boundaries
-            textNode.value = textNode.value
-              .replace(/(\s|^)<(\s)/g, '$1&lt;$2')
-              .replace(/(\s)>(\s|$)/g, '$1&gt;$2');
+    // Also handle raw HTML nodes that might contain unescaped < and >
+    visit(tree, 'raw', (node) => {
+      if (node.value && typeof node.value === 'string') {
+        // Escape < and > in text content within raw HTML/SVG elements
+        // This regex finds text content between > and < (i.e., element content)
+        node.value = node.value.replace(
+          />([^<>]*)</g,
+          (/** @type {string} */ match, /** @type {string} */ content) => {
+            // Only escape if the content contains < or > (comparison operators, not tags)
+            if (content.includes('<') || content.includes('>')) {
+              const escaped = content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+              return `>${escaped}<`;
+            }
+            return match;
           }
-        });
+        );
       }
     });
   };

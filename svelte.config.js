@@ -8,6 +8,7 @@ import remarkToc from 'remark-toc';
 import remarkMath from 'remark-math';
 import { rehypeEscapeMath } from './src/lib/utils/rehype-escape-math.js';
 import { rehypeEscapeSvelte } from './src/lib/utils/rehype-escape-svelte.js';
+import { rehypeWrapTable } from './src/lib/utils/rehype-wrap-table.js';
 import { createCodeHighlighter } from './src/lib/utils/code-highlighter.js';
 import { visit } from 'unist-util-visit';
 
@@ -35,6 +36,7 @@ const mdsvexOptions = {
     rehypeSlug,
     rehypeAutolinkHeadings,
     rehypeEscapeMath,
+    rehypeWrapTable,
     rehypeEscapeSvelte,
     rehypeFixImagePaths
   ],

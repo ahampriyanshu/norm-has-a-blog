@@ -6,16 +6,11 @@
   import type { PostMetadata } from '$lib/utils/posts';
   import Icon from '$lib/components/Icon.svelte';
 
-  export let theme: string = 'dark';
-  export let toggleTheme: () => void;
-
   let searchVisible = false;
   let searchQuery = '';
   let allPosts: PostMetadata[] = [];
   let searchResults: PostMetadata[] = [];
   let searchInputElement: HTMLInputElement;
-  let themeToggleIcon: 'sun' | 'moon' = 'moon';
-  $: themeToggleIcon = theme === 'dark' ? 'sun' : 'moon';
   // $: popularPosts = allPosts.slice(0, 6);
 
   const navItems = siteConfig.navItems;
@@ -121,15 +116,6 @@
       >
         <Icon name="search" size={16} className="search-trigger-icon" />
       </button>
-
-      <button
-        type="button"
-        class="theme-toggle"
-        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-        on:click={toggleTheme}
-      >
-        <Icon name={themeToggleIcon} size={20} />
-      </button>
     </div>
   </div>
 </header>
@@ -147,7 +133,7 @@
     <div class="search-modal" on:click|stopPropagation on:keydown={handleKeydown} role="document">
       <div class="search-header">
         <div class="search-input-wrapper">
-          <Icon name="search" size={20} className="search-icon" />
+          <Icon name="search" size={16} className="search-icon" />
           <input
             type="text"
             bind:this={searchInputElement}
@@ -156,7 +142,7 @@
             class="search-input"
           />
           <button on:click={toggleSearch} class="search-close" aria-label="Close search">
-            <Icon name="close" size={24} />
+            <Icon name="close" size={16} />
           </button>
         </div>
       </div>
@@ -164,11 +150,6 @@
       <div class="search-results">
         {#if searchQuery.trim()}
           {#if searchResults.length > 0}
-            <div class="results-header">
-              <span class="results-count"
-                >{searchResults.length} result{searchResults.length !== 1 ? 's' : ''}</span
-              >
-            </div>
             <div class="results-list">
               {#each searchResults as post}
                 <a href="{base}/blog/{post.slug}" class="result-item" on:click={toggleSearch}>
@@ -177,14 +158,6 @@
                     {#if post.description}
                       <p class="result-description">{post.description}</p>
                     {/if}
-                    <div class="result-meta">
-                      {#if post.tags && post.tags.length > 0}
-                        <span class="result-tags">
-                          <Icon name="tags" size={12} />
-                          {post.tags.slice(0, 3).join(', ')}
-                        </span>
-                      {/if}
-                    </div>
                   </div>
                 </a>
               {/each}
@@ -197,58 +170,6 @@
         {:else}
           <div class="search-empty-state">
             <p class="empty-message">Type something to search..</p>
-          </div>
-          <div class="search-shortcuts">
-            <div class="shortcut-item">
-              <svg
-                class="shortcut-icon"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polygon points="12 19 6 12 18 12 12 19"></polygon>
-              </svg>
-              <svg
-                class="shortcut-icon"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polygon points="12 5 6 12 18 12 12 5"></polygon>
-              </svg>
-              <span>to navigate</span>
-            </div>
-            <div class="shortcut-item">
-              <svg
-                class="shortcut-icon"
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-              </svg>
-              <span>to select</span>
-            </div>
-            <div class="shortcut-item esc-shortcut">
-              <button class="esc-btn">ESC</button>
-              <span>to close</span>
-            </div>
           </div>
         {/if}
       </div>

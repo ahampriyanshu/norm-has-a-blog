@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { base } from '$app/paths';
   import type { PageData } from './$types';
-  import { formatDate } from '$lib/utils/posts';
+  import BlogList from '$lib/components/BlogList.svelte';
 
   export let data: PageData;
 </script>
@@ -57,15 +56,7 @@
         {#each Array.from(months) as [month, posts]}
           <div class="month-section">
             <h3 class="month">{month}</h3>
-
-            <ul class="post-list">
-              {#each posts as post}
-                <li>
-                  <time datetime={post.date}>{formatDate(post.date)}</time>
-                  <a href="{base}/blog/{post.slug}">{post.title}</a>
-                </li>
-              {/each}
-            </ul>
+            <BlogList {posts} />
           </div>
         {/each}
       </div>

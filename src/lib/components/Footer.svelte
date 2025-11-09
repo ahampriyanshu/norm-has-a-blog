@@ -3,6 +3,12 @@
   import { siteConfig } from '$lib/config';
   import Icon from '$lib/components/Icon.svelte';
 
+  export let theme: string = 'light';
+  export let toggleTheme: () => void;
+
+  let themeToggleIcon: 'sun' | 'moon' = 'moon';
+  $: themeToggleIcon = theme === 'dark' ? 'sun' : 'moon';
+
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -127,6 +133,14 @@
         <Icon name="rss" size={16} />
         <span>Subscribe</span>
       </a>
+      <button
+        type="button"
+        class="theme-toggle"
+        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        on:click={toggleTheme}
+      >
+        <Icon name={themeToggleIcon} size={16} />
+      </button>
       <button class="scroll-to-top" on:click={scrollToTop} aria-label="Scroll to top">
         <Icon name="chevron-up" size={16} />
       </button>

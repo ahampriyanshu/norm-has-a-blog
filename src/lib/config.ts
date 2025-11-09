@@ -54,9 +54,12 @@ export const siteConfig = {
     ],
     personal: [
       { name: 'SuperTrips', url: 'https://supertrips.ahampriyanshu.com' },
-      { name: '9AM Playlist', url: 'https://open.spotify.com/user/yourprofile' },
-      { name: '9PM Playlist', url: 'https://youtube.com/@yourchannel' },
-      { name: 'Bookshelf', url: 'https://goodreads.com/yourprofile' }
+      { name: '9AM Playlist', url: 'https://open.spotify.com/playlist/3igzxaCc80f1IYbE4qord3' },
+      {
+        name: '9PM Playlist',
+        url: 'https://www.youtube.com/playlist?list=PLDbMS6hxjvT7XcInwLhPPfzrvUeDtH0tA'
+      },
+      { name: 'Bookshelf', url: 'https://www.goodreads.com/ahampriyanshu' }
     ]
   }
 };

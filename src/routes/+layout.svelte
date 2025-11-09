@@ -10,11 +10,11 @@
   import { onMount } from 'svelte';
 
   export let data: LayoutData;
-  let theme = 'dark';
+  let theme = 'light';
   let recentPosts = data.recentPosts ?? [];
 
   onMount(() => {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const savedTheme = localStorage.getItem('theme') || 'light';
     theme = savedTheme;
     document.documentElement.setAttribute('data-mode', theme);
   });
@@ -106,7 +106,7 @@
 
   <div class="main-wrapper">
     <div class="content-area">
-      <Topbar {theme} {toggleTheme} />
+      <Topbar />
 
       <div class="content-wrapper" class:has-sidebar={isPostPage}>
         {#if isPostPage}
@@ -126,7 +126,7 @@
         </main>
       </div>
 
-      <Footer />
+      <Footer {theme} {toggleTheme} />
     </div>
   </div>
 </div>

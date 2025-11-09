@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { base } from '$app/paths';
   import type { PageData } from './$types';
-  import { formatDate } from '$lib/utils/posts';
+  import BlogList from '$lib/components/BlogList.svelte';
 
   export let data: PageData;
 </script>
@@ -53,13 +52,5 @@
   <h1 class="page-title">Tag: {data.tag}</h1>
   <p class="tag-count">{data.posts.length} post{data.posts.length !== 1 ? 's' : ''}</p>
 
-  <div class="tag-index">
-    {#each data.posts as post}
-      <a href="{base}/blog/{post.slug}" class="index-item">
-        <span class="tag-name">{post.title}</span>
-        <span class="dots"></span>
-        <span class="count">{formatDate(post.date)}</span>
-      </a>
-    {/each}
-  </div>
+  <BlogList posts={data.posts} />
 </div>

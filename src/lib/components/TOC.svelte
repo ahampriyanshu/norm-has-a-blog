@@ -10,7 +10,9 @@
 
   interface HeadingGroup {
     h2: Heading;
+    h2Index: number;
     children: Heading[];
+    childIndices: number[];
   }
 
   export let headings: Heading[] = [];
@@ -25,17 +27,20 @@
     const groups: HeadingGroup[] = [];
     let currentGroup: HeadingGroup | null = null;
 
-    allHeadings.forEach((heading) => {
+    allHeadings.forEach((heading, index) => {
       if (heading.level === 2) {
         if (currentGroup) {
           groups.push(currentGroup);
         }
         currentGroup = {
           h2: heading,
-          children: []
+          h2Index: index,
+          children: [],
+          childIndices: []
         };
       } else if (currentGroup && (heading.level === 3 || heading.level === 4)) {
         currentGroup.children.push(heading);
+        currentGroup.childIndices.push(index);
       }
     });
 
@@ -92,7 +97,7 @@
     activeH2Id = '';
 
     const observerOptions = {
-      rootMargin: '-100px 0px -66% 0px',
+      rootMargin: '-60% 0px 0px 0px',
       threshold: 0
     };
 
@@ -126,7 +131,7 @@
     const handleScroll = () => {
       if (headings.length === 0 || groupedHeadings.length === 0) return;
 
-      const scrollPosition = window.scrollY + 150;
+      const scrollPosition = window.scrollY + window.innerHeight * 0.4;
       let foundHeading = false;
 
       for (let i = headings.length - 1; i >= 0; i--) {
@@ -200,7 +205,7 @@
   <nav id="toc" class="toc">
     {#if groupedHeadings.length > 0}
       <ul class="toc-list">
-        {#each groupedHeadings as group (group.h2.id)}
+        {#each groupedHeadings as group (group.h2Index)}
           <li class="toc-item toc-h2" class:active={activeId === group.h2.id}>
             <a
               href="#{group.h2.id}"
@@ -213,7 +218,7 @@
 
             {#if group.children.length > 0}
               <ul class="toc-sublist" class:expanded={group.h2.id === activeH2Id}>
-                {#each group.children as child (child.id)}
+                {#each group.children as child, childIdx (group.childIndices[childIdx])}
                   <li
                     class="toc-item {getIndentClass(child.level)}"
                     class:active={activeId === child.id}

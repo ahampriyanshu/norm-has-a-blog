@@ -1,16 +1,9 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import type { PageData } from './$types';
+  import BlogList from '$lib/components/BlogList.svelte';
 
   export let data: PageData;
-
-  function formatDateSimple(dateString: string): string {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
 </script>
 
 <svelte:head>
@@ -55,32 +48,32 @@
 
       <div class="bio-section">
         <p class="bio-text">
-          I'm a full stack developer and history buff, currently working as a Senior Software
-          Engineer at HackerRank. In my current team, we are building <a
-            href="https://skillup.hackerrank.com"
+          I'm a backend heavy full-stack developer and history buff, currently working as a Senior
+          Software Engineer at HackerRank. In my team, we're building <a
+            href="https://www.hackerrank.com/products/skillup"
             rel="noopener noreferrer"
             target="_blank">SkillUp</a
-          > from scratch.
+          > from the ground up.
         </p>
         <p class="bio-text">
-          Apart from programming, I am interested in history, which I tried pursuing academically
-          before and after my engineering gradution(but dropped both the times, will try again in
-          the future).
+          Beyond programming, I'm fascinated by history; something I've attempted to pursue
+          academically both before and after my engineering degree and though I dropped out both
+          times. I'll give it another shot down the road.
         </p>
         <p class="bio-text">
-          I lived as nomad for the 3 years, stayed(and worked) in <a
+          I spent three years living as a nomad, working remotely from <a
             href="https://supertrips.ahampriyanshu.com"
             rel="noopener noreferrer"
-            target="_blank">100+ cities</a
-          > across India. Something I would like to do internationally in the next decade.
+            target="_blank">100+</a
+          > cities across India. It's something I'd love to do internationally over the next decade.
         </p>
         <p class="bio-text">
-          This blog includes my notes on programming, personal finance, and whatever else I'm
-          figuring out. To collaborate on something interesting, feel free to <a
+          This blog is where I share notes on programming, personal finance, and whatever else I'm
+          exploring at the moment. If you want to collaborate on something cool, feel free to <a
             href="mailto:vayampriyanshu@gmail.com&subject=Hey"
             rel="noopener noreferrer"
-            target="_blank">reach out to me</a
-          >
+            target="_blank">reach out</a
+          >.
         </p>
       </div>
     </div>
@@ -89,16 +82,7 @@
   {#if data.pinnedPosts && data.pinnedPosts.length > 0}
     <div class="featured-section blog-page">
       <h2 class="featured-heading">Featured Posts</h2>
-      <ul class="blog-list">
-        {#each data.pinnedPosts as post}
-          <li class="blog-item">
-            <time class="blog-date" datetime={post.date}>{formatDateSimple(post.date)}</time>
-            <a href="{base}/blog/{post.slug}" class="blog-link">
-              {post.title}
-            </a>
-          </li>
-        {/each}
-      </ul>
+      <BlogList posts={data.pinnedPosts} />
     </div>
   {/if}
 </div>
@@ -197,10 +181,6 @@
 
   .featured-section {
     margin-top: 4rem;
-
-    .blog-item {
-      gap: 0.5rem;
-    }
   }
 
   .featured-heading {
@@ -208,5 +188,25 @@
     font-weight: 700;
     margin: 0 0 1rem 0;
     color: var(--heading-color);
+  }
+
+  @media (max-width: 768px) {
+    .featured-section {
+      margin-top: 2rem;
+    }
+
+    .featured-heading {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .featured-section {
+      margin-top: 1.5rem;
+    }
+
+    .featured-heading {
+      font-size: 1.5rem;
+    }
   }
 </style>

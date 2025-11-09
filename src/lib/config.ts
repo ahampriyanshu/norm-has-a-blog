@@ -7,7 +7,7 @@ export const siteConfig = {
     "I'm a software engineer passionate about building elegant solutions to complex problems. I write about technology, software development, and my journey in tech.",
     'Currently exploring the intersection of machine learning and web development, with a focus on creating performant and accessible applications.',
     "When I'm not coding, you'll find me contributing to open source, writing technical blog posts, or exploring new technologies.",
-    "These are my notes on programming, personal finance, and whatever else I'm figuring out."
+    "This blog includes my notes on programming, personal finance, and whatever else I'm figuring out."
   ],
   baseURL: 'https://ahampriyanshu.com',
   subPath: '/norm-has-a-blog',
@@ -38,7 +38,7 @@ export const siteConfig = {
   ],
   footerLinks: {
     projects: [
-      { name: 'o1on', url: 'https://github.com/ahampriyanshu/o1' },
+      { name: 'o1on', url: 'https://github.com/ahampriyanshu/o1on' },
       { name: 'Zmail', url: 'https://portfolio.ahampriyanshu.com' },
       { name: 'Algo 101', url: 'https://github.com/ahampriyanshu/algo-ds-101' },
       {

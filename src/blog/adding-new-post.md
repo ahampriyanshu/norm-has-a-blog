@@ -22,7 +22,32 @@ cd src/blog
 touch my-awesome-post.md
 ```
 
-> Note: The filename will be used as the URL slug for your post. Keep it concise but descriptive. 
+> **Note**: The filename will be used as the URL slug for your post. Keep it concise but descriptive.
+
+### Organizing Posts with Subfolders
+
+You can organize similar articles by placing them in subfolders. The subfolder path will be included in the URL:
+
+```bash
+mkdir src/blog/web-development
+touch src/blog/web-development/intro-to-sveltekit.md
+```
+
+This will generate the URL: `/blog/web-development/intro-to-sveltekit`
+
+**Example folder structure:**
+```
+src/blog/
+├── getting-started.md                    → /blog/getting-started
+├── web-development/
+│   ├── intro-to-sveltekit.md            → /blog/web-development/intro-to-sveltekit
+│   └── advanced-routing.md              → /blog/web-development/advanced-routing
+└── tutorials/
+    ├── authentication.md                 → /blog/tutorials/authentication
+    └── deployment.md                     → /blog/tutorials/deployment
+```
+
+This helps keep related content organized while maintaining clean, hierarchical URLs. 
 
 ## Add Frontmatter
 

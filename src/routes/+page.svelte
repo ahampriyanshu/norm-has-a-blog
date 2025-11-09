@@ -109,7 +109,6 @@
   .hero-content {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
     width: 100%;
   }
 
@@ -145,6 +144,7 @@
     }
 
     .profile-image-wrapper {
+      margin-top: 90px;
       width: 250px;
       height: 250px;
     }

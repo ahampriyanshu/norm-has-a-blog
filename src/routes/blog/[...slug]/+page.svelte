@@ -69,8 +69,6 @@
 
   $: repoBaseUrl = `https://github.com/${siteConfig.githubUsername}/${siteConfig.githubRepo}`;
 
-  const noopRel = 'noopener noreferrer';
-
   $: copyPrimaryAction = {
     label: 'Copy Page',
     icon: 'copy',
@@ -81,32 +79,6 @@
   $: copyDropdownItems = [
     { label: 'Copy URL', icon: 'link', onClick: copyUrl },
     { label: 'Raw Markdown', icon: 'code', onClick: viewAsMarkdown }
-  ] satisfies DropdownAction[];
-
-  $: editPrimaryAction = {
-    label: 'Edit page',
-    icon: 'pencil',
-    ariaLabel: 'Edit page',
-    href: `${repoBaseUrl}/edit/main/src/blog/${metadata.slug}.md`,
-    target: '_blank',
-    rel: noopRel
-  } satisfies DropdownAction;
-
-  $: editDropdownItems = [
-    {
-      label: 'Report Issue',
-      icon: 'alert',
-      href: `${repoBaseUrl}/issues/new`,
-      target: '_blank',
-      rel: noopRel
-    },
-    {
-      label: 'Suggest New Page',
-      icon: 'git-pull-request',
-      href: `${repoBaseUrl}/compare`,
-      target: '_blank',
-      rel: noopRel
-    }
   ] satisfies DropdownAction[];
 </script>
 
@@ -255,11 +227,6 @@
 
   <div class="post-actions-widget">
     <CopyDropdown primaryAction={copyPrimaryAction} dropdownItems={copyDropdownItems} />
-    <CopyDropdown
-      primaryAction={editPrimaryAction}
-      dropdownItems={editDropdownItems}
-      dropdownAriaLabel="More page options"
-    />
   </div>
 </div>
 
@@ -289,6 +256,27 @@
             #{tag}
           </a>
         {/each}
+      </div>
+      <div class="post-license">
+        <span class="license-text">
+          This post is licensed under
+          <a
+            href="https://creativecommons.org/licenses/by/4.0/"
+            target="_blank"
+            rel="noopener noreferrer">CC BY 4.0</a
+          >
+        </span>
+        <span class="license-actions">
+          <a
+            href="{repoBaseUrl}/edit/main/src/blog/{metadata.slug}.md"
+            target="_blank"
+            rel="noopener noreferrer">Edit this page</a
+          >
+          <span class="separator">|</span>
+          <a href="{repoBaseUrl}/issues/new" target="_blank" rel="noopener noreferrer"
+            >Report an issue</a
+          >
+        </span>
       </div>
     </div>
   {/if}

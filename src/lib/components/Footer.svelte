@@ -79,7 +79,7 @@
         </div>
 
         <div class="footer-section">
-          <h4 class="footer-section-title">Blogs</h4>
+          <h4 class="footer-section-title">Posts</h4>
           <ul class="footer-links">
             {#each siteConfig.footerLinks.blogs as link}
               <li>

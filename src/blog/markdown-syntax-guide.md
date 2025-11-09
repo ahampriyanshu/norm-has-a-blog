@@ -39,9 +39,14 @@ a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>
 
 H<sub>2</sub> + SO<sub>4</sub> &rarr; H<sub>2</sub>SO<sub>4</sub>
 
-### Headings
-
-#### Subheadings
+```md
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+```
 
 ## Links
 

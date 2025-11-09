@@ -38,15 +38,8 @@ $radius-lg: 10px;
   --tag-bg: #f8f9fa;
   --tag-hover-bg: rgb(222 226 230);
 
-  --code-bg: rgb(25 25 28 / 5%);
   --badge-bg: #e9ecef;
   --badge-color: #495057;
-
-  --search-trigger-bg: #2d2e30;
-  --search-trigger-border: rgba(255, 255, 255, 0.1);
-  --search-trigger-text-color: #9aa0a6;
-  --search-trigger-hover-bg: #3c4043;
-  --search-trigger-hover-border: rgba(255, 255, 255, 0.15);
 
   --border-dark-color: #9e9e9e;
 }
@@ -80,12 +73,6 @@ $radius-lg: 10px;
 
   --badge-bg: #2e2f31;
   --badge-color: #b0b0b0;
-
-  --search-trigger-bg: #2d2e30;
-  --search-trigger-border: #5f6368;
-  --search-trigger-text-color: #9aa0a6;
-  --search-trigger-hover-bg: #3c4043;
-  --search-trigger-hover-border: #80868b;
 
   --border-dark-color: #505050;
 
@@ -3143,7 +3130,7 @@ article {
   .results-header {
     padding: 0.75rem 0.75rem 0;
     border-bottom: 1px solid var(--border-color);
-    background: var(--bg-color);
+    background: var(--sidebar-bg);
   }
 
   .results-count {
@@ -3170,7 +3157,7 @@ article {
     }
 
     &:hover {
-      background: var(--bg-color);
+      background: var(--sidebar-hover-bg);
     }
   }
 

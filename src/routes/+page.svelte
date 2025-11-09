@@ -54,9 +54,34 @@
       <h1 class="hero-title">Hi, I'm Priyanshu 👋</h1>
 
       <div class="bio-section">
-        {#each data.siteConfig.bio as bioText}
-          <p class="bio-text">{bioText}</p>
-        {/each}
+        <p class="bio-text">
+          I'm a full stack developer and history buff, currently working as a Senior Software
+          Engineer at HackerRank. In my current team, we are building <a
+            href="https://skillup.hackerrank.com"
+            rel="noopener noreferrer"
+            target="_blank">SkillUp</a
+          > from scratch.
+        </p>
+        <p class="bio-text">
+          Apart from programming, I am interested in history, which I tried pursuing academically
+          before and after my engineering gradution(but dropped both the times, will try again in
+          the future).
+        </p>
+        <p class="bio-text">
+          I lived as nomad for the 3 years, stayed(and worked) in <a
+            href="https://supertrips.ahampriyanshu.com"
+            rel="noopener noreferrer"
+            target="_blank">100+ cities</a
+          > across India. Something I would like to do internationally in the next decade.
+        </p>
+        <p class="bio-text">
+          This blog includes my notes on programming, personal finance, and whatever else I'm
+          figuring out. To collaborate on something interesting, feel free to <a
+            href="mailto:vayampriyanshu@gmail.com&subject=Hey"
+            rel="noopener noreferrer"
+            target="_blank">reach out to me</a
+          >
+        </p>
       </div>
     </div>
   </div>

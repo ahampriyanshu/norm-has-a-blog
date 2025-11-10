@@ -138,7 +138,7 @@
             type="text"
             bind:this={searchInputElement}
             bind:value={searchQuery}
-            placeholder="Search blog..."
+            placeholder="Search posts..."
             class="search-input"
           />
           <button on:click={toggleSearch} class="search-close" aria-label="Close search">

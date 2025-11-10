@@ -1145,14 +1145,21 @@ a {
 }
 
 .site-header {
-  padding: 2rem 0 1.5rem 0;
+  padding: 1.25rem 0;
   margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .header-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 }
 
 .site-title {
@@ -1178,19 +1185,40 @@ a {
 .header-container .nav-link {
   color: var(--text-color);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   text-transform: capitalize;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
-  font-family: inherit;
+  padding: 0.5rem 0;
+  font-family:
+    'Lato',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--link-color);
+    transition: width 0.2s ease;
+  }
 
   &:hover {
     color: var(--link-color);
+
+    &::after {
+      width: 100%;
+    }
   }
 
   &.active {
@@ -1252,9 +1280,9 @@ a {
   background: rgba(0, 0, 0, 0.85);
   z-index: 1000;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding-top: 5vh;
+  padding-top: 0;
   overflow-y: auto;
   animation: fadeIn 0.2s ease-out;
 }
@@ -1709,6 +1737,12 @@ a {
   margin: 0;
   color: var(--heading-color);
   line-height: 1.2;
+  font-family:
+    'Lato',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
 }
 
 .profile-title {
@@ -1776,7 +1810,7 @@ a {
 
   @media (max-width: 640px) {
     flex-wrap: wrap;
-    gap: 2rem 1.5rem;
+    gap: 2rem 0.5rem;
   }
 }
 
@@ -1800,10 +1834,15 @@ a {
 .footer-section-title {
   font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.01em;
   color: var(--color-text);
   margin: 0 0 0.5rem 0;
-  opacity: 0.9;
+  font-family:
+    'Lato',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
 }
 
 .footer-links {
@@ -3035,7 +3074,7 @@ article {
 
 @media (max-width: 768px) {
   .site-header {
-    padding: 1.5rem 0 1rem 0;
+    padding: 1rem 0;
     margin-bottom: 1rem;
   }
 
@@ -3045,7 +3084,7 @@ article {
   }
 
   .header-container .main-nav {
-    gap: 0.5rem;
+    gap: 1rem;
     flex-shrink: 1;
     overflow-x: auto;
     scrollbar-width: none;
@@ -3057,9 +3096,10 @@ article {
   }
 
   .header-container .nav-link {
-    font-size: 0.75rem;
+    font-size: 0.9375rem;
     text-transform: capitalize;
     white-space: nowrap;
+    padding: 0.4rem 0;
   }
 
   .header-actions {
@@ -3089,7 +3129,7 @@ article {
 
 @media (max-width: 576px) {
   .site-header {
-    padding: 1rem 0 0.75rem 0;
+    padding: 0.875rem 0;
     margin-bottom: 0.75rem;
   }
 
@@ -3099,7 +3139,7 @@ article {
   }
 
   .header-container .main-nav {
-    gap: 0.5rem;
+    gap: 0.75rem;
     flex-shrink: 1;
     overflow-x: auto;
     scrollbar-width: none;
@@ -3111,9 +3151,10 @@ article {
   }
 
   .header-container .nav-link {
-    font-size: 0.7rem;
+    font-size: 0.875rem;
     text-transform: capitalize;
     white-space: nowrap;
+    padding: 0.35rem 0;
   }
 
   .header-actions {
@@ -3164,13 +3205,14 @@ article {
   }
 
   .search-overlay {
-    padding-top: 2vh;
+    padding-top: 15vh;
+    align-items: flex-start;
   }
 
   .search-modal {
-    width: 100%;
-    max-width: 100%;
-    border-radius: 0;
+    width: 90%;
+    max-width: 90%;
+    border-radius: 0.25rem;
   }
 }
 

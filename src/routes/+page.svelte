@@ -122,7 +122,7 @@
   }
 
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 700;
     margin: 0;
     color: var(--heading-color);

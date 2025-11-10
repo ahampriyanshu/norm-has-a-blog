@@ -49,19 +49,19 @@
       <div class="bio-section">
         <p class="bio-text">
           I'm a backend heavy full-stack developer and history buff, currently working as a Senior
-          Software Engineer at HackerRank. In my team, we're building <a
+          Software Engineer at HackerRank. My team recently built <a
             href="https://www.hackerrank.com/products/skillup"
             rel="noopener noreferrer"
             target="_blank">SkillUp</a
-          > from the ground up.
+          > from 0→1, crossed $1 Million in ARR, and is now focused on scaling it to the next level.
         </p>
         <p class="bio-text">
           Beyond programming, I'm fascinated by history; something I've attempted to pursue
-          academically both before and after my engineering degree and though I dropped out both
-          times. I'll give it another shot down the road.
+          academically both before and after my engineering degree. Though I dropped out both times,
+          will give it another shot down the road.
         </p>
         <p class="bio-text">
-          I spent three years living as a nomad, working remotely from <a
+          I spent the last three years living as a nomad, working remotely from <a
             href="https://supertrips.ahampriyanshu.com"
             rel="noopener noreferrer"
             target="_blank">100+</a
@@ -180,7 +180,7 @@
   }
 
   .featured-section {
-    margin-top: 4rem;
+    margin-top: 2.5rem;
   }
 
   .featured-heading {

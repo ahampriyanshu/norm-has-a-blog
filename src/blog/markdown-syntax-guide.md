@@ -80,12 +80,6 @@ H<sub>2</sub> + SO<sub>4</sub> &rarr; H<sub>2</sub>SO<sub>4</sub>
 
 ## Code
 
-### Inline Code
-
-Use `inline code` for short code snippets.
-
-### Code Blocks
-
 You can add filenames to code blocks using the syntax: ` ```language:filename.ext `
 
 ```javascript:greeting.js
@@ -128,10 +122,11 @@ Use three or more hyphens, asterisks, or underscores:
 
 ## Tables
 
-|  | God Exists | God Does Not Exist |
-|--------|-------------|---------|
-| You Believe | Major Gain | Minor Loss |
-| You Don't Believe | Major Loss | Minor Gain |
+| Political Ideology | Communism  | Conservative |
+|--------|-------------|--------------|
+| Economic Policy | High Regulation | Free Market |
+| Social Policy | Progressive | Regressive |
+| Government Role | Expansive | Limited |
 
 Aligned tables:
 
@@ -148,7 +143,7 @@ You can add images using standard Markdown syntax:
 
 ## With captions
 
-<figure class="align-center">
+<figure>
   <img src="https://github.com/ahampriyanshu/meta/blob/main/blog/norm.png?raw=true" alt="norm">
   <figcaption>Rolling Stone ranked norm 139 out of 145 SNL cast members</figcaption>
 </figure>

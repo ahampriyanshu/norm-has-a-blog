@@ -29,7 +29,7 @@ ${posts
     <id>${url}/blog/${post.slug}</id>
     <published>${new Date(post.date).toISOString()}</published>
     <updated>${new Date(post.updated || post.date).toISOString()}</updated>
-    <summary>${escapeXml(post.description || post.title)}</summary>
+    <summary>${escapeXml(post.description)}</summary>
     <author>
       <name>${escapeXml(siteConfig.author)}</name>
     </author>

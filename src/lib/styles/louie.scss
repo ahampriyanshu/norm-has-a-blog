@@ -570,6 +570,13 @@ a {
 .prose {
   max-width: 100%;
 
+  figure {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+
   h2 {
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -1189,7 +1196,7 @@ a {
   font-weight: 500;
   letter-spacing: 0.3px;
   text-transform: capitalize;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
   background: none;
   border: none;
   cursor: pointer;
@@ -1200,25 +1207,9 @@ a {
     BlinkMacSystemFont,
     'Segoe UI',
     sans-serif;
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--link-color);
-    transition: width 0.2s ease;
-  }
 
   &:hover {
     color: var(--link-color);
-
-    &::after {
-      width: 100%;
-    }
   }
 
   &.active {

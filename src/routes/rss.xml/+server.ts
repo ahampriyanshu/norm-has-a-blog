@@ -26,7 +26,7 @@ ${posts
   .map(
     (post) => `    <item>
       <title>${escapeXml(post.title)}</title>
-      <description>${escapeXml(post.description || post.title)}</description>
+      <description>${escapeXml(post.description)}</description>
       <link>${url}/blog/${post.slug}</link>
       <guid isPermaLink="true">${url}/blog/${post.slug}</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>

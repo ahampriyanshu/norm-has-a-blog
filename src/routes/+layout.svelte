@@ -33,32 +33,8 @@
 </script>
 
 <svelte:head>
-  <title>{siteConfig.title} - {siteConfig.description}</title>
-  <meta name="description" content={siteConfig.description} />
+  <!-- Global meta tags that don't conflict with page-specific ones -->
   <meta name="author" content={siteConfig.author} />
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href="{siteConfig.baseURL}{siteConfig.subPath}{$page.url.pathname}" />
-
-  <!-- OpenGraph meta tags -->
-  <meta property="og:site_name" content={siteConfig.title} />
-  <meta property="og:title" content="{siteConfig.title} - {siteConfig.description}" />
-  <meta property="og:description" content={siteConfig.description} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="{siteConfig.baseURL}{siteConfig.subPath}{$page.url.pathname}" />
-  <meta property="og:image" content="{siteConfig.baseURL}{siteConfig.subPath}/images/hero.jpeg" />
-  <meta property="og:image:alt" content={siteConfig.title} />
-  <meta property="og:locale" content={siteConfig.lang} />
-
-  <!-- Twitter Card meta tags -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{siteConfig.title} - {siteConfig.description}" />
-  <meta name="twitter:description" content={siteConfig.description} />
-  <meta name="twitter:image" content="{siteConfig.baseURL}{siteConfig.subPath}/images/hero.jpeg" />
-  {#if siteConfig.twitterHandle}
-    <meta name="twitter:site" content="@{siteConfig.twitterHandle}" />
-    <meta name="twitter:creator" content="@{siteConfig.twitterHandle}" />
-  {/if}
 
   {#if siteConfig.analytics?.ga_id}
     <script

@@ -53,7 +53,8 @@
             href="https://www.hackerrank.com/products/skillup"
             rel="noopener noreferrer"
             target="_blank">SkillUp</a
-          > from 0→1, crossed $1 Million in ARR, and is now focused on scaling it to the next level.
+          > from 0→1, about to cross $1 Million in ARR, and is now focused on scaling it to the next
+          level.
         </p>
         <p class="bio-text">
           Beyond programming, I'm fascinated by history; something I've attempted to pursue
@@ -107,12 +108,14 @@
     overflow: hidden;
     border-radius: 24px;
     box-shadow: var(--card-shadow);
+    aspect-ratio: 1;
   }
 
   .profile-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 
   .hero-content {
@@ -156,6 +159,7 @@
       margin-top: 90px;
       width: 250px;
       height: 250px;
+      aspect-ratio: 1;
     }
 
     .hero-title {
@@ -172,10 +176,12 @@
 
     .profile-image-wrapper {
       order: 2;
+      flex-shrink: 0;
     }
 
     .hero-content {
       order: 1;
+      flex: 1;
     }
   }
 

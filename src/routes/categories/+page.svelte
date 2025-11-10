@@ -1,11 +1,18 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import type { PageData } from './$types';
+  import IndexList from '$lib/components/IndexList.svelte';
 
   export let data: PageData;
 
-  // Sort categories alphabetically
-  $: sortedCategories = Array.from(data.categories).sort((a, b) => a[0].localeCompare(b[0]));
+  // Sort categories alphabetically and format for IndexList
+  $: indexItems = Array.from(data.categories)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([category, subcategories]) => ({
+      name: category,
+      url: `${base}/categories/${category.toLowerCase()}`,
+      count: Array.from(subcategories.values()).reduce((sum, count) => sum + count, 0)
+    }));
 </script>
 
 <svelte:head>
@@ -39,18 +46,18 @@
   {/if}
 </svelte:head>
 
-<div class="tags-page">
+<div class="categories-page">
   <h1 class="page-title">Categories</h1>
 
-  <div class="tag-index">
-    {#each sortedCategories as [category, subcategories]}
-      <a href="{base}/categories/{category.toLowerCase()}" class="index-item">
-        <span class="tag-name">{category}</span>
-        <span class="dots"></span>
-        <span class="count">
-          {Array.from(subcategories.values()).reduce((sum, count) => sum + count, 0)}
-        </span>
-      </a>
-    {/each}
-  </div>
+  <IndexList items={indexItems} />
 </div>
+
+<style lang="scss">
+  .categories-page {
+    .page-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+  }
+</style>

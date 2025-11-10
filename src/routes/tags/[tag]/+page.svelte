@@ -54,3 +54,19 @@
 
   <BlogList posts={data.posts} />
 </div>
+
+<style lang="scss">
+  .tags-page {
+    .page-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .tag-count {
+      font-size: 1rem;
+      color: var(--color-muted);
+      margin-bottom: 2rem;
+    }
+  }
+</style>

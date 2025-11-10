@@ -53,9 +53,25 @@
   {/if}
 </svelte:head>
 
-<div class="tags-page">
+<div class="category-page">
   <h1 class="page-title">Category: {data.category}</h1>
-  <p class="tag-count">{data.posts.length} post{data.posts.length !== 1 ? 's' : ''}</p>
+  <p class="category-count">{data.posts.length} post{data.posts.length !== 1 ? 's' : ''}</p>
 
   <BlogList posts={data.posts} />
 </div>
+
+<style lang="scss">
+  .category-page {
+    .page-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .category-count {
+      font-size: 1rem;
+      color: var(--color-muted);
+      margin-bottom: 2rem;
+    }
+  }
+</style>

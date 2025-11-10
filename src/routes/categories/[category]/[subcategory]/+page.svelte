@@ -60,7 +60,7 @@
   {/if}
 </svelte:head>
 
-<div class="tags-page">
+<div class="category-page">
   <nav class="breadcrumb">
     <a href="{base}/categories">Categories</a>
     <span class="separator">/</span>
@@ -72,33 +72,47 @@
   <h1 class="page-title">
     {data.category} / {data.subcategory}
   </h1>
-  <p class="tag-count">{data.posts.length} post{data.posts.length !== 1 ? 's' : ''}</p>
+  <p class="category-count">{data.posts.length} post{data.posts.length !== 1 ? 's' : ''}</p>
 
   <BlogList posts={data.posts} />
 </div>
 
-<style>
+<style lang="scss">
+  .category-page {
+    .page-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .category-count {
+      font-size: 1rem;
+      color: var(--color-muted);
+      margin-bottom: 2rem;
+    }
+  }
+
   .breadcrumb {
     margin-bottom: 1.5rem;
     font-size: 0.9rem;
-    color: var(--text-color-secondary, #6c757d);
-  }
+    color: var(--color-muted);
 
-  .breadcrumb a {
-    color: var(--link-color, #0066cc);
-    text-decoration: none;
-  }
+    a {
+      color: var(--color-link);
+      text-decoration: none;
 
-  .breadcrumb a:hover {
-    text-decoration: underline;
-  }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
 
-  .breadcrumb .separator {
-    margin: 0 0.5rem;
-  }
+    .separator {
+      margin: 0 0.5rem;
+    }
 
-  .breadcrumb .current {
-    color: var(--text-color, #333);
-    font-weight: 500;
+    .current {
+      color: var(--color-text-primary);
+      font-weight: 500;
+    }
   }
 </style>

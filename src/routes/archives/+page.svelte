@@ -63,3 +63,38 @@
     {/each}
   </div>
 </div>
+
+<style lang="scss">
+  .archives-page {
+    .page-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .timeline {
+      .year-section {
+        margin-bottom: 3rem;
+
+        .year {
+          font-size: 1.75rem;
+          font-weight: 700;
+          margin-bottom: 1.5rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 2px solid var(--color-border-primary);
+        }
+
+        .month-section {
+          margin-bottom: 2rem;
+
+          .month {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-muted);
+          }
+        }
+      }
+    }
+  }
+</style>

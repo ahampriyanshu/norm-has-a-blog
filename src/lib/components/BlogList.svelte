@@ -24,3 +24,61 @@
     </li>
   {/each}
 </ul>
+
+<style lang="scss">
+  .blog-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .blog-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.35rem;
+      padding: 0.5rem 0;
+
+      .blog-date {
+        flex-shrink: 0;
+        font-size: 0.9rem;
+        color: var(--color-muted);
+        min-width: 4.5rem;
+      }
+
+      .blog-separator {
+        flex-shrink: 0;
+        color: var(--color-muted);
+        font-size: 1rem;
+        line-height: 1;
+      }
+
+      .blog-link {
+        flex-grow: 1;
+        color: var(--color-link);
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: var(--color-link-hover);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-list {
+      .blog-item {
+        gap: 0.35rem;
+
+        .blog-date {
+          min-width: 4.5rem;
+          font-size: 0.8rem;
+        }
+
+        .blog-link {
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+</style>

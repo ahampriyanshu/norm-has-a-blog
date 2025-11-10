@@ -241,3 +241,127 @@
     {/if}
   </nav>
 </div>
+
+<style lang="scss">
+  .toc-wrapper {
+    padding: 0;
+    margin-bottom: 0;
+    animation: fadeInToc 0.3s ease-out;
+  }
+
+  @keyframes fadeInToc {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .panel-heading {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.5rem;
+    color: var(--color-heading);
+  }
+
+  .toc {
+    :global(.toc-list) {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    :global(.toc-item) {
+      margin: 0;
+      padding: 0;
+      position: relative;
+
+      &:global(.toc-h2) {
+        margin-top: var(--spacing-3);
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      &:global(.toc-h3) {
+        padding-left: var(--spacing-4);
+        margin-top: var(--spacing-1);
+      }
+
+      &:global(.toc-h4) {
+        padding-left: var(--spacing-7);
+        margin-top: var(--spacing-1);
+        font-size: 0.8125rem;
+      }
+    }
+
+    :global(.toc-item.active) {
+      > :global(.toc-link) {
+        color: var(--color-link);
+        font-weight: 500;
+
+        &::before {
+          opacity: 1;
+          transform: scaleY(1);
+        }
+      }
+    }
+
+    :global(.toc-link) {
+      display: block;
+      padding: var(--spacing-1) 0;
+      padding-left: var(--spacing-3);
+      color: var(--color-muted);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      position: relative;
+
+      &:hover {
+        color: var(--color-link);
+      }
+    }
+
+    :global(.toc-link.active) {
+      color: var(--color-link);
+      background: var(--color-surface-hover);
+      border-radius: var(--radius-sm);
+    }
+
+    :global(.toc-sublist) {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition:
+        max-height 0.3s ease,
+        opacity 0.3s ease,
+        margin-top 0.3s ease;
+    }
+
+    :global(.toc-sublist.expanded) {
+      max-height: 1000px;
+      opacity: 1;
+      margin-top: 0.25rem;
+    }
+
+    :global(.toc-sublist .toc-item.toc-h3) {
+      padding-left: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    :global(.toc-sublist .toc-item.toc-h4) {
+      padding-left: 2rem;
+      margin-top: 0.25rem;
+      font-size: 0.8125rem;
+    }
+  }
+</style>

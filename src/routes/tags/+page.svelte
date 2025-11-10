@@ -1,11 +1,18 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import type { PageData } from './$types';
+  import IndexList from '$lib/components/IndexList.svelte';
 
   export let data: PageData;
 
-  // Sort tags alphabetically
-  $: sortedTags = Array.from(data.tags).sort((a, b) => a[0].localeCompare(b[0]));
+  // Sort tags alphabetically and format for IndexList
+  $: indexItems = Array.from(data.tags)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([tag, count]) => ({
+      name: tag,
+      url: `${base}/tags/${tag.toLowerCase()}`,
+      count
+    }));
 </script>
 
 <svelte:head>
@@ -42,13 +49,15 @@
 <div class="tags-page">
   <h1 class="page-title">Tags</h1>
 
-  <div class="tag-index">
-    {#each sortedTags as [tag, count]}
-      <a href="{base}/tags/{tag.toLowerCase()}" class="index-item">
-        <span class="tag-name">{tag}</span>
-        <span class="dots"></span>
-        <span class="count">{count}</span>
-      </a>
-    {/each}
-  </div>
+  <IndexList items={indexItems} />
 </div>
+
+<style lang="scss">
+  .tags-page {
+    .page-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+  }
+</style>

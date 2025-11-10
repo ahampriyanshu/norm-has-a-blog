@@ -147,3 +147,350 @@
     </div>
   </div>
 </footer>
+
+<style lang="scss">
+  .site-footer {
+    margin-top: auto;
+    padding-top: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+    border-top: 1px solid var(--color-border-primary);
+  }
+
+  .footer-divider {
+    height: 1px;
+    background: var(--color-border-primary);
+    opacity: 0.6;
+    margin-bottom: var(--spacing-6);
+  }
+
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    flex-wrap: wrap;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      font-weight: 600;
+
+      &:hover {
+        color: var(--color-link);
+      }
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--color-text-primary);
+      font-size: 0.85rem;
+    }
+  }
+
+  .footer-credits {
+    text-align: right;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .subscribe-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    padding: var(--spacing-1) var(--spacing-2);
+    background: transparent;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: var(--color-link);
+    }
+
+    span {
+      font-weight: 500;
+    }
+  }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: var(--spacing-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--color-link);
+    }
+  }
+
+  .scroll-to-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-1) var(--spacing-2);
+    background: transparent;
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-sm);
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: var(--color-link);
+      border-color: var(--color-link);
+    }
+  }
+
+  .footer-enhanced {
+    padding: 0 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    padding: 0 1rem;
+    margin-top: 2rem;
+
+    @media (max-width: 968px) {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+
+  .footer-left {
+    flex: 0 0 auto;
+    max-width: 500px;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .profile-image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .profile-image {
+    flex-shrink: 0;
+
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.25rem;
+  }
+
+  .profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-heading);
+    line-height: 1.2;
+    font-family:
+      'Lato',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      sans-serif;
+  }
+
+  .profile-title {
+    font-size: 0.95rem;
+    color: var(--color-muted);
+    margin: 0 0 var(--spacing-1) 0;
+    line-height: 1.4;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: var(--spacing-3);
+    flex-wrap: wrap;
+  }
+
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-muted);
+    transition: color 0.2s ease;
+
+    :global(.icon) {
+      color: currentColor;
+    }
+
+    &:hover {
+      color: var(--color-link);
+    }
+  }
+
+  .footer-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 4rem;
+
+    @media (max-width: 968px) {
+      justify-content: flex-start;
+      gap: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      flex-wrap: wrap;
+      gap: 2rem 0.5rem;
+    }
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 150px;
+    flex: 0 1 auto;
+
+    @media (max-width: 640px) {
+      flex: 0 1 calc(50% - 0.75rem);
+      min-width: 120px;
+    }
+
+    @media (max-width: 400px) {
+      flex: 0 1 100%;
+    }
+  }
+
+  .footer-section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-text);
+    margin: 0 0 0.5rem 0;
+    font-family:
+      'Lato',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      sans-serif;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    li {
+      margin: 0;
+    }
+  }
+
+  .footer-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--color-link);
+    }
+
+    :global(.icon) {
+      color: var(--color-muted);
+      flex-shrink: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-enhanced {
+      padding: 0rem 0 1.5rem;
+    }
+
+    .footer-main {
+      gap: 2rem;
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-content {
+      gap: 0.5rem;
+      font-size: 0.8rem;
+
+      strong {
+        font-size: 0.75rem;
+      }
+    }
+
+    .footer-credits {
+      text-align: left;
+    }
+
+    .subscribe-link span {
+      display: none;
+    }
+
+    .footer-main {
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .footer-content {
+      gap: 0.5rem;
+      font-size: 0.75rem;
+
+      strong {
+        font-size: 0.7rem;
+      }
+    }
+
+    .subscribe-link span {
+      display: none;
+    }
+
+    .theme-toggle {
+      padding: 0.375rem;
+    }
+  }
+</style>

@@ -64,7 +64,7 @@
               class="social-icon"
               aria-label="X (Twitter)"
             >
-              <Icon name="x-twitter" size={18} />
+              <Icon name="x" size={18} />
             </a>
           </div>
         </div>

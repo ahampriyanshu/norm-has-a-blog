@@ -1,9 +1,7 @@
 <p align="center"><img height="128" src="https://user-images.githubusercontent.com/54521023/134810563-8e34fea4-4250-4e8b-9ddb-5f163bd68e85.jpg"></p>
 <p align="center"><em>RIP Norm ❤️</em></p>
 
-# Norm has a blog
-
-A simple, static, and zero config blog built with SvelteKit.
+# norm-has-a-blog
 
 [![CI](https://img.shields.io/github/actions/workflow/status/ahampriyanshu/norm-has-a-blog/deploy.yml?logo=github)](https://github.com/ahampriyanshu/norm-has-a-blog/actions/workflows/deploy.yml)&nbsp;
 [![GitHub license](https://img.shields.io/github/license/ahampriyanshu/norm-has-a-blog?color=green)](https://github.com/ahampriyanshu/norm-has-a-blog/blob/main/LICENSE)&nbsp;
@@ -13,6 +11,35 @@ A simple, static, and zero config blog built with SvelteKit.
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?logo=prettier)](https://github.com/prettier/prettier)&nbsp;
 [![Linted: ESLint](https://img.shields.io/badge/linted-ESLint-4B32C3?logo=eslint)](https://eslint.org/)&nbsp;
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ahampriyanshu/norm-has-a-blog/pulls)&nbsp;
+
+**norm-has-a-blog** is a simple, static, and zero config blog built with SvelteKit. It's designed for developers who want to save and share the stuff they're discovering.(but can be used by anyone for anything)
+
+## Features
+
+This blog comes packed with powerful features out of the box:
+
+- **Modern Stack**: Built with [SvelteKit 2.0](https://svelte.dev/) and [Vite](https://vite.dev/) for blazing-fast performance
+- **Markdown Support**: Write posts in Markdown(GFM is also supported) with [MDSveX](https://mdsvex.pngwn.io/).
+- **Syntax Highlighting**: Beautiful code blocks powered by [Shiki](https://shiki.matsu.io/).
+- **Math Equations**: Full support for LaTeX/KaTeX mathematical expressions powered by [MathJax](https://www.mathjax.org/).
+- **Static Site Generation**: Deploy anywhere with zero runtime dependencies(and zero cost).
+- **Table of Contents**: Interactive table of contents for easy navigation.
+- **Responsive Design**: Looks great on all devices.
+- **Dark/Light Theme**: Built-in theme support.
+- **SEO Friendly**: RSS/Atom feeds, sitemap, OG tags and canonical URLs.
+- **Tags & Categories**: Organize posts with hierarchical categories and tags.
+- **Featured Posts**: Pin important posts to the homepage.
+- **Enhanced Footer**: Customizable footer with projects, blogs, and social links.
+- **Archives**: Browse posts by date.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed on your system:
+
+- **Node.js** (v18 or higher) - [Download here](https://nodejs.org/)
+- **npm** or **yarn** or **pnpm** (or any other package manager)
+- **Git** 
+- A code editor.
 
 ## Getting Started
 
@@ -132,9 +159,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Acknowledgments
 
-- Built with [SvelteKit](https://kit.svelte.dev/)
+- Built with [SvelteKit](https://kit.svelte.dev/) and  [Vite](https://vite.dev/)
 - Markdown processing by [mdsvex](https://mdsvex.pngwn.io/)
-- Math rendering by [MathJax](https://www.mathjax.org/)
 - Code highlighting by [Shiki](https://shiki.gitbook.io/)
+- Math rendering by [MathJax](https://www.mathjax.org/)
 - Deployed on [GitHub Pages](https://pages.github.com/)
-

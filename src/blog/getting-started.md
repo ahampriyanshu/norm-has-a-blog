@@ -18,8 +18,8 @@ pin: true
 
 This blog comes packed with powerful features out of the box:
 
-- **Modern Stack**: Built with SvelteKit 2.0 and Vite for blazing-fast performance
-- **Markdown Support**: Write posts in Markdown with [MDSveX](https://mdsvex.pngwn.io/). GFM is also supported.
+- **Modern Stack**: Built with [SvelteKit 2.0](https://svelte.dev/) and [Vite](https://vite.dev/) for blazing-fast performance
+- **Markdown Support**: Write posts in Markdown(GFM is also supported) with [MDSveX](https://mdsvex.pngwn.io/).
 - **Syntax Highlighting**: Beautiful code blocks powered by [Shiki](https://shiki.matsu.io/).
 - **Math Equations**: Full support for LaTeX/KaTeX mathematical expressions powered by [MathJax](https://www.mathjax.org/).
 - **Static Site Generation**: Deploy anywhere with zero runtime dependencies(and zero cost).
@@ -32,15 +32,14 @@ This blog comes packed with powerful features out of the box:
 - **Enhanced Footer**: Customizable footer with projects, blogs, and social links.
 - **Archives**: Browse posts by date.
 
-
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your system:
 
 - **Node.js** (v18 or higher) - [Download here](https://nodejs.org/)
-- **npm** or **yarn** - Comes with Node.js
-- **Git** - [Download here](https://git-scm.com/)
-- A code editor like [VS Code](https://code.visualstudio.com/)
+- **npm** or **yarn** or **pnpm** (or any other package manager)
+- **Git** 
+- A code editor.
 
 ## Installation
 
@@ -83,7 +82,7 @@ norm-has-a-blog/
 │   ├── lib/
 │   │   ├── components/     # Reusable Svelte components
 │   │   ├── layouts/        # Page and post layouts
-│   │   ├── styles/         # SCSS stylesheets
+│   │   ├── styles/         # Global SCSS stylesheets
 │   │   ├── utils/          # Utility functions
 │   │   └── config.ts       # Blog configuration
 │   ├── blog/               # Your markdown articles
@@ -91,13 +90,15 @@ norm-has-a-blog/
 │   │   ├── +page.svelte    # Homepage
 │   │   ├── blog/           # Blog post routes
 │   │   ├── tags/           # Tag listing and filtering
+│   │   ├── categories/     # Category pages
 │   │   ├── archives/       # Archive page
-│   │   └── api/            # API endpoints
+│   │   └── api/            # API endpoints (RSS, sitemap)
 │   └── app.html            # HTML template
 ├── static/                 # Static assets
-│   ├── images/             # Image files
+│   ├── images/             # Images for blog posts
+│   ├── user.jpg            # Your profile image
+│   ├── logo.png            # Your logo for footer
 │   └── assets/             # CSS, fonts, etc.
-├── build/                  # Production build output
 ├── svelte.config.js        # Svelte/Kit configuration
 ├── vite.config.ts          # Vite configuration
 └── package.json            # Project dependencies
@@ -294,10 +295,21 @@ The footer is enhanced with:
 
 The blog uses SCSS for styling. Main styles are located in:
 
-- `src/lib/styles/louie.scss` - Main stylesheet
-- `static/assets/css/skins/` - Theme skins
+- **Global Styles**: `src/lib/styles/louie.scss` contains design tokens (colors, spacing, borders), CSS resets, and global prose styles
 
-You can customize colors, fonts, spacing, and more by editing these files.
+#### Key Design Tokens
+
+```scss
+// Colors (automatically switch between light/dark themes)
+--color-text-primary         // Primary text color
+--color-text-secondary       // Secondary/muted text
+--color-background-primary   // Page background
+--color-surface-primary      // Card/surface backgrounds
+--color-surface-secondary    // Hover states
+--color-link                 // Link color
+--color-border-primary       // Border colors
+--color-heading              // Heading text color
+```
 
 ## Troubleshooting
 
@@ -333,6 +345,34 @@ Ensure images are in the `static/images/` directory and referenced with `/images
 ![My Image](/images/my-image.png)
 ```
 
+## Advanced Customization
+
+### Reusable Components
+
+The blog includes several reusable components you can leverage:
+
+- **`Icon.svelte`**: Consistent SVG icons throughout the site (arrow-right, search, copy, check, github, linkedin, x-twitter, rss, moon, sun, arrow-up, etc.)
+- **`BlogList.svelte`**: Displays a list of blog posts with dates
+- **`IndexList.svelte`**: Dotted list view used for tags and categories pages
+- **`CopyDropdown.svelte`**: Action dropdown with primary action and menu items
+
+### Adding New Icons
+
+To add a new icon, edit `src/lib/components/Icon.svelte`:
+
+```typescript
+const icons: Record<string, string> = {
+  'my-icon': 'M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z',
+  // ... other icons
+};
+```
+
+Then use it anywhere:
+
+```svelte
+<Icon name="my-icon" size={16} />
+```
+
 ## Next Steps
 
 Now that you have your blog set up, here's what to do next:
@@ -340,7 +380,5 @@ Now that you have your blog set up, here's what to do next:
 1. **Customize Your Configuration** - Update `src/lib/config.ts` with your information
 2. **Write Your First Post** - See the [Adding New Post](./adding-new-post) guide
 3. **Explore Markdown Features** - Check out the [Markdown Syntax Guide](./markdown-syntax-guide)
-4. **Customize the Design** - Modify styles in `src/lib/styles/`
-5. **Deploy Your Blog** - Choose a hosting platform and go live!
 
 Happy blogging! 🚀

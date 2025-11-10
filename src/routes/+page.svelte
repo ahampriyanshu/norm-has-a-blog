@@ -63,7 +63,7 @@
         </p>
         <p class="bio-text">
           I spent the last three years living as a nomad, working remotely from <a
-            href="https://supertrips.ahampriyanshu.com"
+            href="https://supertrip.ahampriyanshu.com"
             rel="noopener noreferrer"
             target="_blank">100+</a
           > cities across India. It's something I'd love to do internationally over the next decade.
@@ -80,7 +80,7 @@
     </div>
   </div>
 
-  {#if data.pinnedPosts && data.pinnedPosts.length > 0}
+  {#if data?.pinnedPosts?.length > 0}
     <div class="featured-section blog-page">
       <h2 class="featured-heading">Featured Posts</h2>
       <BlogList posts={data.pinnedPosts} />
@@ -128,7 +128,7 @@
     font-size: 2.25rem;
     font-weight: 700;
     margin: 0;
-    color: var(--heading-color);
+    color: var(--color-heading);
   }
 
   .bio-section {
@@ -141,7 +141,7 @@
   .bio-text {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: var(--text-color);
+    color: var(--color-text-primary);
     margin: 0;
     text-align: left;
   }
@@ -193,7 +193,7 @@
     font-size: 2rem;
     font-weight: 700;
     margin: 0 0 1rem 0;
-    color: var(--heading-color);
+    color: var(--color-heading);
   }
 
   @media (max-width: 768px) {

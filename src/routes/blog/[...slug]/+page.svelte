@@ -2,7 +2,6 @@
   import type { ComponentType } from 'svelte';
   import type { PageData } from './$types';
   import { formatDate } from '$lib/utils/posts';
-  import Toast from '$lib/components/Toast.svelte';
   import CopyDropdown, { type DropdownAction } from '$lib/components/CopyDropdown.svelte';
   import { base } from '$app/paths';
   import { browser } from '$app/environment';
@@ -25,16 +24,16 @@
   );
   $: Content = contentEntry?.[1]?.default;
 
-  let showToast = false;
-  let toastMessage = '';
+  let copied = false;
+  let copyTimeout: ReturnType<typeof setTimeout> | null = null;
 
-  function showToastMessage(message: string) {
-    toastMessage = message;
-    showToast = true;
-  }
-
-  function handleToastClose() {
-    showToast = false;
+  function resetCopiedState() {
+    if (copyTimeout) {
+      clearTimeout(copyTimeout);
+    }
+    copyTimeout = setTimeout(() => {
+      copied = false;
+    }, 2000);
   }
 
   function getPostUrl(): string {
@@ -51,14 +50,16 @@
     if (articleElement) {
       const text = articleElement.textContent?.trim() ?? '';
       await navigator.clipboard.writeText(text);
-      showToastMessage('Post content copied to clipboard!');
+      copied = true;
+      resetCopiedState();
     }
   }
 
   async function copyUrl() {
     if (!browser) return;
     await navigator.clipboard.writeText(getPostUrl());
-    showToastMessage('Link copied to clipboard!');
+    copied = true;
+    resetCopiedState();
   }
 
   function viewAsMarkdown() {
@@ -70,8 +71,8 @@
   $: repoBaseUrl = `https://github.com/${siteConfig.githubUsername}/${siteConfig.githubRepo}`;
 
   $: copyPrimaryAction = {
-    label: 'Copy Page',
-    icon: 'copy',
+    label: copied ? 'Copied' : 'Copy Page',
+    icon: copied ? 'check' : 'copy',
     ariaLabel: 'Copy post content',
     onClick: copyPostContent
   } satisfies DropdownAction;
@@ -281,10 +282,6 @@
     </div>
   {/if}
 </article>
-
-{#if showToast}
-  <Toast message={toastMessage} onClose={handleToastClose} />
-{/if}
 
 <style lang="scss">
   .post-header-section {

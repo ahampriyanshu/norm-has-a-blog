@@ -17,9 +17,7 @@ pin: true
 
 **Important:** Make sure to backup your data before proceeding
 
-According to the documentation, this feature is *not recommended* for production use
-
-***Warning:*** This action cannot be undone
+*Warning:* This action cannot be undone
 
 This price was <del>$100</del> now $80
 
@@ -80,7 +78,15 @@ H<sub>2</sub> + SO<sub>4</sub> &rarr; H<sub>2</sub>SO<sub>4</sub>
 
 ## Code
 
-You can add filenames to code blocks using the syntax: ` ```language:filename.ext `
+This blog uses the [Shiki](https://shiki.matsu.io/) library for syntax highlighting.
+
+### Inline Code
+
+This is an inline code: `console.log('Hello, World!');`
+
+### Code Block
+
+This is a code block with a filename:
 
 ```javascript:greeting.js
 const greeting = (name) => {
@@ -145,7 +151,7 @@ You can add images using standard Markdown syntax:
 
 <figure>
   <img src="https://github.com/ahampriyanshu/meta/blob/main/blog/norm.png?raw=true" alt="norm">
-  <figcaption>Rolling Stone ranked norm 139 out of 145 SNL cast members</figcaption>
+  <figcaption>Rolling Stone review of norm as a SNL cast member</figcaption>
 </figure>
 
 <fig>
@@ -154,10 +160,9 @@ You can add images using standard Markdown syntax:
 
 You can also use raw HTML in Markdown:
 
-<div style="border: 1px solid #f0f0f0; padding: 10px; border-radius: 12px; text-align: center;">
+<div style="border: 1px solid black; padding: 10px; border-radius: 12px; text-align: center; background-color: #f0f0f0; color: blue;">
   This is a custom HTML div with inline styles.
 </div>
-
 
 
 ## Math Equations

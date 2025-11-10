@@ -142,37 +142,15 @@
     border: 1px solid var(--color-border-primary);
     border-radius: var(--radius-md);
     background: var(--color-surface-secondary);
-    transition: all 0.2s ease;
     overflow: hidden;
-
-    &:hover {
-      background: var(--color-surface-hover);
-    }
-
-    :global(.copy-btn:hover),
-    :global(.copy-dropdown-arrow:hover) {
-      background: var(--color-surface-hover);
-    }
   }
 
   :global(:root[data-mode='dark']) .copy-dropdown-wrapper {
     background: var(--color-surface-hover);
     border: 1px solid var(--color-border-secondary);
 
-    &:hover {
-      opacity: 0.9;
-    }
-
     :global(.copy-btn) {
       border-right: 1px solid var(--color-border-secondary);
-
-      &:hover {
-        opacity: 0.9;
-      }
-    }
-
-    :global(.copy-dropdown-arrow:hover) {
-      opacity: 0.9;
     }
   }
 
@@ -228,11 +206,13 @@
     background: transparent;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    min-width: 110px;
 
     span {
       display: inline-block;
       margin-left: var(--spacing-2);
       font-weight: inherit;
+      min-width: 70px;
     }
 
     &:hover {

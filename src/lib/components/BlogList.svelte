@@ -1,6 +1,7 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import type { PostMetadata } from '$lib/utils/posts';
+  import Icon from '$lib/components/Icon.svelte';
 
   export let posts: PostMetadata[];
 
@@ -17,7 +18,7 @@
   {#each posts as post}
     <li class="blog-item">
       <time class="blog-date" datetime={post.date}>{formatDateSimple(post.date)}</time>
-      <span class="blog-separator">→</span>
+      <Icon name="arrow-right" size={16} className="blog-separator" />
       <a href="{base}/blog/{post.slug}" class="blog-link">
         {post.title}
       </a>
@@ -44,11 +45,10 @@
         min-width: 4.5rem;
       }
 
-      .blog-separator {
+      :global(.blog-separator) {
         flex-shrink: 0;
         color: var(--color-muted);
-        font-size: 1rem;
-        line-height: 1;
+        align-self: center;
       }
 
       .blog-link {

@@ -53,8 +53,8 @@
             href="https://www.hackerrank.com/products/skillup"
             rel="noopener noreferrer"
             target="_blank">SkillUp</a
-          > from 0→1, about to cross $1 Million in ARR, and is now focused on scaling it to the next
-          level.
+          > from 0&rarr;1, about to cross $1 Million in ARR, and is now focused on scaling it to the
+          next level.
         </p>
         <p class="bio-text">
           Beyond programming, I'm fascinated by history; something I've attempted to pursue

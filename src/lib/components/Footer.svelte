@@ -64,7 +64,7 @@
               class="social-icon"
               aria-label="X (Twitter)"
             >
-              <Icon name="twitter" size={18} />
+              <Icon name="x-twitter" size={18} />
             </a>
           </div>
         </div>
@@ -142,7 +142,7 @@
         <Icon name={themeToggleIcon} size={16} />
       </button>
       <button class="scroll-to-top" on:click={scrollToTop} aria-label="Scroll to top">
-        <Icon name="chevron-up" size={16} />
+        <Icon name="arrow-up" size={16} />
       </button>
     </div>
   </div>
@@ -205,16 +205,15 @@
   .footer-actions {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--spacing-2);
   }
 
   .subscribe-link {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-1);
-    padding: var(--spacing-1) var(--spacing-2);
+    padding: var(--spacing-2);
     background: transparent;
-    color: var(--color-muted);
     font-size: 0.875rem;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -224,15 +223,14 @@
     }
 
     span {
-      font-weight: 500;
+      font-weight: 400;
     }
   }
 
   .theme-toggle {
     background: none;
     border: none;
-    color: var(--color-text-primary);
-    font-size: 1.25rem;
+    color: var(--color-muted);
     cursor: pointer;
     padding: var(--spacing-2);
     display: flex;
@@ -246,21 +244,18 @@
   }
 
   .scroll-to-top {
-    display: inline-flex;
+    background: none;
+    border: none;
+    color: var(--color-muted);
+    cursor: pointer;
+    padding: var(--spacing-2);
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-1) var(--spacing-2);
-    background: transparent;
-    border: 1px solid var(--color-border-primary);
-    border-radius: var(--radius-sm);
-    color: var(--color-muted);
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease;
 
     &:hover {
       color: var(--color-link);
-      border-color: var(--color-link);
     }
   }
 

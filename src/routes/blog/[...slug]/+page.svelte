@@ -205,7 +205,7 @@
     <h1 class="post-title-main">{metadata.title}</h1>
   </div>
 
-  <div class="post-meta-inline text-muted">
+  <div class="post-meta-inline">
     <span class="meta-item">
       <time datetime={metadata.date}>Posted on {formatDate(metadata.date)}</time>
     </span>

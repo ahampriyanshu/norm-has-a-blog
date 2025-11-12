@@ -12,7 +12,7 @@
 [![Linted: ESLint](https://img.shields.io/badge/linted-ESLint-4B32C3?logo=eslint)](https://eslint.org/)&nbsp;
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ahampriyanshu/norm-has-a-blog/pulls)&nbsp;
 
-**norm-has-a-blog** is a simple, static, and zero config blog built with SvelteKit. It's designed for developers who want to save and share the stuff they're discovering.(but can be used by anyone for anything)
+**norm-has-a-blog** is a simple, static, and zero config blog built with SvelteKit. It's designed for developers who want to save and share the stuff they're discovering(but can be used by anyone for anything).
 
 ## Features
 
@@ -36,9 +36,9 @@ This blog comes packed with powerful features out of the box:
 
 Before you begin, ensure you have the following installed on your system:
 
-- **Node.js** (v18 or higher) - [Download here](https://nodejs.org/)
+- **Node.js** (v22 or higher)
 - **yarn** (or any other package manager)
-- **Git** 
+- **git** 
 - A code editor.
 
 ## Getting Started

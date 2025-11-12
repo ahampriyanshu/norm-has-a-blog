@@ -53,13 +53,13 @@
             href="https://www.hackerrank.com/products/skillup"
             rel="noopener noreferrer"
             target="_blank">SkillUp</a
-          > from 0&rarr;1, about to cross $1 Million in ARR, and is now focused on scaling it to the
-          next level.
+          > from 0 to 1, about to cross $1 million in ARR, and is now focused on scaling it to the next
+          level.
         </p>
         <p class="bio-text">
-          Beyond programming, I'm fascinated by history; something I've attempted to pursue
-          academically both before and after my engineering degree. Though I dropped out both times,
-          will give it another shot down the road.
+          Beyond programming, I'm fascinated by history; a field I've attempted to pursue
+          academically, both before and after my engineering degree. Though I dropped out both
+          times, I plan to give it another shot down the road.
         </p>
         <p class="bio-text">
           I spent the last three years living as a nomad, working remotely from <a
@@ -69,7 +69,7 @@
           > cities across India. It's something I'd love to do internationally over the next decade.
         </p>
         <p class="bio-text">
-          This blog is where I share notes on programming, personal finance, and whatever else I'm
+          This blog is where I share notes on programming, personal finance, and anything else I'm
           exploring at the moment. If you want to collaborate on something cool, feel free to <a
             href="mailto:vayampriyanshu@gmail.com&subject=Hey"
             rel="noopener noreferrer"

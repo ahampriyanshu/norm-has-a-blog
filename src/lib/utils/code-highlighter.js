@@ -4,6 +4,32 @@ import { escapeSvelte } from 'mdsvex';
 /** @type {import('shiki').Highlighter | undefined} */
 let highlighter;
 
+/** @type {Promise<import('shiki').Highlighter> | undefined} */
+let highlighterPromise;
+
+/**
+ * Get or create the singleton Shiki highlighter instance
+ * @returns {Promise<import('shiki').Highlighter>}
+ */
+async function getHighlighter() {
+  if (highlighter) {
+    return highlighter;
+  }
+
+  // If we're already creating the highlighter, wait for that promise
+  if (!highlighterPromise) {
+    highlighterPromise = createHighlighter({
+      themes: ['gruvbox-dark-hard'],
+      langs: Object.keys(bundledLanguages)
+    }).then((h) => {
+      highlighter = h;
+      return h;
+    });
+  }
+
+  return highlighterPromise;
+}
+
 /**
  * Creates a custom code highlighter function for mdsvex
  * Uses Shiki for syntax highlighting with gruvbox-dark-hard theme
@@ -11,13 +37,11 @@ let highlighter;
  * @returns {Promise<(code: string, lang?: string) => Promise<string>>}
  */
 export async function createCodeHighlighter() {
+  // Pre-initialize the highlighter to avoid creating multiple instances
+  await getHighlighter();
+
   return async (/** @type {string} */ code, /** @type {string} */ lang = 'text') => {
-    if (!highlighter) {
-      highlighter = await createHighlighter({
-        themes: ['gruvbox-dark-hard'],
-        langs: Object.keys(bundledLanguages)
-      });
-    }
+    const highlighter = await getHighlighter();
 
     let validLang = lang || 'text';
     let filename = '';

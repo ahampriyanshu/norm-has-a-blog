@@ -27,7 +27,6 @@
 
   $: isPostPage = $page.url.pathname.includes('/blog/');
   $: currentSlug = $page.data?.metadata?.slug;
-  // Filter out current post from recent posts and limit to 3
   $: recentPosts = (data.recentPosts ?? []).filter((post) => post.slug !== currentSlug).slice(0, 3);
   $: headings = $page.data?.headings ?? [];
 </script>
@@ -35,6 +34,18 @@
 <svelte:head>
   <!-- Global meta tags that don't conflict with page-specific ones -->
   <meta name="author" content={siteConfig.author} />
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title="RSS Feed"
+    href="{siteConfig.subPath}/rss.xml"
+  />
+  <link
+    rel="alternate"
+    type="application/atom+xml"
+    title="Atom Feed"
+    href="{siteConfig.subPath}/atom.xml"
+  />
 
   {#if siteConfig.analytics?.ga_id}
     <script

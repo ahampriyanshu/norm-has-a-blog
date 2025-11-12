@@ -154,7 +154,7 @@ let tags: string[] = ["typescript", "javascript"];
 Start the development server if it's not already running:
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 Navigate to `http://localhost:5173` in your browser.

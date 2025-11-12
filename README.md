@@ -37,7 +37,7 @@ This blog comes packed with powerful features out of the box:
 Before you begin, ensure you have the following installed on your system:
 
 - **Node.js** (v18 or higher) - [Download here](https://nodejs.org/)
-- **npm** or **yarn** or **pnpm** (or any other package manager)
+- **yarn** (or any other package manager)
 - **Git** 
 - A code editor.
 
@@ -56,13 +56,13 @@ cd my-new-blog
 2. Install dependencies:
 
 ```bash
-npm install
+yarn
 ```
 
 3. Start the development server:
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
@@ -72,13 +72,13 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 Build the static site:
 
 ```bash
-npm run build
+yarn build
 ```
 
 Preview the production build:
 
 ```bash
-npm run preview
+yarn preview
 ```
 
 ## Configuration
@@ -91,20 +91,15 @@ export const siteConfig = {
   description: 'Your blog description',
   author: 'Your Name',
   url: 'https://yourdomain.com',
+  subPath: '/your-subdirectory',
   lang: 'en',
-  
   social: {
     github: 'yourusername',
     twitter: 'yourusername',
     email: 'your@email.com',
     rss: true
   },
-  
-  theme: {
-    mode: 'dual', // 'light', 'dark', or 'dual'
-  },
-  
-  paginate: 10,
+  theme: 'light'
 };
 ```
 

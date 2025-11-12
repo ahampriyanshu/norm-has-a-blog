@@ -3,12 +3,6 @@ export const siteConfig = {
   description: 'A minimal, responsive, and feature-rich blog theme',
   author: 'Priyanshu Tiwari',
   designation: 'Senior Software Engineer',
-  // bio: [
-  //   "I'm a full stack developer and history buff, currently working as a Senior Software Engineer at HackerRank. In my current org, I am part of core team building SkillUp.",
-  //   'Apart from programming, I am interested in history. I tried pursuing it academically before and after my gradution, but dropped both the times. Will try again in the future.',
-  //   'I lived as nomad for the 3 years, stayed(and worked) in 100+ cities across India. Something I would like to do internationally in the next decade.',
-  //   "This blog includes my notes on programming, personal finance, and whatever else I'm figuring out. To collaborate on something interesting, feel free to reach me at ahampriyanshu@gmail.com."
-  // ],
   baseURL: 'https://ahampriyanshu.com',
   subPath: '/norm-has-a-blog',
   githubUsername: 'ahampriyanshu',
@@ -16,7 +10,7 @@ export const siteConfig = {
   twitterHandle: 'ahampriyanshu',
   lang: 'en',
   timezone: 'Asia/Kolkata',
-  theme: 'dark',
+  theme: 'light',
   analytics: {
     ga_id: 'G-VSNH6EH1RX',
     gtag_id: 'GTM-M4FTVQ3'

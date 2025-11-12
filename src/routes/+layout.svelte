@@ -8,6 +8,7 @@
   import RecentlyUpdated from '$lib/components/RecentlyUpdated.svelte';
   import '$lib/styles/louie.scss';
   import { onMount } from 'svelte';
+  import { fly } from 'svelte/transition';
 
   export let data: LayoutData;
   let theme = 'light';
@@ -97,7 +98,11 @@
 
       <div class="content-wrapper" class:has-sidebar={isPostPage}>
         {#if isPostPage}
-          <aside aria-label="Panel" class="sidebar-panel">
+          <aside
+            aria-label="Panel"
+            class="sidebar-panel"
+            in:fly={{ x: -100, duration: 400, delay: 50 }}
+          >
             <div class="panel-recent">
               <RecentlyUpdated {recentPosts} />
             </div>

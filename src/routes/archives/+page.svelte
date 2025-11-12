@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { PageData } from './$types';
   import BlogList from '$lib/components/BlogList.svelte';
+  import { fly } from 'svelte/transition';
 
   export let data: PageData;
 </script>
@@ -45,7 +46,7 @@
   {/if}
 </svelte:head>
 
-<div class="archives-page">
+<div class="archives-page" in:fly={{ y: 30, duration: 500 }}>
   <h1 class="page-title">Archives</h1>
 
   <div class="timeline">

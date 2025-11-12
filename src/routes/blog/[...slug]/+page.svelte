@@ -450,18 +450,88 @@
     line-height: 1.8;
   }
 
-  .post-article :global(.content h1) {
-    font-size: 1.75rem;
-    font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
+  // Global Prose Styles
+  :global(.content.prose) {
+    :global(h2),
+    :global(h3),
+    :global(h4),
+    :global(h5),
+    :global(h6) {
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
 
-  .post-article :global(.content h2) {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    :global(h2) {
+      margin-top: 2.5rem;
+      font-size: 2rem;
+    }
+
+    :global(h3) {
+      margin-top: 2rem;
+      font-size: 1.625rem;
+    }
+
+    :global(h4) {
+      margin-top: 1.75rem;
+      font-size: 1.25rem;
+    }
+
+    :global(h5) {
+      margin-top: 1.5rem;
+      font-size: 1.125rem;
+      letter-spacing: 0.01em;
+    }
+
+    :global(h6) {
+      margin-top: 1.25rem;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+    }
+
+    @media (max-width: 768px) {
+      :global(h2) {
+        font-size: 1.75rem;
+      }
+
+      :global(h3) {
+        font-size: 1.5rem;
+      }
+
+      :global(h4) {
+        font-size: 1.125rem;
+      }
+
+      :global(h5) {
+        font-size: 1rem;
+      }
+
+      :global(h6) {
+        font-size: 0.9375rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      :global(h2) {
+        font-size: 1.5rem;
+      }
+
+      :global(h3) {
+        font-size: 1.25rem;
+      }
+
+      :global(h4) {
+        font-size: 1.125rem;
+      }
+
+      :global(h5) {
+        font-size: 1rem;
+      }
+
+      :global(h6) {
+        font-size: 0.875rem;
+      }
+    }
   }
 
   .post-article .post-navigation {

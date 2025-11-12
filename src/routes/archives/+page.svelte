@@ -49,16 +49,11 @@
   <h1 class="page-title">Archives</h1>
 
   <div class="timeline">
-    {#each Array.from(data.archives) as [year, months]}
+    {#each Array.from(data.archives) as [year, posts]}
       <div class="year-section">
         <h2 class="year">{year}</h2>
 
-        {#each Array.from(months) as [month, posts]}
-          <div class="month-section">
-            <h3 class="month">{month}</h3>
-            <BlogList {posts} />
-          </div>
-        {/each}
+        <BlogList {posts} />
       </div>
     {/each}
   </div>
@@ -84,15 +79,8 @@
           border-bottom: 2px solid var(--color-border-primary);
         }
 
-        .month-section {
+        :global(.blog-list) {
           margin-bottom: 2rem;
-
-          .month {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--color-muted);
-          }
         }
       }
     }

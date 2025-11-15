@@ -11,9 +11,6 @@
   import { fly } from 'svelte/transition';
 
   export let data: LayoutData;
-  export let params: Record<string, string>;
-  const __layoutProps = { params };
-  void __layoutProps;
   let theme = 'light';
   let recentPosts = data.recentPosts ?? [];
 

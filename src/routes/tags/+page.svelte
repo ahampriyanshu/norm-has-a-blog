@@ -5,8 +5,6 @@
   import { fly } from 'svelte/transition';
 
   export let data: PageData;
-  export let params: Record<string, string>;
-  void params;
   $: indexItems = Array.from(data.tags)
     .sort((a, b) => a[0].localeCompare(b[0]))
     .map(([tag, count]) => ({

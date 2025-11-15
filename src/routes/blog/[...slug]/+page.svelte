@@ -12,9 +12,6 @@
   import { get } from 'svelte/store';
 
   export let data: PageData;
-  export let params: Record<string, string>;
-  const __pageParams = params;
-  void __pageParams;
 
   const blogModules = import.meta.glob('../../../blog/**/*.md', { eager: true }) as Record<
     string,

@@ -5,8 +5,6 @@
   import { fly } from 'svelte/transition';
 
   export let data: PageData;
-  export let params: Record<string, string>;
-  void params;
 
   // Sort categories alphabetically and format for IndexList
   $: indexItems = Array.from(data.categories)

@@ -3,13 +3,10 @@ title: Getting Started
 description: Learn how to install, configure, and deploy your SvelteKit blog in minutes. Complete setup guide with customization tips and deployment options.
 date: '2025-11-02'
 tags:
-  - guide
-  - setup
-  - getting-started
-  - tutorial
+  - theme
+  - blogging
 categories:
-  - Documentation
-pin: true
+  - "Norm Has A Blog"
 ---
 
 **norm-has-a-blog** is a simple, static, and zero config blog built with SvelteKit. It's designed for developers who want to save and share the stuff they're discovering(but can be used by anyone for anything).

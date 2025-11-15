@@ -10,40 +10,12 @@ import { siteConfig } from './src/lib/config.ts';
 import { rehypeEscapeMath } from './src/lib/utils/rehype-escape-math.js';
 import { rehypeEscapeSvelte } from './src/lib/utils/rehype-escape-svelte.js';
 import { rehypeWrapTable } from './src/lib/utils/rehype-wrap-table.js';
+import { rehypeFixImagePaths } from './src/lib/utils/rehype-fix-image-paths.js';
+import { rehypeFixInternalLinks } from './src/lib/utils/rehype-fix-internal-links.js';
+import { rehypeOpenLinksInNewTab } from './src/lib/utils/rehype-open-links-in-new-tab.js';
 import { createCodeHighlighter } from './src/lib/utils/code-highlighter.js';
-import { visit } from 'unist-util-visit';
 
 const basePath = siteConfig.subPath ?? '';
-
-const rehypeFixImagePaths = () => (tree) => {
-  const base = process.env.NODE_ENV === 'production' ? basePath : '';
-  if (!base) return;
-
-  visit(tree, 'element', (node) => {
-    if (node.tagName === 'img' && node.properties?.src) {
-      const src = node.properties.src;
-      if (typeof src === 'string' && src.startsWith('/') && !src.startsWith('//')) {
-        node.properties.src = `${base}${src}`;
-      }
-    }
-  });
-};
-
-const rehypeOpenLinksInNewTab = () => (tree) => {
-  visit(tree, 'element', (node) => {
-    if (node.tagName === 'a' && node.properties?.href) {
-      const className = node.properties.className || node.properties.class;
-      const isHeadingAnchor =
-        className === 'heading-anchor' ||
-        (Array.isArray(className) && className.includes('heading-anchor'));
-
-      if (!isHeadingAnchor) {
-        node.properties.target = '_blank';
-        node.properties.rel = 'noopener noreferrer';
-      }
-    }
-  });
-};
 
 const mdsvexOptions = {
   extensions: ['.md'],
@@ -69,8 +41,9 @@ const mdsvexOptions = {
     rehypeEscapeMath,
     rehypeWrapTable,
     rehypeEscapeSvelte,
-    rehypeFixImagePaths,
-    rehypeOpenLinksInNewTab
+    rehypeFixImagePaths(basePath),
+    rehypeFixInternalLinks(basePath),
+    rehypeOpenLinksInNewTab(basePath)
   ],
   layout: {
     post: './src/lib/layouts/PostLayout.svelte',
@@ -100,6 +73,10 @@ const config = {
       handleHttpError: ({ path, referrer, message }) => {
         if (path.startsWith('/images/') || path.includes('/images/')) {
           console.warn(`Warning: Missing image ${path} referenced from ${referrer}`);
+          return;
+        }
+        if (path.startsWith('/blog/') || path.includes('.md')) {
+          console.warn(`Warning: Missing href ${path} referenced from ${referrer}`);
           return;
         }
         throw new Error(message);

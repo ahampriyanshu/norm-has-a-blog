@@ -1,29 +1,27 @@
 ---
 title: Markdown Syntax Guide
 description: Master markdown formatting with examples of text styling, code blocks, tables, math equations, and more. Complete reference for content creators.
-date: '2023-12-10'
+date: '2025-11-01'
 tags:
-  - markdown
-  - writing
-  - guide
-  - syntax
+  - theme
+  - blogging
 categories:
-  - Formatting
-math: true
+  - "Norm Has A Blog"
 pin: true
+math: true
 ---
+
 
 ## Text Formatting
 
-**VITO (softly):** Remember, Michael, always back up the ledger before you touch it.
 
-*MICHAEL (whispering):* Once we set this in motion, we can't undo it.
+MICHAEL *whispering*: Once we set this in motion, we can't **undo** it.
 
 The tribute was <del>$100,000</del> now $150,000 after the Five Families summit.
 
 This is an <ins>offer you can't refuse</ins> drafted for the Corleone heirs.
 
-This warning is <mark>highlighted for the consigliere</mark>.
+This warning is <mark>highlighted for the Consigliere</mark>.
 
 That truce is <s>no longer honored</s> after Sollozzo's move.
 
@@ -48,9 +46,9 @@ H<sub>2</sub> + SO<sub>4</sub> &rarr; H<sub>2</sub>SO<sub>4</sub> labels the che
 
 ## Links
 
-[This is an inline link](/blog)
+Click [here](https://ahampriyanshu.com/norm-has-a-blog/adding-new-post) to see the absolute guide guide.
 
-[This is a link with a title](/archives "Archive Page")
+Click [here](/blog/random-stuff) to see the relative guide.
 
 ## Lists
 
@@ -107,7 +105,7 @@ function takeJumanjiTurn(player: Player; isTurn: boolean; cheated: boolean ) {
 }
 ```
 
-Or without a filename:
+Or with a language:
 
 ```css
 .vcop-trigger-hair {

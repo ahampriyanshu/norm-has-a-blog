@@ -23,14 +23,20 @@ This blog comes packed with powerful features out of the box:
 - **Syntax Highlighting**: Beautiful code blocks powered by [Shiki](https://shiki.matsu.io/).
 - **Math Equations**: Full support for LaTeX/KaTeX mathematical expressions powered by [MathJax](https://www.mathjax.org/).
 - **Static Site Generation**: Deploy anywhere with zero runtime dependencies(and zero cost).
-- **Table of Contents**: Interactive table of contents for easy navigation.
-- **Responsive Design**: Looks great on all devices.
+- **Table of Contents**: Interactive table of contents.
+- **Responsive Design**: Looks great on all devices 
 - **Dark/Light Theme**: Built-in theme support.
 - **SEO Friendly**: RSS/Atom feeds, sitemap, OG tags and canonical URLs.
 - **Tags & Categories**: Organize posts with hierarchical categories and tags.
 - **Featured Posts**: Pin important posts to the homepage.
 - **Enhanced Footer**: Customizable footer with projects, blogs, and social links.
 - **Archives**: Browse posts by date.
+
+
+## Preview
+
+- [Dev Build](https://dev.ahampriyanshu.com)
+- [Production Build](https://ahampriyanshu.com)
 
 ## Prerequisites
 

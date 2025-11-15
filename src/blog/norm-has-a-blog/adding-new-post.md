@@ -3,12 +3,10 @@ title: Adding New Post
 description: Step-by-step guide to writing and publishing articles. Learn frontmatter, markdown features, best practices, and troubleshooting tips.
 date: '2025-11-02'
 tags:
-  - writing
-  - guide
-  - tutorial
+  - theme
+  - blogging
 categories:
-  - Tutorial
-pin: true
+  - "Norm Has A Blog"
 ---
 
 Writing a new blog post is simple and straightforward. This guide will walk you through the entire process, from creating a markdown file to publishing your post.

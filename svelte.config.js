@@ -15,7 +15,6 @@ import { visit } from 'unist-util-visit';
 
 const basePath = siteConfig.subPath ?? '';
 
-// Simple inline rehype plugin to fix image paths
 const rehypeFixImagePaths = () => (tree) => {
   const base = process.env.NODE_ENV === 'production' ? basePath : '';
   if (!base) return;
@@ -30,16 +29,48 @@ const rehypeFixImagePaths = () => (tree) => {
   });
 };
 
+const rehypeOpenLinksInNewTab = () => (tree) => {
+  visit(tree, 'element', (node) => {
+    if (node.tagName === 'a' && node.properties?.href) {
+      const className = node.properties.className || node.properties.class;
+      const isHeadingAnchor =
+        className === 'heading-anchor' ||
+        (Array.isArray(className) && className.includes('heading-anchor'));
+
+      if (!isHeadingAnchor) {
+        node.properties.target = '_blank';
+        node.properties.rel = 'noopener noreferrer';
+      }
+    }
+  });
+};
+
 const mdsvexOptions = {
   extensions: ['.md'],
   remarkPlugins: [remarkGfm, remarkToc, remarkMath],
   rehypePlugins: [
     rehypeSlug,
-    rehypeAutolinkHeadings,
+    [
+      rehypeAutolinkHeadings,
+      {
+        behavior: 'append',
+        properties: {
+          className: ['heading-anchor'],
+          ariaHidden: 'true'
+        },
+        content: [
+          {
+            type: 'text',
+            value: '#'
+          }
+        ]
+      }
+    ],
     rehypeEscapeMath,
     rehypeWrapTable,
     rehypeEscapeSvelte,
-    rehypeFixImagePaths
+    rehypeFixImagePaths,
+    rehypeOpenLinksInNewTab
   ],
   layout: {
     post: './src/lib/layouts/PostLayout.svelte',
@@ -53,7 +84,6 @@ const mdsvexOptions = {
 const config = {
   extensions: ['.svelte', '.md'],
   preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
-
   kit: {
     adapter: adapter({
       pages: 'build',
@@ -68,7 +98,6 @@ const config = {
     prerender: {
       handleMissingId: 'warn',
       handleHttpError: ({ path, referrer, message }) => {
-        // Ignore 404 errors for missing images during prerender
         if (path.startsWith('/images/') || path.includes('/images/')) {
           console.warn(`Warning: Missing image ${path} referenced from ${referrer}`);
           return;

@@ -4,6 +4,8 @@
   import { fly } from 'svelte/transition';
 
   export let data: PageData;
+  export let params: Record<string, string>;
+  void params;
 </script>
 
 <svelte:head>

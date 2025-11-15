@@ -6,11 +6,14 @@
   import Footer from '$lib/components/Footer.svelte';
   import TOC from '$lib/components/TOC.svelte';
   import RecentlyUpdated from '$lib/components/RecentlyUpdated.svelte';
-  import '$lib/styles/louie.scss';
+  import '$lib/styles/index.scss';
   import { onMount } from 'svelte';
   import { fly } from 'svelte/transition';
 
   export let data: LayoutData;
+  export let params: Record<string, string>;
+  const __layoutProps = { params };
+  void __layoutProps;
   let theme = 'light';
   let recentPosts = data.recentPosts ?? [];
 

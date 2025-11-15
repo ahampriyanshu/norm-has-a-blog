@@ -48,9 +48,9 @@ H<sub>2</sub> + SO<sub>4</sub> &rarr; H<sub>2</sub>SO<sub>4</sub>
 
 ## Links
 
-[This is an inline link](https://example.com)
+[This is an inline link](/blog)
 
-[This is a link with a title](https://example.com "Link Title")
+[This is a link with a title](/archives "Archive Page")
 
 ## Lists
 
@@ -145,7 +145,7 @@ Aligned tables:
 
 You can add images using standard Markdown syntax:
 
-![Hero Image](/images/hero.jpeg)
+![Ranganathaswamy" Temple](/images/hero.jpeg)
 
 ## With captions
 

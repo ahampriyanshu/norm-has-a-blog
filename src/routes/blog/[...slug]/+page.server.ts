@@ -32,6 +32,9 @@ function extractHeadingsFromMarkdown(markdown: string): Heading[] {
   while ((match = headingRegex.exec(content)) !== null) {
     const level = match[1].length;
     const text = match[2].trim();
+
+    if (!text) continue;
+
     const id = slugify(text);
 
     headings.push({ id, text, level });

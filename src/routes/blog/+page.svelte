@@ -4,6 +4,8 @@
   import { fly } from 'svelte/transition';
 
   export let data: PageData;
+  export let params: Record<string, string>;
+  void params;
 </script>
 
 <svelte:head>
@@ -21,7 +23,7 @@
   <meta property="og:url" content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/blog" />
   <meta
     property="og:image"
-    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/images/hero.jpeg"
+    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/images/logo.png"
   />
 
   <!-- Twitter Card meta tags -->
@@ -30,7 +32,7 @@
   <meta name="twitter:description" content="Browse all blog posts on {data.siteConfig.title}" />
   <meta
     name="twitter:image"
-    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/images/hero.jpeg"
+    content="{data.siteConfig.baseURL}{data.siteConfig.subPath}/images/logo.png"
   />
   {#if data.siteConfig.twitterHandle}
     <meta name="twitter:site" content="@{data.siteConfig.twitterHandle}" />

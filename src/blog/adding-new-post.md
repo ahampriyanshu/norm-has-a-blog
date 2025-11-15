@@ -130,23 +130,6 @@ Here are the main benefits:
 2. **Better IDE Support** - Autocomplete and IntelliSense
 3. **Improved Refactoring** - Rename and refactor with confidence
 4. **Modern JavaScript** - Use latest ECMAScript features
-
-## Basic Types
-
-TypeScript provides several basic types:
-
-```typescript:types.ts
-// String
-let name: string = "John Doe";
-
-// Number
-let age: number = 30;
-
-// Boolean
-let isActive: boolean = true;
-
-// Array
-let tags: string[] = ["typescript", "javascript"];
 ```
 
 ## Preview Your Post

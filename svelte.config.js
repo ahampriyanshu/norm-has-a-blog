@@ -11,8 +11,7 @@ import { rehypeEscapeMath } from './src/lib/utils/rehype-escape-math.js';
 import { rehypeEscapeSvelte } from './src/lib/utils/rehype-escape-svelte.js';
 import { rehypeWrapTable } from './src/lib/utils/rehype-wrap-table.js';
 import { rehypeFixImagePaths } from './src/lib/utils/rehype-fix-image-paths.js';
-import { rehypeFixInternalLinks } from './src/lib/utils/rehype-fix-internal-links.js';
-import { rehypeOpenLinksInNewTab } from './src/lib/utils/rehype-open-links-in-new-tab.js';
+import { rehypeFixLinks } from './src/lib/utils/rehype-fix-links.js';
 import { createCodeHighlighter } from './src/lib/utils/code-highlighter.js';
 
 const basePath = siteConfig.subPath ?? '';
@@ -42,8 +41,7 @@ const mdsvexOptions = {
     rehypeWrapTable,
     rehypeEscapeSvelte,
     rehypeFixImagePaths(basePath),
-    rehypeFixInternalLinks(basePath),
-    rehypeOpenLinksInNewTab(basePath)
+    rehypeFixLinks(basePath)
   ],
   layout: {
     post: './src/lib/layouts/PostLayout.svelte',
@@ -71,11 +69,12 @@ const config = {
     prerender: {
       handleMissingId: 'warn',
       handleHttpError: ({ path, referrer, message }) => {
+        console.warn(`Warning: ${path} referenced from ${referrer}`);
         if (path.startsWith('/images/') || path.includes('/images/')) {
           console.warn(`Warning: Missing image ${path} referenced from ${referrer}`);
           return;
         }
-        if (path.startsWith('/blog/') || path.includes('.md')) {
+        if (path.startsWith('/')) {
           console.warn(`Warning: Missing href ${path} referenced from ${referrer}`);
           return;
         }

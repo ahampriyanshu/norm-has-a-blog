@@ -46,9 +46,9 @@ H<sub>2</sub> + SO<sub>4</sub> &rarr; H<sub>2</sub>SO<sub>4</sub> labels the che
 
 ## Links
 
-Click [here](https://ahampriyanshu.com/norm-has-a-blog/adding-new-post) to see the absolute guide guide.
+Click [here](https://ahampriyanshu.com/blog) to see the absolute guide guide.
 
-Click [here](/blog/random-stuff) to see the relative guide.
+Click [here](/blog) to see the relative guide.
 
 ## Lists
 
